@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>传递小纸条</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	<link rel="stylesheet" href="css/baguetteBox.css">
+</head>
+
+<body class="bbqxztdetailbg">
+<img class="bbqdetailbgbl" src="images/xiaozhit-zhankai-bg.png">
+<img class="bbqdetailbgbl" src="images/xiaozhit-zhankaii-bg.png">
+<img class="bbqdetailbgiphon" src="images/xiaozhit-zhankaiphone-bg.png">
+<img class="bbqdetailbgbo" src="images/xiaozhit-zhankaipen-bg.png">
+<div class="head">
+	<div id="backBtn" class="indexreturn bbqreturn" >
+		<img src="images/houtui-icon.png" />
+	</div>
+	传递小纸条
+	<div class="operation" id="addBtn">发送</div>
+</div>
+
+<div class="weui-tab__bd pt50 backnone pushhei">
+	<section class="list pushhei">
+		<ul class="newlist-ul bbqwid90 mt10 pushheiul">
+			<li class="posire detailsli pushhei80">
+				<div class="detailtit"><img src="images/xiaozt-qbz-icon.png"></div>
+				<div class=" bbqzht-li m0 pushhei">
+					<div class="bbqxztdetailword pushhei pushheird">
+						<p class="detailtop detailtopbor">
+							TO:
+							<input id="toNickname" readonly class="xztpushname " placeholder="选择你的好友">
+						</p>
+						<textarea id="comment" class="xztpushcon" placeholder="小纸条内容..."></textarea>
+						<p class="detailright" id="fromNickname"></p>
+						<p class="detailright"><span id="dateTime"></span></p>
+					</div>
+				</div>
+			</li>
+
+		</ul>
+	</section>
+
+</div>
+
+<div id="publishPop" class="weui-popup__container" style="z-index: 200;">
+	<div class="weui-popup__overlay"></div>
+	<div class="weui-popup__modal bbqfff" style="">
+		<div class="head">
+			<div class="weui-navbar bbqwid90">
+				<div class="bbqsous">
+					<img src="images/sousuoh-icon.png" />
+					<form   action="" onsubmit="return false;"  style="margin:0px;display:inline;" >
+						<input placeholder="搜索" id="searchText" type="search"/>
+					</form>
+				</div>
+				<a class="operation" id="cancelBtn">取消</a>
+			</div>
+		</div>
+
+		<div class="weui-tab__bd pt50">
+			<ul id="attList" class=" bbqul mt0 p0">
+				<!--<li class="bbqgz posire mabottom1">
+                    <div class="bbqguanzimg">
+                        <img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+                    </div>
+                    <div class="bbqguanzword ">
+                        <p class="bbqguanzname fl">我叫马铃薯</p>
+                    </div>
+                    <div class="bbqguanzword">
+                        <div class="bbqguanzlabel fl">
+                            <img src="images/xuexiao-icon.png">
+                            <span class="">吉林大学</span>
+                        </div>
+                        <div class="bbqguanzlabelt">
+                            <div class="bbqguanzdj">1</div>
+                            <span class="">童生</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="bbqgz posire mabottom1">
+                    <div class="bbqguanzimg">
+                        <img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+                    </div>
+                    <div class="bbqguanzword ">
+                        <p class="bbqguanzname fl">
+                            我叫马铃薯
+                        </p>
+                    </div>
+                    <div class="bbqguanzword">
+                        <div class="bbqguanzlabel fl">
+                            <img src="images/xuexiao-icon.png">
+                            <span class="">吉林大学</span>
+                        </div>
+                        <div class="bbqguanzlabelt">
+                            <div class="bbqguanzdj">1</div>
+                            <span class="">童生</span>
+                        </div>
+
+                    </div>
+                </li>-->
+			</ul>
+		</div>
+	</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+
+<!--具体功能实现-->
+<script type="text/javascript" src="js/main/config.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        var bodyParam = {'USER_ID': user_id};
+
+
+		$('#toNickname').click(function(){
+			$("#publishPop").popup();
+			$('#header').hide();
+
+			var param = {'USER_ID': user_id,'PAGE':'1'};
+			getAttendList(param);
+		});
+
+        $('#cancelBtn').click(function(){
+            $.closePopup();
+            $('#header').show();
+        });
+
+
+        $('#fromNickname').text(user_name);
+        $('#dateTime').text(dateFtt("yyyy年MM月dd",new Date()));
+
+
+        $('#backBtn').click(function(){
+            window.history.go(-1);
+        });
+
+        $('body').on('click','.attitem',function(){
+            bodyParam['RECEIVE_ID']=$(this).attr('itemId');
+            $('#toNickname').val($(this).attr('itemName'));
+            $.closePopup();
+            $('#header').show();
+
+        });
+
+        $('#searchText').bind('search', function () {
+            var param = {'USER_ID': user_id,'PAGE':'1','KEYBYTE':$(this).val()};
+            getAttendList(param);
+        });
+
+
+        $("#addBtn").click(function(){
+            if($('#toNickname').val()==''){
+                $.toast("请选择小纸条的接收人！", "text");
+                return;
+            }
+            if($('#comment').val()==''){
+                $.toast("请输入小纸条内容！", "text");
+                return;
+            }
+            bodyParam['CON']=$('#comment').val();
+            bodyParam['PID']=GetQueryString('id');
+
+            addPaper(bodyParam);
+        });
+
+    });
+
+
+
+    function addPaper(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'sendPaper', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            //var obj = JSON.parse(response);
+            //var result = obj['Result'];
+            $.toast("发布成功！", "text",function() {
+                window.history.go(-1);
+            });
+
+        });
+    }
+
+    /**
+     * 关注列表
+     */
+    function getAttendList(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'AttendList', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            console.log(obj);
+            var data = obj['Result'];
+
+            var html='';
+            for(j = 0,len=data.length; j < len; j++) {
+
+                html+='<li class="bbqgz posire mabottom1 attitem" itemId="'+data[j].ID+'" itemName="'+data[j].NICKNAME+'">\n' +
+                    '<div class="bbqguanzimg">\n';
+                if(data[j].I_UPIMG!=null){
+                    html+='<img src="'+data[j].I_UPIMG+'">\n' ;
+                }
+                else{
+                    html+='<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' ;
+                }
+                html+='</div>\n' +
+                    '<div class="bbqguanzword ">\n' +
+                    '<p class="bbqguanzname fl">'+data[j].NICKNAME+'</p>\n' +
+                    '</div>\n' +
+                    '<div class="bbqguanzword">\n' +
+                    '<div class="bbqguanzlabel fl">\n' +
+                    '<img src="images/xuexiao-icon.png">\n' +
+                    '<span class="">'+data[j].NM_T+'</span>\n' +
+                    '</div>\n' +
+                    '<div class="bbqguanzlabelt">\n' +
+                    '<div class="bbqguanzdj">'+getLevelbyName(data[j].LEVEL_NAME)+'</div>\n' +
+                    '<span class="">'+data[j].LEVEL_NAME+'</span>\n' +
+                    '</div>\n' +
+                    '</div>\n' +
+                    '</li>';
+
+
+
+            }
+            $('#attList').html(html);
+
+
+        });
+    }
+
+</script>
+
+</body>
+
+</html>

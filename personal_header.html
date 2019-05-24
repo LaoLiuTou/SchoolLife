@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+
+		<link rel="stylesheet" href="header/css/amazeui.min.css">
+		<link rel="stylesheet" href="header/css/amazeui.cropper.css">
+		<link rel="stylesheet" href="header/css/custom_up_img.css">
+		<link rel="stylesheet" href="css/style.css">
+		<style type="text/css">
+			.up-img-cover {width: 100px;height: 100px;}
+			.up-img-cover img{width: 100%;}
+		</style>
+	</head>
+
+	<body>
+	 	<div class="head ">
+			<div class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+				<img src="images/houtui-icon.png" />
+			</div>
+			编辑头像
+			<div id="up-btn-ok"   class="operation">完成</div>
+		</div>
+		<div class="personal  bbqperson ">
+			<input type="file" id="inputImage" capture='camera' accept='image/*'>
+			<div class="am-modal-dialog up-frame-parent up-frame-radius">
+
+				<div class="am-modal-bd  up-frame-body">
+
+					<div class="am-g am-fl" >
+						<div class="up-pre-before up-frame-radius">
+							<img alt="" src="" id="image" >
+						</div>
+						<div class="up-pre-after up-frame-radius" style="display: none;">
+						</div>
+					</div>
+					<!--<div class="am-g am-fl">
+						<div class="am-form-group am-form-file">
+							<div class="am-fl">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+							</div>
+							<input type="file" id="inputImage" capture='camera' accept='image/*'>
+						</div>
+					</div>-->
+					<!--<div class="am-g am-fl">
+						<div class="up-control-btns">
+							<span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
+							<span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
+							<span class="am-icon-check" id="up&#45;&#45;ok" url="admin/user/upload.action"></span>
+						</div>
+					</div>-->
+
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="header/js/amazeui.min.js" charset="utf-8"></script>
+		<script src="header/js/cropper.min.js" charset="utf-8"></script>
+
+		<!--<script src="header/js/custom_up_img.js" charset="utf-8"></script>-->
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js"></script>
+		<script>
+
+
+            $(document).ready(function () {
+                var $image = $('#image');
+                $image.cropper({
+                    aspectRatio: '1',
+                    autoCropArea:0.8,
+                    preview: '.up-pre-after',
+
+                });
+
+                // 上传图片
+                var $inputImage = $('#inputImage');
+                var URL = window.URL || window.webkitURL;
+                var blobURL;
+
+                if (URL) {
+
+                    $inputImage.change(function () {
+                        var files = this.files;
+                        var file;
+
+
+                        if (files && files.length) {
+                            file = files[0];
+                            console.log(file);
+                            if (/^image\/\w+$/.test(file.type)) {
+                                blobURL = URL.createObjectURL(file);
+                                $image.one('built.cropper', function () {
+                                    // Revoke when load complete
+                                    URL.revokeObjectURL(blobURL);
+                                }).cropper('reset').cropper('replace', blobURL);
+                                $inputImage.val('');
+                            } else {
+                                window.alert('Please choose an image file.');
+                            }
+                        }
+
+                        // Amazi UI 上传文件显示代码
+                        var fileNames = '';
+                        $.each(this.files, function() {
+                            fileNames += '<span class="am-badge">' + this.name + '</span> ';
+                        });
+                        $('#file-list').html(fileNames);
+                    });
+                } else {
+
+                    $inputImage.prop('disabled', true).parent().addClass('disabled');
+                }
+
+
+				//绑定上传事件
+                $('#up-btn-ok').on('click',function(){
+                    var $modal = $('#my-modal-loading');
+                    var $modal_alert = $('#my-alert');
+                    var img_src=$image.attr("src");
+                    if(img_src==""){
+                        $.toast("没有选择上传的图片！", "text");
+                        $modal_alert.modal();
+                        return false;
+                    }
+
+                    $modal.modal();
+
+
+                    var canvas=$("#image").cropper('getCroppedCanvas');
+                    var data=canvas.toDataURL(); //转成base64
+                    var formData = new FormData();
+                    //调用
+                    //var blob = dataURLtoBlob(data);
+                    //var file = blobToFile(blob, "header.png");
+                    var file = dataURLtoFile(data, "header.png");
+                    formData.append("image",file);
+
+                    $.ajax({
+                        type: "post",
+                        url: url +"uploadImg",
+                        //url: 'http://192.168.1.144/FileUS/filesUpload',
+                        data: formData,
+                        contentType: false, // 注意这里应设为false
+                        processData: false,    //false
+                        cache: false,    //缓存
+                        success: function(response){
+                            var obj = JSON.parse(response);
+                            var code = obj['Code'];
+                            if(code=='1'){
+                                var result = obj['Result'];
+                                image=result;
+                                 console.log(image);
+                                //$('#idphoto').prop('src',image);
+                            }
+                            else{
+                                $.toast("上传文件失败！", "text");
+                            }
+
+                        }
+                    })
+
+                });
+
+            });
+
+
+             function dataURLtoBlob (dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], { type: mime });
+            }
+            //将blob转换为file
+             function blobToFile(theBlob, fileName){
+                theBlob.lastModifiedDate = new Date();
+                theBlob.name = fileName;
+                return theBlob;
+            }
+            function dataURLtoFile(dataurl, filename) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, { type: mime });
+            }
+
+
+
+
+		</script>
+
+
+
+
+	</body>
+
+</html>

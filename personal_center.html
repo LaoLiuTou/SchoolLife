@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body>
+		<div class="head">
+			<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+				<img src="images/houtui-icon.png" />
+			</div>
+			个人中心
+		</div>
+		<div class="weui-tab__bd pt50">
+			<div class="posire pt10">
+				<div class="bbqgrimg">
+					<img id="i_upimg" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+					<img class="renzmyicon" src="images/renzheng-left-icon.png">
+					<img class="renzmyicons" src="images/renzheng-right-icon.png">
+				</div>
+				<a href="personal_data.html" class="bbqbianj">编辑个人资料></a>
+			</div>
+
+			<p class="bbqgrname" id="nickname"><img class="bbqxb" src="images/nan-icon.png"></p>
+
+			<div class="bbqlabelbg">
+				<div class="wid100 textcen"> 
+					<div class="bbqlabel">
+						<img src="images/xuexiao-icon.png">
+						<span class="" id="sc_nm"></span>
+					</div>
+					<div class=" bbqlabelt">
+						<div class="bbqdj" id="level_name_icon">1</div>
+						<span id="level_name">童生</span>
+					</div>
+				</div>
+			</div>
+			<div class="bbqjingy">
+				<div class="wid50">
+					<p id="point_count">0</p>
+					<span class="">我的经验</span>
+				</div>
+				<div class="wid50">
+					<p id="hot_count">0</p>
+					<span class="">热点话题</span>
+				</div>
+			</div>
+			<div class="bbqjingy">
+				<a class="bbqgebtn" href="personal_follow.html">
+					<img src="images/wo-guanzhu-icon.png">
+					<p>关注</p>
+				</a>
+				<a class="bbqgebtn" href="news.html">
+					<img src="images/wo-xiaoxi-icon.png">
+					<p>消息</p>
+				</a>
+				<a class="bbqgebtn" href="paperstrip.html">
+					<img src="images/wo-xiaozhit-icon.png">
+					<p>小纸条</p>
+				</a>
+			</div>
+		</div>
+		<div class="weui-cells bbqcell">
+		  <a href="collection.html">
+		  	<div class="weui-cell">
+			    <div class="weui-cell__hd">
+			    	<img src="images/wo-shouc-icon.png" >
+			    </div>
+			    <div class="weui-cell__bd">
+			      <p>我的收藏</p>
+			    </div>
+			  </div>
+		  </a>
+		  <a href="history.html">
+			   <div class="weui-cell">
+			    <div class="weui-cell__hd">
+			    	<img src="images/wo-lishi-icon.png">
+			    </div>
+			    <div class="weui-cell__bd">
+			      <p>发表历史</p>
+			    </div>
+			  </div>
+		  </a>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js"></script>
+		<script>
+
+            $(document).ready(function () {
+                var bodyParam = {'USER_ID': user_id};
+                getUserInfo(bodyParam);
+            });
+
+            /**
+             * 用户信息
+             */
+            function getUserInfo(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'getUser', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    var obj = JSON.parse(response);
+                    var data = obj['Result'];
+                    if(data!=''){
+                        $('#nickname').text(data['NICKNAME']);
+                        $('#sc_nm').text(data['SC_NM']);
+                        if(data['LEVEL_NAME']!=null) {
+                            $('#level_name').text(data['LEVEL_NAME']);
+                            $('#level_name_icon').text( getLevelbyName(data['LEVEL_NAME']));
+                        }
+                        $('#point_count').text(data['POINT_COUNT']);
+                        $('#hot_count').text(data['HOT_COUNT']);
+                        $('#ac_nm').text(data['AC_NM']);
+                        if(data['I_UPIMG']!=null){
+                            $('#i_upimg').prop('src',data['I_UPIMG']);
+						}
+
+                       /* for (var item in result) {
+                            $('#'+item).text(result[item]);
+                        }*/
+
+					}
+                });
+            }
+
+
+		</script>
+	</body>
+
+</html>

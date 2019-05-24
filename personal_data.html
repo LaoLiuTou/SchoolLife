@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>编辑个人资料</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+
+		<link rel="stylesheet" href="header/css/amazeui.min.css">
+		<link rel="stylesheet" href="header/css/amazeui.cropper.css">
+		<link rel="stylesheet" href="header/css/custom_up_img.css">
+
+
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body>
+		<div class="head ">
+			<div class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+				<img src="images/houtui-icon.png" />
+			</div>
+			编辑个人资料
+			<div id="bbqedit" class="operation">编辑</div>
+		</div>
+		</div>
+		<div class="personal pt50 bbqperson ">
+			<div class="weui-cells m0">
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						头像
+					</div>
+					<div class="posire">
+						<img id="I_UPIMG" class="tx" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg" alt="">
+						<img class="bbqggtxbtn"  src="images/genggaitx-icon.png">
+					</div>
+				</div>
+			</div>
+			<div class="weui-cell bbqinput">
+				<div class="weui-cell__bd">
+					昵称
+				</div>
+				<div id="NICKNAME_TEXT" class="weui-cell__price bbqtit"></div>
+			</div>
+
+			<div class="weui-cells mt10 ">
+				<div class="weui-cell bbqxinx">
+					<div class="weui-cell__bd ">
+						基本信息<span>（不可修改）</span>
+					</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						真实姓名
+					</div>
+					<div id="NM_T_TEXT" class="weui-cell__price">黑卡会员</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						性别
+					</div>
+					<div id="SE_LV_TEXT" class="weui-cell__price">女</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						学校
+					</div>
+					<div id="SC_NM_TEXT" class="weui-cell__price">吉大</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						学院
+					</div>
+					<div  id="AC_NM_TEXT" class="">经济</div>
+				</div>
+				<div class="weui-cell weui-cell_access">
+					<div class="weui-cell__bd">
+						专业
+					</div>
+					<div  id="MA_NM_TEXT" class="weui-cell__price">会计</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						班级
+					</div>
+					<div id="NJ_D_TEXT" class="">1991</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						学号
+					</div>
+					<div id="SN_T_TEXT" class="weui-cell__price">175555</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						手机号
+					</div>
+					<div  id="PH_P_TEXT" class="weui-cell__price">1390391475</div>
+				</div>
+			</div>
+
+		</div>
+		<div id="publishPop" class="weui-popup__container" style="z-index: 1000001;">
+			<div class="weui-popup__overlay"></div>
+			<div class="weui-popup__modal bbqfff" style="">
+				<div class="head ">
+					<div class="indexreturn bbqreturn" id="backBtn">
+						<img src="images/houtui-icon.png" />
+					</div>
+					编辑头像
+					<div id="up-btn-ok"   class="operation">完成</div>
+				</div>
+				<div class="personal  bbqperson ">
+					<input type="file" id="inputImage"   accept='image/*'>
+					<div class="am-modal-dialog up-frame-parent up-frame-radius">
+
+						<div class="am-modal-bd  up-frame-body">
+
+							<div class="am-g am-fl" >
+								<div id="imageContent" class="up-pre-before up-frame-radius" style="display: none;">
+									<img alt="" src="" id="image" >
+								</div>
+								<div class="up-pre-after up-frame-radius" style="display: none;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="header/js/amazeui.min.js" charset="utf-8"></script>
+		<script src="header/js/cropper.min.js" charset="utf-8"></script>
+
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js"></script>
+		<script>
+
+			var  nickname='';
+            $(document).ready(function () {
+                var bodyParam = {'USER_ID': user_id};
+                getUserInfo(bodyParam);
+
+                $('#I_UPIMG').click(function(){
+                    $('#inputImage').click();
+                    $("#publishPop").popup();
+                });
+                /*$('#I_UPIMG').attr('disabled',"true");*/
+
+                $('#backBtn').click(function(){
+                    $.closePopup();
+                });
+
+                $('#bbqedit').click(function() {
+                    bbqedit = $("#bbqedit").text()
+                    if(bbqedit === '编辑') {
+                        $("#bbqedit").text('完成');
+                        $(".bbqtit").remove();
+                        $('.bbqinput').append('<input type="text" id="nickname" class="weui-input bbqdietinput tar" value="'+nickname+'">');
+                    }
+                    if(bbqedit === '完成') {
+                        /*$("#bbqedit").text('编辑');
+                        bbqdietinput = $(".bbqdietinput").val();
+                        $(".bbqdietinput").remove();
+                        $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + bbqdietinput + '</div>');*/
+
+                        var bodyParam = {'USER_ID': user_id,'NICKNAME':$('#nickname').val()};
+                        updateUserInfo(bodyParam);
+
+                    }
+
+                    return false;
+                });
+
+
+
+                //头像
+                var $image = $('#image');
+                $image.cropper({
+                    aspectRatio: '1',
+                    autoCropArea:0.8,
+                    preview: '.up-pre-after',
+
+                });
+
+                // 上传图片
+                var $inputImage = $('#inputImage');
+                var URL = window.URL || window.webkitURL;
+                var blobURL;
+
+                if (URL) {
+
+                    $inputImage.change(function () {
+                        var files = this.files;
+                        var file;
+
+
+                        if (files && files.length) {
+                            $('#imageContent').show();
+                            file = files[0];
+                            if (/^image\/\w+$/.test(file.type)) {
+                                blobURL = URL.createObjectURL(file);
+                                $image.one('built.cropper', function () {
+                                    // Revoke when load complete
+                                    URL.revokeObjectURL(blobURL);
+                                }).cropper('reset').cropper('replace', blobURL);
+                                $inputImage.val('');
+                            } else {
+                                window.alert('Please choose an image file.');
+                            }
+                        }
+                        else{
+
+                            $.closePopup();
+						}
+
+                        // Amazi UI 上传文件显示代码
+                        var fileNames = '';
+                        $.each(this.files, function() {
+                            fileNames += '<span class="am-badge">' + this.name + '</span> ';
+                        });
+                        $('#file-list').html(fileNames);
+                    });
+                } else {
+
+                    $inputImage.prop('disabled', true).parent().addClass('disabled');
+                }
+
+
+                //绑定上传事件
+                $('#up-btn-ok').on('click',function(){
+                    var $modal = $('#my-modal-loading');
+                    var $modal_alert = $('#my-alert');
+                    var img_src=$image.attr("src");
+                    if(img_src==""){
+                        $.toast("没有选择上传的图片！", "text");
+                        $modal_alert.modal();
+                        return false;
+                    }
+
+                    $modal.modal();
+
+
+                    var canvas=$("#image").cropper('getCroppedCanvas');
+                    var data=canvas.toDataURL(); //转成base64
+                    var formData = new FormData();
+                    //调用
+                    //var blob = dataURLtoBlob(data);
+                    //var file = blobToFile(blob, "header.png");
+                    var file = dataURLtoFile(data, "header.png");
+                    formData.append("image",file);
+
+                    $.showLoading("数据加载中");
+
+
+                    $.ajax({
+                        type: "post",
+                        url: url +"uploadImg",
+                        //url: 'http://192.168.1.144/FileUS/filesUpload',
+                        data: formData,
+                        contentType: false, // 注意这里应设为false
+                        processData: false,    //false
+                        cache: false,    //缓存
+                        success: function(response){
+                            var obj = JSON.parse(response);
+                            var code = obj['Code'];
+                            if(code=='1'){
+                                var result = obj['Result'];
+                                image=result;
+                                var bodyParam = {'USER_ID': user_id,'I_UPIMG':image};
+                                updateUserInfo(bodyParam);
+                                $.closePopup();
+
+                            }
+                            else{
+                                $.toast("上传文件失败！", "text");
+                            }
+                            $.hideLoading();
+                        }
+                    })
+
+                });
+
+            });
+
+            /**
+             * 用户信息
+             */
+            function getUserInfo(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'getUser', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    var obj = JSON.parse(response);
+                    var data = obj['Result'];
+                    console.log(response);
+                    if(data!=''){
+                        if(data['I_UPIMG']!=null){
+                            console.log(data['I_UPIMG']);
+                            $('#I_UPIMG').prop('src',data['I_UPIMG']);
+                        }
+                        nickname=data['NICKNAME'];
+                        for (var item in data) {
+                             $('#'+item+'_TEXT').text(data[item]);
+						}
+                    }
+                });
+            }
+            /**
+             * 修改用户
+             */
+            function updateUserInfo(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'updateUser', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    $.toast("修改成功！", "text");
+                    var bodyParam = {'USER_ID': user_id};
+                    getUserInfo(bodyParam);
+
+					$("#bbqedit").text('编辑');
+					$("#nickname").remove();
+					$("#NICKNAME_TEXT").remove();
+					$('.bbqinput').append('<div id="NICKNAME_TEXT" class="weui-cell__price bbqtit">' + nickname + '</div>');
+
+
+                });
+            }
+            function dataURLtoBlob (dataurl) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], { type: mime });
+            }
+            //将blob转换为file
+            function blobToFile(theBlob, fileName){
+                theBlob.lastModifiedDate = new Date();
+                theBlob.name = fileName;
+                return theBlob;
+            }
+            function dataURLtoFile(dataurl, filename) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, { type: mime });
+            }
+		</script>
+
+
+
+
+	</body>
+
+</html>

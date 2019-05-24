@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>评论</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body class="bbqfff">
+		<div class="head">
+			<div  class="bbqguanb" onclick="window.history.go(-1)"><img src="images/guanbi-icon.png"></div>
+			评论
+			<div  class="operation" id="addBtn">评论</div>
+		</div>
+		<div class="bbqfabword bbqwid90">
+			<textarea placeholder="写下您的评论..." autofocus id="comment"></textarea>
+		</div>
+		<div class="weui-cells weui-cells_form bbqwid90">
+			<div class="weui-cells weui-cells_checkbox wid100">
+			  <label class="weui-cell weui-check__label" for="is_hide">
+			    <div class="weui-cell__hd">
+			      <input type="checkbox" class="weui-check" name="checkbox1" id="is_hide" checked="checked">
+			      <i class="weui-icon-checked"></i>
+			    </div>
+			    <div class="weui-cell__bd">
+			      <p>匿名</p>
+			    </div>
+			  </label>
+		</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js"></script>
+		<script>
+
+            $(document).ready(function () {
+
+                $("#addBtn").click(function(){
+                    if($('#comment').val()==''){
+                        $.toast("请输入评论内容！", "text");
+                        return;
+					}
+                    var bodyParam = {'USER_ID': user_id,'TALK_ID':GetQueryString('id'),'REPLY_CONTENT':$('#comment').val()};
+                    if($('#is_hide').prop('checked')){
+                        bodyParam['IS_HIDE']='是';
+                    }
+                    else{
+                        bodyParam['IS_HIDE']='否';
+                    }
+                    if(GetQueryString('type')=='comment'){
+                        bodyParam['PID']=GetQueryString('pid');
+					}
+                    addComment(bodyParam);
+                });
+
+            });
+
+
+
+            function addComment(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'addTalkReply', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    //var obj = JSON.parse(response);
+                    //var result = obj['Result'];
+                    $.toast("发布成功！", "text",function() {
+                        window.history.go(-1);
+                    });
+
+                });
+            }
+
+		</script>
+	</body>
+
+</html>

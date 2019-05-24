@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>详情</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+		<link rel="stylesheet" href="css/baguetteBox.css">
+		<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
+	</head>
+
+	<body>
+		<div class="head">
+			<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+				<img src="images/houtui-icon.png" />
+			</div>
+			详情
+		</div>
+
+		<div class="weui-tab__bd pt50">
+			<ul class="weui-tab__bd-item weui-tab__bd-item--active bbqul mt0 p0">
+				<li class="bbqlist">
+					<div class="bbqlistimg">
+						<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+					</div>
+					<!--认证-->
+					<img class="renzicon" src="images/renzheng-left-icon.png">
+					<img class="renzicons" src="images/renzheng-right-icon.png">
+					<div class="bbqlistword">
+						<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
+						<p class="bbqtime">2分钟以前</p>
+						<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						<div class="baguetteBoxOne  bbqlistimgs" >
+					        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
+					        </a>
+					        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
+					        </a>
+					        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+					        </a>
+					    </div>
+						<div class="bbqbuttonthree posire">
+							<div class="heart"  id="like1"  rel="like"></div>
+							<span class="bbqbuttonspan likespan" id="likeCount1">99</span>
+							<span class="locationpl">
+								<img src="images/pinglun-icon.png" />
+								<span class="bbqbuttonspan">999+</span>
+							</span>
+							<img class="fr bbqgengdtc" src="images/gengduo.png" />
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="bbqlist pb70">
+				<p class="bbqpl">所有评论</p>
+				<li class="pllist">
+					<div class="pllistimg">
+						<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+					</div>
+					<!--认证-->
+					<img class="renzdeicon" src="images/renzheng-left-icon.png">
+					<img class="renzdeicons" src="images/renzheng-right-icon.png">
+					<div class="pllistword">
+						<div class="bbqplname">
+							<p class="plname">我叫马铃薯</p>
+							<div class="plbut posire">
+								<span class="plbutspan" id="likeCount2">99</span>
+								<div class="heart"  id="like1"  rel="like" style="right: 1px;left: inherit;top: -18px;"></div>
+							</div>
+						</div>
+						<p class="bbqtime">2分钟以前</p>
+						<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						<div class="pltwo">
+							<p><span class="bbqbla">我叫马铃薯：</span>我也是</p>
+							<p><span class="bbqbla">我叫马铃薯：</span>我也是</p>
+							<span class="pltiaoz">查看全部<span>10</span>条评论></span>
+							
+						</div>
+					</div>
+				</li>
+				<li class="pllist">
+						<div class="pllistimg">
+							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+						</div>
+					<img class="renzdeicon" src="images/renzheng-left-icon.png">
+					<img class="renzdeicons" src="images/renzheng-right-icon.png">
+						<div class="pllistword">
+							<div class="bbqplname">
+								<p class="plname">我叫马铃薯</p>
+								<div class="plbut posire">
+									<span class="plbutspan" id="">99</span>
+									<div class="heart"  id="like1"  rel="like" style="right: 1px;left: inherit;top: -18px;"></div>
+								</div>
+							</div>
+							<p class="bbqtime">2分钟以前</p>
+							<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						</div>
+					</li>
+		</div>
+		<div class="bbqshur bbqwid90 ">
+			<span class="bbqgreen">丨</span>输入你的评论
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/dianzan.js"></script>
+		<script>
+			$(window).load(function(){
+				listimgs = $('.listimgs').width();
+				$('.listimgs').height(listimgs);
+			});
+			$(".pltiaoz").click(function(){
+				window.location.href='comment_details.html'
+			});
+			$('.bbqshur').click(function(){
+				window.location.href='comment_tc.html'
+			})
+			
+		</script>
+		
+		<!--图片展开-->
+		<script src="js/baguetteBox.js" async></script>
+		<script src="js/highlight.min.js" async></script>
+		<script>
+		window.onload = function() {
+		    baguetteBox.run('.baguetteBoxOne');
+		    $('#baguetteBox-overlay').prepend("<div class='bbqtpword bbqwid90'>"+
+		    "<span class='tpspan'>123123123123123123123123123123123123123123123123123123<span>"+
+		    "<div class='bbqbuttonthree bbqphotobtn'>"+
+			"<img src='images/tp-dianzan.png'>"+
+		 	"<span class='bbqbuttonspan'>99</span>"+
+		 	"<span class='locationpl'>"+
+			"<img src='images/tp-pinglun.png'>"+
+			"<span class='bbqbuttonspan'>9999</span>"+
+		 	"</span>"+
+	 		"</div></div>"+
+	 		"<div class='tpzhankbtn'><span>展开</span><img src='images/jiantoubottom-icon.png'></div>");
+	 		$(".tpzhankbtn").click(function(){
+	 			var spanbtn = $('.tpzhankbtn span').text();
+	 			if(spanbtn == '展开'){
+	 				$('.bbqtpword').show();
+	 				$('.tpzhankbtn img').css({'transform':'rotate(-180deg)','transition':'0.2s'})
+	 				$('.tpzhankbtn span').text('收起');
+	 			}else if(spanbtn == "收起"){
+	 				$('.bbqtpword').hide();
+	 				$('.tpzhankbtn img').css({'transform':'rotate(0deg)','transition':'0.2s'})
+ 					$('.tpzhankbtn span').text('展开');
+	 			}
+	 		})
+							 
+		};
+		</script>
+
+	</body>
+
+</html>

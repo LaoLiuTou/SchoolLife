@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我是马铃薯</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+		<link rel="stylesheet" href="css/baguetteBox.css">
+	</head>
+
+	<body class="bbqxztdetailbg">
+		<img class="bbqdetailbgbl" src="images/xiaozhit-zhankai-bg.png">
+		<img class="bbqdetailbgbl" src="images/xiaozhit-zhankaii-bg.png">
+		<img class="bbqdetailbgiphon" src="images/xiaozhit-zhankaiphone-bg.png">
+		<img class="bbqdetailbgbo" src="images/xiaozhit-zhankaipen-bg.png">
+		<div class="head">
+			<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+				<img src="images/houtui-icon.png" />
+			</div>
+			<span id="navText">小纸条详情</span>
+		</div>
+
+		<div class="weui-tab__bd pt50 backnone">
+			<div class=" mt0 p0">
+				<section class="list">
+					<ul class="newlist-ul bbqwid90 mt10" id="contentUl">
+						<!--<li class="posire detailsli">
+							<div class="detailtit"><img src="images/xiaozt-qbz-icon.png" ></div>
+							<div class=" bbqzht-li m0">
+								<div class="bbqxztdetailword">
+									<p class="detailtop">TO:<span>我叫马铃薯</span></p>
+									<p class="detail">昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业 昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业
+									</p>
+									<p class="detailright">小包</p>
+									<p class="detailright"><span>2018</span>年<span>3</span>月<span>18</span></p>
+								</div>
+							</div>
+						</li>
+						
+						<li class="posire ">
+							<div class="detailtit"><img src="images/xiaozt-qbz-icon.png" ></div>
+							<div class=" bbqzht-li m0">
+								<div class="bbqxztdetailword">
+									<p class="detailtop">TO:<span>我叫马铃薯</span></p>
+									<p class="detail">昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业 昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业昨天的作业
+									</p>
+									<p class="detailright">小包</p>
+									<p class="detailright"><span>2018</span>年<span>3</span>月<span>18</span></p>
+								</div>
+							</div>
+						</li>-->
+					</ul>
+				</section>
+			</div>
+			<div class="bbqxztbj" id="transmitBtn"><img src="images/xiaozt-cd-icon.png"></div>
+
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js"></script>
+		<script>
+
+            $(document).ready(function () {
+
+
+                var bodyParam = {'USER_ID': user_id,'PAPER_ID':GetQueryString('id')};
+                getPaperDetailList(bodyParam);
+
+                $('body').on('click','#transmitBtn',function(){
+                    window.location.href='transmit_paperstrip.html?id='+GetQueryString('id');
+                });
+
+
+            });
+
+            /**
+             * 小纸条详情列表
+             */
+            function getPaperDetailList(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'getPaperDetailed', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    console.log(response);
+                    var obj = JSON.parse(response);
+                    var data = obj['Result'];
+                    var html='';
+                    for(j = 0,len=data.length; j < len; j++) {
+                        html+='<li class="posire detailsli">\n' +
+                            '<div class="detailtit"><img src="images/xiaozt-qbz-icon.png" ></div>\n' +
+                            '<div class=" bbqzht-li m0">\n' +
+                            '<div class="bbqxztdetailword">\n' +
+                            '<p class="detailtop">TO:<span>'+data[j].RECEIVE_NM+'</span></p>\n' +
+                            '<p class="detail">'+data[j].PAPER_CONTENT+'</p>\n' +
+                            '<p class="detailright">'+data[j].SEND_NM+'</p>\n' +
+                            '<p class="detailright"><span>'+data[j].SEND_DT+'</span></p>\n' +
+                            '</div>\n' +
+                            '</div>\n' +
+                            '</li>';
+
+
+                    }
+                    $('#contentUl').html(html);
+                });
+            }
+
+
+		</script>
+	</body>
+
+</html>

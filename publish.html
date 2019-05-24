@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>创建话题</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body class="bbqfff">
+		<div class="head">
+			<div href="index.html" class="bbqguanb"><img src="images/guanbi-icon.png"></div>
+			创建话题
+			<div  class="operation">发布</div>
+		</div>
+		<div class="bbqfabword bbqwid90">
+			<textarea placeholder="晒给懂你的人..."></textarea>
+		</div>
+		<div class="weui-gallery " id="gallery">
+			<span class="weui-gallery__img" id="galleryImg" style="background-image:url(./images/pic_160.png)"></span>
+			<div class="weui-gallery__opr">
+				<a href="javascript:" class="weui-gallery__del">
+					<i class="weui-icon-delete weui-icon_gallery-delete"></i>
+				</a>
+			</div>
+		</div>
+		<div class="weui-cells weui-cells_form bbqwid90">
+			<div class="weui-cell">
+				<div class="weui-cell__bd">
+					<div class="weui-uploader">
+						<div class="weui-uploader__bd">
+							<ul class="weui-uploader__files" id="uploaderFiles">
+							</ul>
+							<div class="weui-uploader__input-box">
+								<input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="bbqbiaoq">恋爱</div>
+			<div class="bbqbiaoq">恋爱恋爱</div>
+			<div class="bbqbiaoq">恋爱</div>
+			<div class="weui-cells weui-cells_checkbox wid100">
+			  <label class="weui-cell weui-check__label" for="s17">
+			    <div class="weui-cell__hd">
+			      <input type="checkbox" class="weui-check" name="checkbox1" id="s17" checked="checked">
+			      <i class="weui-icon-checked"></i>
+			    </div>
+			    <div class="weui-cell__bd">
+			      <p>仅本校可见</p>
+			    </div>
+			  </label>
+		</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+					$gallery = $("#gallery"),
+					$galleryImg = $("#galleryImg"),
+					$uploaderInput = $("#uploaderInput"),
+					$uploaderFiles = $("#uploaderFiles");
+
+				$uploaderInput.on("change", function(e) {
+					var src, url = window.URL || window.webkitURL || window.mozURL,
+						files = e.target.files;
+					for(var i = 0, len = files.length; i < len; ++i) {
+						var file = files[i];
+
+						if(url) {
+							src = url.createObjectURL(file);
+						} else {
+							src = e.target.result;
+						}
+
+						$uploaderFiles.append($(tmpl.replace('#url#', src)));
+					}
+				});
+				$uploaderFiles.on("click", "li", function() {
+					$galleryImg.attr("style", this.getAttribute("style"));
+					$gallery.fadeIn(100);
+				});
+				$gallery.on("click", function() {
+					$gallery.fadeOut(100);
+				});
+			});
+		</script>
+	</body>
+
+</html>
