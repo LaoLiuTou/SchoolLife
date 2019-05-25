@@ -1,0 +1,41 @@
+.container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+}
+/*此处为每条弹幕的样式*/
+.container .list {
+  position: absolute;
+  left: 100%;
+  white-space: nowrap;
+  height: 38px;
+  line-height: 38px;
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 0 0 3px #000;
+  -webkit-transition: -webkit-transform 25s linear;
+  -moz-transition: -moz-transform 25s linear;
+  -o-transition: -o-transform 25s linear;
+  transition: transform 25s linear;
+  z-index: 999;
+}
+/*此处弹幕的移动动画，使用transform不会引起页面的重绘，性能更好*/
+.container .list.animate {
+  -webkit-transform: translateX(-3420px);
+  -moz-transform: translateX(-3420px);
+  -ms-transform: translateX(-3420px);
+  -o-transform: translateX(-3420px);
+  transform: translateX(-3420px);
+}
+.container .list .content {
+  display: inline-block;
+  opacity: 1;
+}
+.container .list img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  border-radius: 50%;
+  vertical-align: text-top;
+}

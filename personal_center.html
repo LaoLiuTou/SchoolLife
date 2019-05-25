@@ -92,7 +92,32 @@
 			  </div>
 		  </a>
 		</div>
+		<div class="weui-flex weui-fixed-btm">
+			<div class="weui-flex__item">
+				<a href="javascript:;" onclick="window.history.go(-1)" class="weui-fixed-btn">
+					<img src="images/biaobq-icon.png">
+					<p>表白墙</p>
+				</a>
+			</div>
+			<div class="weui-flex__item posire">
+				<div class="weui-fixed-btn">
+					<div class="h30"></div>
+					<p>发布</p>
+				</div>
+				<div class="bbqfb">
+					<div class="bbqfbtn" id="bbqfbbtn">
+						<img src="images/fabu-icon.png">
+					</div>
+				</div>
+			</div>
 
+			<div class="weui-flex__item">
+				<a href="javascript:;"  class="weui-fixed-btn">
+					<img src="images/wode-icon-wdj.png">
+					<p>我的</p>
+				</a>
+			</div>
+		</div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
 		<script src="js/jquery-2.1.4.js"></script>
@@ -112,6 +137,7 @@
                 var hrt = new HttpRequestTool(url + 'getUser', 'post', 'text', true, false, bodyParam, 'callBack');
                 hrt.HttpRequest(function (response) {
                     var obj = JSON.parse(response);
+
                     var data = obj['Result'];
                     if(data!=''){
                         $('#nickname').text(data['NICKNAME']);

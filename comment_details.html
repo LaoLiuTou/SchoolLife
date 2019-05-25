@@ -136,6 +136,21 @@
                     window.location.href='comment_tc.html?id='+GetQueryString('id')+'&pid='+$(this).attr('itemId')+'&type=comment';
                 });
 
+                //头像点击
+                $('body').on('click','.bbqlistimg',function(e){
+                    if($(this).attr("itemId")!='0'){
+                        window.location.href='user_details.html?id='+$(this).attr("itemId");
+                    }
+                    e.stopPropagation();
+
+                });
+                $('body').on('click','.pllistimg',function(e){
+                    if($(this).attr("itemId")!='0'){
+                        window.location.href='user_details.html?id='+$(this).attr("itemId");
+                    }
+                    e.stopPropagation();
+
+                });
             });
 
 
@@ -151,9 +166,22 @@
                     var data = obj['Result'];
                     if(data!=null) {
 
-                        var html = '<div class="bbqlistimg">\n' +
-                            '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
-                            '</div>\n' ;
+                        var userid='0';
+                        if(data.IS_HIDE=='否'){
+                            userid= data.C_ID;
+                        }
+
+                        if(data.IS_HIDE=='是'||data.I_UPIMG==null){
+                            var html = '<div class="bbqlistimg" itemId="'+userid+'">\n' +
+                                '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
+                                '</div>\n' ;
+                        }
+                        else{
+                            var html = '<div class="bbqlistimg" itemId="'+userid+'">\n' +
+                                '<img src="'+data[j].I_UPIMG+'">\n' +
+                                '</div>\n' ;
+                        }
+
                         if (data.RZ_STATUS != null && data.RZ_STATUS == '已认证' && data.IS_HIDE == '否') {
                             html += '<img class="renzicon" src="images/renzheng-left-icon.png">\n' +
                                 '<img class="renzicons" src="images/renzheng-right-icon.png">\n';
@@ -189,13 +217,25 @@
                         else{
                             if(subcomment.length>0){
                                 var subHtml='';
-                                for(i = 0,sublen=subcomment.length; i< sublen;i++) {
+								userid='0';
+                                if(data.IS_HIDE=='否'){
+                                    userid= data.C_ID;
+                                }
+                                for(var i = 0,sublen=subcomment.length; i< sublen;i++) {
 
 
-                                    subHtml+='<li class="pllist ">\n' +
-                                        '<div class="pllistimg">\n' +
-                                        '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
-                                        '</div>\n' ;
+                                    if(subcomment[i].IS_HIDE=='是'||subcomment[i].I_UPIMG==null){
+                                        subHtml+='<li class="pllist" itemId="'+subcomment[i].ID+'">\n' +
+                                            '<div class="pllistimg" itemId="'+userid+'">\n' +
+                                            '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
+                                            '</div>\n' ;
+                                    }
+                                    else{
+                                        subHtml+='<li class="pllist" itemId="'+subcomment[i].ID+'">\n' +
+                                            '<div class="pllistimg" itemId="'+userid+'">\n' +
+                                            '<img src="'+data[j].I_UPIMG+'" >\n' +
+                                            '</div>\n' ;
+                                    }
                                     if (subcomment[i].RZ_STATUS != null && subcomment[i].RZ_STATUS == '已认证' && subcomment[i].IS_HIDE == '否') {
                                         subHtml += '<img class="renzdeicon" src="images/renzheng-left-icon.png">\n' +
                                             '<img class="renzdeicons" src="images/renzheng-right-icon.png">\n';

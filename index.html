@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
 	<link rel="stylesheet" href="css/baguetteBox.css">
 	<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
+	<link rel="stylesheet" href="css/wall.css"/>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 <div class="weui-tab">
 	<div class="weui-navbar bbqwid90" id="main_nav">
 		<div  class="indexreturn">
-			<img src="images/houtui-icon.png" />
+			<!--<img src="images/houtui-icon.png" style=""/>-->
 		</div>
 		<a class="weui-navbar__item weui-bar__item--on textri" href="#tab1">
 			<div class="bbqtab">
@@ -284,6 +285,7 @@
 <script src="js/baguetteBox.js" async></script>
 <script src="js/highlight.min.js" async></script>
 <!--具体功能实现-->
+<script src="js/main/barrageWall.js"></script>
 <script type="text/javascript" src="js/main/config.js"></script>
 <script>
 
@@ -299,14 +301,14 @@
     var searchText='';
     var labelId='';
     var talkId;
-    var content,good,replay;
+
     $(document).ready(function () {
 
         user_id=getUrlParam('user_id');
-        user_name=getUrlParam('user_name');
+        //user_name=getUrlParam('user_name');
         /*存user_id*/
         localStorage.setItem('user_id',user_id);
-        localStorage.setItem('user_name',user_name);
+        //localStorage.setItem('user_name',user_name);
 
         //localStorage.setItem('user_id','3362');
         //localStorage.setItem('user_name','林妹妹2');
@@ -709,35 +711,6 @@
 
         });
 
-        //图片点击
-        $('body').on('click','.listimgs',function(e){
-
-            content=$(this).attr('content');
-            good=$(this).attr('good');
-            replay=$(this).attr('replay');
-            console.log(content+good+replay);
-
-            e.stopPropagation();
-        });
-        $("body").on('click','.tpzhankbtn',function(){
-
-            var spanbtn = $('.tpzhankbtn span').eq(0).text();
-            if(spanbtn == '展开'){
-
-                $('#contentPop').text(content);
-                $('#goodPop').text(good);
-                $('#replayPop').text(replay);
-
-                $('.bbqtpword').show();
-                $('.tpzhankbtn img').css({'transform':'rotate(-180deg)','transition':'0.2s'})
-                $('.tpzhankbtn span').text('收起');
-            }else if(spanbtn == "收起"){
-                $('.bbqtpword').hide();
-                $('.tpzhankbtn img').css({'transform':'rotate(0deg)','transition':'0.2s'})
-                $('.tpzhankbtn span').text('展开');
-            }
-        })
-
     });
 
 
@@ -823,7 +796,7 @@
                 $(dom).find(".weui-loadmore").html('<span class="weui-loadmore__tips">已无更多数据</span>');
             }
             else{
-                for(j = 0,len=data.length; j < len; j++) {
+                for(var j = 0,len=data.length; j < len; j++) {
 
                     var userid='0';
                     if(data[j].IS_HIDE=='否'){
@@ -871,7 +844,7 @@
                                     '</a>\n' ;*/
 
 
-                                html+='<a class="listimgs" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
+                                html+='<a class="listimgs" itemId="'+data[j].ID+'" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
                                     '" replay="'+data[j].REPLAYCOUNT+'" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
                                     '</a>\n' ;
 
@@ -931,22 +904,7 @@
 
             var listimgs = $('.listimgs').width()==0?100: $('.listimgs').width();
             $('.listimgs').height(listimgs);
-
-            if($(dom).attr('id')=='tab1'){
-                baguetteBox.run('.baguetteBoxOne');
-                $('#baguetteBox-overlay').prepend("<div class='bbqtpword bbqwid90'>"+
-                    "<span class='tpspan' ><span  id='contentPop'></span><span>"+
-                    "<div class='bbqbuttonthree bbqphotobtn'>"+
-                    "<img src='images/tp-dianzan.png'>"+
-                    "<span class='bbqbuttonspan'  id='goodPop'></span>"+
-                    "<span class='locationpl'>"+
-                    "<img src='images/tp-pinglun.png'>"+
-                    "<span class='bbqbuttonspan' id='replayPop'></span>"+
-                    "</span>"+
-                    "</div></div>");
-            }
-
-
+            baguetteBox.run('.baguetteBoxOne');
 
 
 
@@ -961,7 +919,7 @@
             var obj = JSON.parse(response);
             var data = obj['Result'];
             var html='',htmlsearch='<div class="bbqbiaoq"  itemId="0" select="false">#全部</div>';
-            for(j = 0,len=data.length; j < len; j++) {
+            for(var j = 0,len=data.length; j < len; j++) {
                 html+=' <div class="bbqbiaoq"  itemId="'+data[j].ID+'" select="false">'+data[j].LABEL_NAME+'</div>';
                 htmlsearch+='<div class="bbqbiaoq"  itemId="'+data[j].ID+'" select="false">#'+data[j].LABEL_NAME+'</div>';
             }

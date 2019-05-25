@@ -91,7 +91,7 @@ input{
 .weui-fixed-btm{z-index:101;font-size: 15px; position: fixed; left: 0; bottom:0; width: 100%;box-shadow: 0 -2px 3px -1px #e0dede; background:#fff; }
 .weui-fixed-btm .weui-flex__item{ text-align: center; }
 .weui-fixed-btm .weui-flex__item img{height:30px ;}
-.weui-fixed-btm .weui-fixed-btn{  padding:8px 15px 15px 15px; display: block; height: 50px; line-height: 20px; color: #000;}
+.weui-fixed-btm .weui-fixed-btn{  padding:8px 15px 5px 15px; display: block; height: 50px; line-height: 20px; color: #000;}
 
 /*按钮平分*/
 .weui-list-btm{ padding:10px 5px; }
@@ -1138,7 +1138,6 @@ input{
 	height: 6rem;
 	background: url(../images/geren-bg.png) #2f3b37 bottom no-repeat ;
 	background-size:contain ;
-	
 }
 
 .bbqdetahead{
@@ -1162,7 +1161,6 @@ input{
 .bbqderailsbtn{
 	width: 100%;
 	float: left;
-	background: #ffffff;
 }
 .bbqdetailgz{
 	border-radius: 10px;
@@ -1223,7 +1221,7 @@ input{
 }
 		
 .newlist-ul {
-	touch-action: none;
+	/*touch-action: none;*/
 	overflow: hidden
 }
 
@@ -1525,6 +1523,17 @@ input{
 .bbqgrjname{
 	    position: absolute;
     left: 15px;
-    bottom: 0;
+    bottom: 5px;
     font-size: 14px;
+}
+.headbg-out {
+	position: relative;
+	background-color: #fe0000;
+	z-index: 10;
+}
+.userinfo-bg {
+	background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 32%, rgba(246,247,249,1) 22%, rgba(246,247,249,1) 100%);
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 32%,rgba(246,247,249,1) 22%,rgba(246,247,249,1) 100%);
+	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 32%,rgba(246,247,249,1) 22%,rgba(246,247,249,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f6f7f9',GradientType=0 );
 }

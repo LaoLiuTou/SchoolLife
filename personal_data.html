@@ -297,8 +297,10 @@
                 hrt.HttpRequest(function (response) {
                     var obj = JSON.parse(response);
                     var data = obj['Result'];
-                    console.log(response);
+
                     if(data!=''){
+
+
                         if(data['I_UPIMG']!=null){
                             console.log(data['I_UPIMG']);
                             $('#I_UPIMG').prop('src',data['I_UPIMG']);
@@ -307,6 +309,11 @@
                         for (var item in data) {
                              $('#'+item+'_TEXT').text(data[item]);
 						}
+
+                        //缓存
+                        localStorage.setItem('user_name',nickname);
+                        user_name=nickname;
+
                     }
                 });
             }
@@ -316,9 +323,12 @@
             function updateUserInfo(bodyParam) {
                 var hrt = new HttpRequestTool(url + 'updateUser', 'post', 'text', true, false, bodyParam, 'callBack');
                 hrt.HttpRequest(function (response) {
+
+
                     $.toast("修改成功！", "text");
                     var bodyParam = {'USER_ID': user_id};
                     getUserInfo(bodyParam);
+
 
 					$("#bbqedit").text('编辑');
 					$("#nickname").remove();

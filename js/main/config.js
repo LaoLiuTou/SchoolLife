@@ -4,6 +4,8 @@ var url = 'http://dev.jiubaisoft.com/jida_life/public/api.php/Api/';
 //secret key
 var sk = 'TTILY';
 var user_id,user_name;
+//pop use
+var popId,popContent,popGood,popReplay;
 $(document).ready(function(){
 
     user_id=localStorage.getItem('user_id');
@@ -223,4 +225,97 @@ function getDateDiff(dateStr) {
 
 function getDateTimeStamp(dateStr) {
     return Date.parse(dateStr.replace(/-/gi, "/"));
-}　
+}
+
+
+//图片点击
+$('body').on('click','.listimgs',function(e){
+    $('#popoverlay').remove();
+
+
+    popId=$(this).attr('itemId');
+    popContent=$(this).attr('content');
+    popGood=$(this).attr('good');
+    popReplay=$(this).attr('replay');
+
+    $('#baguetteBox-overlay').prepend("<div id='container' class='container'></div><div id='popoverlay' class='bbqtpword bbqwid90'>"+
+        "<span class='tpspan' ><span  id='contentPop'></span><span>"+
+        "<div class='bbqbuttonthree bbqphotobtn'>"+
+        "<img src='images/tp-dianzan.png'>"+
+        "<span class='bbqbuttonspan'  id='goodPop'></span>"+
+        "<span class='locationpl'>"+
+        "<img src='images/tp-pinglun.png'>"+
+        "<span class='bbqbuttonspan' id='replayPop'></span>"+
+        "</span>"+
+        "</div></div>"+
+        "<div class='tpzhankbtn'><span>展开</span><img src='images/jiantoubottom-icon.png'></div>");
+
+    //查询弹幕评论 这里接口需要改
+    var bodyParam = {'USER_ID': user_id,'TALK_ID':popId,'PAGE':1};
+    listCommentWall(bodyParam);
+
+    e.stopPropagation();
+});
+$("body").on('click','.tpzhankbtn',function(){
+
+    var spanbtn = $('.tpzhankbtn span').eq(0).text();
+    if(spanbtn == '展开'){
+
+        $('#contentPop').text(popContent);
+        $('#goodPop').text(popGood);
+        $('#replayPop').text(popReplay);
+
+        $('.bbqtpword').show();
+        $('.tpzhankbtn img').css({'transform':'rotate(-180deg)','transition':'0.2s'})
+        $('.tpzhankbtn span').text('收起');
+    }else if(spanbtn == "收起"){
+        $('.bbqtpword').hide();
+        $('.tpzhankbtn img').css({'transform':'rotate(0deg)','transition':'0.2s'})
+        $('.tpzhankbtn span').text('展开');
+    }
+})
+
+
+/**
+ * 评论列表
+ */
+function listCommentWall(bodyParam) {
+    var hrt = new HttpRequestTool(url + 'getTalkReply', 'post', 'text', true, false, bodyParam, 'callBack');
+    hrt.HttpRequest(function (response) {
+        var obj = JSON.parse(response);
+        var data = obj['Result'];
+        if(data!=null) {
+
+            //弹幕
+            var option={
+                container:"#container",//弹幕墙的id
+                barrageLen:2//弹幕的行数
+            }
+            barrageWall.init(option);//初始化弹幕墙
+
+            var interval = setInterval(setBarrageWall, 1000);
+            var j=0;
+            function setBarrageWall() {
+
+                if(j<data.length){
+                    var header='images/9f10f09c24c4611808bcccd9b5302a3.jpg';
+                    if(data[j].IS_HIDE=='是'||data[j].I_UPIMG==null){
+                    }
+                    else{
+                        header=data[j].I_UPIMG;
+                    }
+                    var nickname=data[j].NICKNAME;
+                    var reply=data[j].REPLY_CONTENT;
+                    barrageWall.upWall(header,nickname,reply);//初始化弹幕墙
+                    j++;
+                }
+                else{
+                    clearInterval(interval) ;
+                }
+
+            }
+
+
+        }
+    });
+}
