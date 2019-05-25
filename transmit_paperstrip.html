@@ -20,7 +20,7 @@
 <img class="bbqdetailbgbl" src="images/xiaozhit-zhankaii-bg.png">
 <img class="bbqdetailbgiphon" src="images/xiaozhit-zhankaiphone-bg.png">
 <img class="bbqdetailbgbo" src="images/xiaozhit-zhankaipen-bg.png">
-<div class="head">
+<div class="head" id="header">
 	<div id="backBtn" class="indexreturn bbqreturn" >
 		<img src="images/houtui-icon.png" />
 	</div>
@@ -51,7 +51,7 @@
 
 </div>
 
-<div id="publishPop" class="weui-popup__container" style="z-index: 200;">
+<div id="publishPop" class="weui-popup__container" style="z-index: 9999;">
 	<div class="weui-popup__overlay"></div>
 	<div class="weui-popup__modal bbqfff" style="">
 		<div class="head">
@@ -179,8 +179,10 @@
 
 
     function addPaper(bodyParam) {
+        console.log(JSON.stringify(bodyParam));
         var hrt = new HttpRequestTool(url + 'sendPaper', 'post', 'text', true, false, bodyParam, 'callBack');
         hrt.HttpRequest(function (response) {
+            console.log(response);
             //var obj = JSON.parse(response);
             //var result = obj['Result'];
             $.toast("发布成功！", "text",function() {
@@ -201,7 +203,7 @@
             var data = obj['Result'];
 
             var html='';
-            for(j = 0,len=data.length; j < len; j++) {
+            for(var j = 0,len=data.length; j < len; j++) {
 
                 html+='<li class="bbqgz posire mabottom1 attitem" itemId="'+data[j].ID+'" itemName="'+data[j].NICKNAME+'">\n' +
                     '<div class="bbqguanzimg">\n';
