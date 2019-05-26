@@ -5,7 +5,7 @@ var url = 'http://dev.jiubaisoft.com/jida_life/public/api.php/Api/';
 var sk = 'TTILY';
 var user_id,user_name;
 //pop use
-var popId,popContent,popGood,popReplay;
+var popId,popContent,popGood,popReplay,popLike;
 $(document).ready(function(){
 
     user_id=localStorage.getItem('user_id');
@@ -230,18 +230,23 @@ function getDateTimeStamp(dateStr) {
 
 //图片点击
 $('body').on('click','.listimgs',function(e){
+
+
     $('#popoverlay').remove();
-
-
+    popLike=$(this).attr('like');
     popId=$(this).attr('itemId');
     popContent=$(this).attr('content');
     popGood=$(this).attr('good');
     popReplay=$(this).attr('replay');
+    var html="<div class='popheart hearttalk' itemId='"+popId+"'  rel='like'></div>";
+    if(popLike=='已赞'){
+        html='<div class="popheart hearttalk heartAnimation" itemId="'+popId+'" rel="unlike" ></div>';
+    }
 
     $('#baguetteBox-overlay').prepend("<div id='container' class='container'></div><div id='popoverlay' class='bbqtpword bbqwid90'>"+
         "<span class='tpspan' ><span  id='contentPop'></span><span>"+
         "<div class='bbqbuttonthree bbqphotobtn'>"+
-        "<img src='images/tp-dianzan.png'>"+
+        html+
         "<span class='bbqbuttonspan'  id='goodPop'></span>"+
         "<span class='locationpl'>"+
         "<img src='images/tp-pinglun.png'>"+
@@ -273,6 +278,9 @@ $("body").on('click','.tpzhankbtn',function(){
         $('.tpzhankbtn img').css({'transform':'rotate(0deg)','transition':'0.2s'})
         $('.tpzhankbtn span').text('展开');
     }
+})
+$("body").on('click','.locationpl',function(){
+
 })
 
 

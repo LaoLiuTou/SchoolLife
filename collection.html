@@ -104,10 +104,7 @@
 					</div>
 				</div>
 
-				<script src="js/jquery.min.js"></script>
-				<script src="js/jquery-weui.min.js"></script>
-				<script src="js/jquery-2.1.4.js"></script>
-				<script src="js/dianzan.js"></script>
+
 
 			</div>
 			<div class="weui-loadmore" style="display:none;">
@@ -119,7 +116,7 @@
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
-
+		<script src="js/dianzan.js"></script>
 		<!--图片展开-->
 		<script src="js/baguetteBox.js" async></script>
 		<script src="js/highlight.min.js" async></script>
@@ -282,10 +279,14 @@
                             }
                             html+='</div>\n' ;
 
-
-                            html+='<div class="bbqbuttonthree ">\n' +
-                                '<img src="images/dianzan-icon.png" />\n' +
-                                '<span class="bbqbuttonspan">'+data[j].GOOD_COUNT+'</span>\n' +
+                            html+='<div class="bbqbuttonthree posire">\n' ;
+                            if(data[j].GOOD=='已赞'){
+                                html+='<div class="heart hearttalk heartAnimation" itemId="'+data[j].TALK_ID+'" rel="unlike" ></div>';
+                            }
+                            else{
+                                html+="<div class='heart hearttalk' itemId='"+data[j].TALK_ID+"'  rel='like'></div>";
+                            }
+                            html+='<span class="bbqbuttonspan likespan">'+data[j].GOOD_COUNT+'</span>\n' +
                                 '<span class="locationpl">\n' +
                                 '<img src="images/pinglun-icon.png" />\n' +
                                 '<span class="bbqbuttonspan">'+data[j].REPLAYCOUNT+'</span>\n' +
@@ -333,7 +334,20 @@
 
                 });
             }
+            /**
+             * 话题点赞
+             */
+            function admireTalk(bodyParam) {
+                console.log(JSON.stringify(bodyParam));
+                var hrt = new HttpRequestTool(url + 'GoodCancel', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    var obj = JSON.parse(response);
+                    var data = obj['Result'];
+                    console.log(response);
 
+
+                });
+            }
 		</script>
 
 	</body>

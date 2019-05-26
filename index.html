@@ -22,7 +22,7 @@
 <div class="weui-tab">
 	<div class="weui-navbar bbqwid90" id="main_nav">
 		<div  class="indexreturn">
-			<!--<img src="images/houtui-icon.png" style=""/>-->
+			<img src="images/houtui-icon.png" style=""/>
 		</div>
 		<a class="weui-navbar__item weui-bar__item--on textri" href="#tab1">
 			<div class="bbqtab">
@@ -843,9 +843,8 @@
                                 /*html+='<a class="listimgs" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
                                     '</a>\n' ;*/
 
-
                                 html+='<a class="listimgs" itemId="'+data[j].ID+'" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
-                                    '" replay="'+data[j].REPLAYCOUNT+'" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
+                                    '" replay="'+data[j].REPLAYCOUNT+'" like="'+data[j].GOOD+'" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
                                     '</a>\n' ;
 
                             }
@@ -857,7 +856,7 @@
                     if(labels!=null){
                         var labelArr=labels.split(",");
                         if(labelArr.length>0){
-                            for(i = 0,labellen=labelArr.length; i< labellen;i++) {
+                            for(var i = 0,labellen=labelArr.length; i< labellen;i++) {
 
                                 html+='<p class="bbqindexbiaoq" >#'+labelArr[i]+'</p>\n' ;
 
