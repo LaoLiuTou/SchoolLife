@@ -25,7 +25,7 @@
 				<img src="images/houtui-icon.png" />
 			</div>
 			发送小纸条
-			<div class="operation" id="addBtn">发送</div>
+			<div class="operation"  id="publish" onclick="">发送</div>
 		</div>
 
 		<div class="weui-tab__bd pt50 backnone pushhei">
@@ -36,11 +36,11 @@
 						<div class=" bbqzht-li m0 pushhei">
 							<div class="bbqxztdetailword pushhei pushheird">
 								<p class="detailtop detailtopbor">
-									TO:
-									<input id="toNickname" readonly class="xztpushname " placeholder="选择你的好友">
+									To:
+									<input id="toNickname" readonly class="xztpushname " style="width:90%;" placeholder="选择你的好友">
 								</p>
 								<textarea id="comment" class="xztpushcon" placeholder="小纸条内容..."></textarea>
-								<p class="detailright" id="fromNickname"></p>
+								<p class="detailright" >From:<span id="fromNickname" ></span></p>
 								<p class="detailright"><span id="dateTime"></span></p>
 							</div>
 						</div>
@@ -115,7 +115,7 @@
 		<script src="js/jquery-weui.min.js"></script>
 
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
 		<script>
 
             $(document).ready(function () {
@@ -145,7 +145,7 @@
                 $('#fromNickname').text(user_name);
                 $('#dateTime').text(dateFtt("yyyy年MM月dd",new Date()));
 
-                $("#addBtn").click(function(){
+                $("#publish").click(function(){
                     if($('#toNickname').val()==''){
                         $.toast("请选择小纸条的接收人！", "text");
                         return;
@@ -154,6 +154,8 @@
                         $.toast("请输入小纸条内容！", "text");
                         return;
                     }
+                    $('#publish').prop("disabled", true);
+                    $('#publish').css("color", "#999");
                     bodyParam['CON']=$('#comment').val();
 
                     addPaper(bodyParam);
@@ -185,9 +187,14 @@
                 hrt.HttpRequest(function (response) {
                     //var obj = JSON.parse(response);
                     //var result = obj['Result'];
-                    $.toast("发布成功！", "text",function() {
+                    $.toast("发布成功！", "text",function () {
+                        $('#publish').prop("disabled", false);
+                        $('#publish').css("color", "#27d3d2");
                         window.history.go(-1);
                     });
+                    //$.toast("发布成功！", "text");
+                     //window.location.href=document.referrer;
+
 
                 });
             }
@@ -205,7 +212,7 @@
                     var html='';
                     for(j = 0,len=data.length; j < len; j++) {
 
-                        html+='<li class="bbqgz posire mabottom1 attitem" itemId="'+data[j].ID+'" itemName="'+data[j].NICKNAME+'">\n' +
+                        html+='<li class="bbqgz posire mabottom1 attitem"  onclick="" itemId="'+data[j].USER_ID+'" itemName="'+data[j].NICKNAME+'">\n' +
                             '<div class="bbqguanzimg">\n';
                         if(data[j].I_UPIMG!=null){
                             html+='<img src="'+data[j].I_UPIMG+'">\n' ;

@@ -3,6 +3,7 @@
   top: 60px;
   left: 0;
   width: 100%;
+  z-index: 9999;
 }
 /*此处为每条弹幕的样式*/
 .container .list {

@@ -738,9 +738,9 @@ body {
           transition-duration: 0s;
 }
 .weui-pull-to-refresh__layer {
-  height: 30px;
-  line-height: 30px;
-  padding: 10px;
+  height: 45px;
+  line-height: 45px;
+  /*padding: 10px;*/
   text-align: center;
 }
 .weui-pull-to-refresh__layer .down {
@@ -832,7 +832,7 @@ body {
 .weui-navbar__item {
   color: #a1a1a1;
   border: none!important;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   padding: 0px 10px;
   margin: 10px 0 0 0;

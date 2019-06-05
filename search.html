@@ -13,25 +13,94 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
 		<link rel="stylesheet" href="css/baguetteBox.css">
+		<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
+		<link rel="stylesheet" href="css/wall.css"/>
+		<!--图片展开-->
+		<script src="js/baguetteBox.js" async></script>
+		<script src="js/highlight.min.js" async></script>
 	</head>
 
-	<body class="bbqfff">
+	<body class="">
 		<div class="head">
 			<div class="weui-navbar bbqwid90">
 				<div class="bbqsous">
 					<img src="images/sousuoh-icon.png" />
-					<input placeholder="搜索"/>
+					<form   action="" onsubmit="return false;"  style="margin:0px;display:inline;" >
+						<input placeholder="搜索" id="searchText" type="search" style="width:90%;"/>
+					</form>
 				</div>
-				<a href="index.html" class="operation">取消</a>
+				<a href="javascript:;" id="cancelBtn" class="operation">取消</a>
 			</div>
 		</div>
-		<div  class="bbqfabword bbqwid90">
+		<div id="labelDiv" class="bbqfabword bbqwid90">
 			<p>热门标签：</p>
-			<div>
-				<div class="bbqbiaoq bbqgreen">#恋爱</div>
-				<div class="bbqbiaoq">#恋爱恋爱</div>
-				<div class="bbqbiaoq">#恋爱</div>
+			<div id="searchLabel">
+
 			</div>
+		</div>
+		<div  class="bbqfabword ">
+			<ul class="bbqul mt0">
+				<div class="bbqsear" id="firstSearch">
+					<!--<p class="bbqseartit bbqwid90">
+						<span>您好</span>
+						-&nbsp;校园表白墙
+						<button>更多></button>
+					</p>
+					<li class="bbqlist mb1">
+						<div class="bbqlistimg">
+							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+						</div>
+						<img class="renzicon" src="images/renzheng-left-icon.png">
+						<img class="renzicons" src="images/renzheng-right-icon.png">
+						<div class="bbqlistword">
+							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
+							<p class="bbqtime">2分钟以前</p>
+							<p class="bbqneir p0">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						</div>
+					</li>-->
+				</div>
+				<div class="bbqsear" id="secondSearch">
+					<!--<p class="bbqseartit bbqwid90">
+						<span>您好</span>
+						-&nbsp;话题广场
+						<button>更多></button>
+					</p>
+					<li class="bbqlist mb1">
+						<div class="bbqlistimg">
+							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+						</div>
+						<img class="renzicon" src="images/renzheng-left-icon.png">
+						<img class="renzicons" src="images/renzheng-right-icon.png">
+						<div class="bbqlistword">
+							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
+							<p class="bbqtime">2分钟以前</p>
+							<span class="bbqtime">
+								<img class="bbqwz" src="images/indexwz-icon.png">undefined
+							</span>
+							<p class="bbqneir p0">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						</div>
+					</li>
+					<li class="bbqlist mb1">
+						<div class="bbqlistimg">
+							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+						</div>
+						
+						<img class="renzicon" src="images/renzheng-left-icon.png">
+						<img class="renzicons" src="images/renzheng-right-icon.png">
+						<div class="bbqlistword">
+							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
+							<p class="bbqtime">2分钟以前</p>
+							<span class="bbqtime">
+								<img class="bbqwz" src="images/indexwz-icon.png">undefined
+							</span>
+							<p class="bbqneir p0">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
+						</div>
+					</li>-->
+				</div>
+			</ul>
+
+
+
 		</div>
 			
 	</div>
@@ -39,7 +108,15 @@
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
-		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/dianzan.js"></script>
+		<script src="js/main/jquery.lazyload.js"></script>
+		<!--具体功能实现-->
+		<script src="js/main/barrageWall.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+		<script type="text/javascript" src="js/main/search.js?v=1.0"></script>
+
+
+
 
 
 	</body>

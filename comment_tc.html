@@ -18,37 +18,43 @@
 		<div class="head">
 			<div  class="bbqguanb" onclick="window.history.go(-1)"><img src="images/guanbi-icon.png"></div>
 			评论
-			<div  class="operation" id="addBtn">评论</div>
+			<div  class="operation" id="publish">评论</div>
 		</div>
 		<div class="bbqfabword bbqwid90">
-			<textarea placeholder="写下您的评论..." autofocus id="comment"></textarea>
+			<!--<textarea placeholder="写下您的评论..." autofocus id="comment" data-emoji-picker="true"></textarea>-->
+			<textarea placeholder="写下您的评论..." autofocus id="comment" ></textarea>
 		</div>
 		<div class="weui-cells weui-cells_form bbqwid90">
 			<div class="weui-cells weui-cells_checkbox wid100">
 			  <label class="weui-cell weui-check__label" for="is_hide">
 			    <div class="weui-cell__hd">
-			      <input type="checkbox" class="weui-check" name="checkbox1" id="is_hide" checked="checked">
+			      <input type="checkbox" class="weui-check" name="checkbox1" id="is_hide" >
 			      <i class="weui-icon-checked"></i>
 			    </div>
 			    <div class="weui-cell__bd">
 			      <p>匿名</p>
 			    </div>
 			  </label>
+			  <p style="color: #ccc;font-size: 12px;padding: 10px;">*暂时还不能添加表情</p>
 		</div>
 		</div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+		<script type="text/javascript" src="js/main/emojiPicker.js?v=1.0"></script>
 		<script>
-
+            new EmojiPicker();
             $(document).ready(function () {
 
-                $("#addBtn").click(function(){
+                $("#publish").click(function(){
+
                     if($('#comment').val()==''){
                         $.toast("请输入评论内容！", "text");
                         return;
 					}
+                    $('#publish').prop("disabled", true);
+                    $('#publish').css("color", "#999");
                     var bodyParam = {'USER_ID': user_id,'TALK_ID':GetQueryString('id'),'REPLY_CONTENT':$('#comment').val()};
                     if($('#is_hide').prop('checked')){
                         bodyParam['IS_HIDE']='是';
@@ -58,6 +64,11 @@
                     }
                     if(GetQueryString('type')=='comment'){
                         bodyParam['PID']=GetQueryString('pid');
+                        bodyParam['FID']=GetQueryString('pid');
+					}
+                    if(GetQueryString('type')=='subcomment'){
+                        bodyParam['PID']=GetQueryString('pid');
+                        bodyParam['FID']=GetQueryString('fid');
 					}
                     addComment(bodyParam);
                 });
@@ -67,13 +78,25 @@
 
 
             function addComment(bodyParam) {
+                console.log(JSON.stringify(bodyParam));
                 var hrt = new HttpRequestTool(url + 'addTalkReply', 'post', 'text', true, false, bodyParam, 'callBack');
                 hrt.HttpRequest(function (response) {
                     //var obj = JSON.parse(response);
                     //var result = obj['Result'];
-                    $.toast("发布成功！", "text",function() {
-                        window.history.go(-1);
+                   // $.toast("发布成功！", "text");
+
+                    $.toast("发布成功！", "text",function () {
+                        $('#publish').prop("disabled", false);
+                        $('#publish').css("color", "#27d3d2");
+                        if(GetQueryString('type')=='talknojump'){
+                            window.history.go(-1);
+                        }
+                        else{
+                            window.location.href='post_details.html?id='+GetQueryString('id')+'&step=3';
+                        }
                     });
+
+
 
                 });
             }

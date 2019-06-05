@@ -402,12 +402,23 @@ input{
 		    margin-top: 4px;
 	}
 	.bbqbla{color: #000;}
-	.bbqneir{
+	.bbqneirdetail{
 		color: #2e2d32;
 		line-height: 20px;
 		padding-bottom: 10px;
 		display: inline-block;
 		width: 100%;
+	}
+	.bbqneir{
+		color: #2e2d32;
+		line-height: 20px;
+		margin-bottom: 10px;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
 	}
 	.bbqwz{
 		    height: 13px;
@@ -418,22 +429,22 @@ input{
 		background: #F7F7F7;
 		width: calc(100% + 15px - 60px);
 		height: 35px;
-		border-radius: 10px;
+		border-radius: 7px;
 		line-height: 35px;
 		margin: 5px 0;
 		text-align: left;
 	}
 	.bbqsous input{
-		line-height: 35px;
+		line-height: 30px;
 		border: none;
 		background: none;
 		vertical-align: middle;
-		font-size: 15px;
+		font-size: 12px;
 	}
 	.bbqsous img{
 		height:18px;
 		vertical-align: middle;
-		padding-left: 0.1rem;
+		padding-left: 0.2rem;
 		
 	}
 .bbqbuttonthree{
@@ -456,7 +467,7 @@ input{
 }
 .bbqbuttonspan{
 	width: 1.6rem;
-	padding-left: 0.1rem;
+	padding-left: 0.2rem;
 	padding-right: 0.5rem;
 	vertical-align: middle;
     font-size: 13px;
@@ -474,6 +485,7 @@ input{
 	border-radius: 10px;
 	overflow: hidden;
 	margin: 0 2px;
+    margin-bottom: 4px;
 }
 .listimgs{
 	background: no-repeat center;
@@ -484,12 +496,15 @@ input{
 	
 }
 .bbqlistimgs .listimgs img{
+	border-radius: 10px;
+	object-fit: cover;
 	max-width: inherit; 	
 	display: table-cell;
     vertical-align: middle;
     text-align: center;
-    max-height:100% ;
-    
+    height:100% ;
+    width:100% ;
+
 }
 .bbqreturn{
 	    position: absolute;
@@ -582,7 +597,7 @@ input{
 	bottom: 0;
 	left: 0;
 	background: rgba(0,0,0,0.5);
-	z-index: 502;
+	z-index: 9999999;
 	display: ;
 }
 .bbqjubtanc .gengdbg{
@@ -650,14 +665,15 @@ input{
 	text-align: center;
 	color: #000;
 	font-weight: 700;
+    line-height: 30px; 
 }
 .fbtanbtnown{
-	width:2rem;
-	height: 2rem;
+	width:1.8rem;
+	height: 1.8rem;
 	margin: auto;
 	background: #fff;
 	border-radius: 10px;
-    border: 6px solid #fff;
+    border:9px solid #fff;
 	
 }
 .fbtanbtnown img{
@@ -774,7 +790,7 @@ input{
 	color: #000;
 	font-size: 14px;
 		height: 20px;
-		padding-top: 0.8rem;
+		padding-top: 0.5rem;
 	
 }
 .bbqgreen{
@@ -789,7 +805,7 @@ input{
 
 .plbut {
 	height: 20px;
-	width: 50%;
+	/*width: 50%;*/
 	float: right;
 }
 .pllistimg{
@@ -807,7 +823,8 @@ input{
 .plbut img {
 	height: 100%;
 	float: right;
-	    margin-left: 0.6rem;
+    margin-left: 1rem;
+    padding-right: 2px;
 }
 
 .plbutspan {
@@ -1179,7 +1196,7 @@ input{
 }
 .detailslist{
 	/*display: inline-block;*/
-	padding-top: 2.5rem;
+	/*padding-top: 2.5rem;*/
 }
 .bbqdetalistbg{
 	border-left:1px solid #cfcecd;
@@ -1403,13 +1420,40 @@ input{
 	top: 0;
 	left: -0.1rem;
 	z-index: 1000;
+	color: #fff;
+}
+.grxwd{
+	color: #fff;
+	font-size: 0.5rem;
+	line-height: 0.7rem;
+	font-weight: bold;
+	left: 33.5%;
+	top: -0.2rem;
+	text-align: center;
+}
+.bbqnewweid{
+	background: #e8102f;
+	width: 0.5rem;
+	height: 0.5rem;
+	position: absolute;
+	border-radius: 0.35rem;
+	top: 0.6rem;
+	left: calc(4px + 2.3rem);
+	z-index: 1000;
 }
 .bbqxztbj{
 	width: 3rem;
 	height: 3rem;
 	position: fixed;
-	    bottom: 2rem;
+    bottom: 2rem;
     right: 10px;
+    border-radius: 1.5rem;
+    box-shadow: 0px 2px 8px 0px #333;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    font-size: 11px;
+    line-height: 20px;
 	
 }
 .bbqxztbj img{
@@ -1475,8 +1519,11 @@ input{
 ::-webkit-input-placeholder { 
   color: #bcae9c;
 }
+.bbqsous ::-webkit-input-placeholder { 
+  color: #ABABAB;
+}
 .likespan{
-	padding-left: 22px;
+	padding-left: 23px;
 }
 .bbqshoucangtanc{
 	position: fixed;
@@ -1517,11 +1564,11 @@ input{
 	vertical-align: middle;
 }
 .bbqxb{
-	height: 16px;
-	margin-left: 0.1rem;
+	height: 12px;
+	margin-left: 0.15rem;
 }
 .bbqgrjname{
-	    position: absolute;
+	position: absolute;
     left: 15px;
     bottom: 5px;
     font-size: 14px;
@@ -1536,4 +1583,69 @@ input{
 	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 32%,rgba(246,247,249,1) 22%,rgba(246,247,249,1) 100%);
 	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 32%,rgba(246,247,249,1) 22%,rgba(246,247,249,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f6f7f9',GradientType=0 );
+}
+.bbq404{
+	text-align: center;
+    color: #888888;
+    width: 70%;
+    margin: auto;
+    padding-top: 2rem;
+}
+.bbq404 img{
+	width: 100%;
+}
+.p50{
+	padding-top: 50px;
+}
+.bbqzt404{
+	    color: #666;
+    text-align: center;
+    border: 1px solid #666;
+    background: rgba(255,255,255,0.6);
+}
+.bbqsear{
+	display: inline-block;
+	padding-bottom: 10px;
+	width: 100%;
+}
+.bbqseartit{
+	background: #fff;
+	color: #2e2d32;
+    line-height: 24px;
+        padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f6f7f9;
+	
+}
+.bbqseartit span{
+	color: #27D3D2 ;
+}
+.bbqseartit button{
+	background: none;
+	border: none;
+	font-size: 15px;
+	color: #646464;
+	float: right;
+    line-height: 24px;
+}
+@media screen and (max-width: 343px) {
+  .weui-navbar__item{
+    padding: 0px 5px;
+  }
+}
+.weui-loadmore__tips{
+	    padding: 10px 0;
+}
+.bannerdetails{
+	width: 100%;
+	padding-top: 46px;
+}
+.bannerdetails img{
+	width: 100%!important;
+	margin: auto;
+    display: block;
+}
+.bbqtucbtn{
+	width: 80%!important;
+	margin-top: 1rem;
 }

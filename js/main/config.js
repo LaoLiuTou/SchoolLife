@@ -82,11 +82,14 @@ HttpRequestTool.prototype.HttpRequest = function(callBack){
                 callBack(response);
             }
             else{
+                $('#publish').prop("disabled", false);
+                $('#publish').css("color", "#27d3d2");
                 $.toast(point, "cancel");
             }
         },
         error:function(response){
-
+            $('#publish').prop("disabled", false);
+            $('#publish').css("color", "#27d3d2");
             $.toast("请求失败！", "cancel");
             return false;
         },
@@ -95,6 +98,7 @@ HttpRequestTool.prototype.HttpRequest = function(callBack){
         },
         complete:function(){
             //$.hideLoading();
+
         }
     });
 
@@ -249,8 +253,8 @@ $('body').on('click','.listimgs',function(e){
         html+
         "<span class='bbqbuttonspan'  id='goodPop'></span>"+
         "<span class='locationpl'>"+
-        "<img src='images/tp-pinglun.png'>"+
-        "<span class='bbqbuttonspan' id='replayPop'></span>"+
+        "<img src='images/tp-pinglun.png' class='commentImg' onclick=''>"+
+        "<span class='bbqbuttonspan commentImg' id='replayPop' onclick=''></span>"+
         "</span>"+
         "</div></div>"+
         "<div class='tpzhankbtn'><span>展开</span><img src='images/jiantoubottom-icon.png'></div>");
@@ -279,7 +283,9 @@ $("body").on('click','.tpzhankbtn',function(){
         $('.tpzhankbtn span').text('展开');
     }
 })
-$("body").on('click','.locationpl',function(){
+$("body").on('click','.commentImg',function(){
+    //window.location.href='post_details.html?id='+popId;
+    window.location.href='comment_tc.html?id='+popId+'&type=talknojump';
 
 })
 
@@ -291,6 +297,7 @@ function listCommentWall(bodyParam) {
     var hrt = new HttpRequestTool(url + 'getTalkReply', 'post', 'text', true, false, bodyParam, 'callBack');
     hrt.HttpRequest(function (response) {
         var obj = JSON.parse(response);
+
         var data = obj['Result'];
         if(data!=null) {
 
@@ -307,7 +314,13 @@ function listCommentWall(bodyParam) {
 
                 if(j<data.length){
                     var header='images/9f10f09c24c4611808bcccd9b5302a3.jpg';
-                    if(data[j].IS_HIDE=='是'||data[j].I_UPIMG==null){
+                    if(data[j].I_UPIMG==null){
+                        if(data[j].IS_HIDE=='是'){
+                            header=data[j].I_UPIMG;
+                        }
+                        else{
+
+                        }
                     }
                     else{
                         header=data[j].I_UPIMG;

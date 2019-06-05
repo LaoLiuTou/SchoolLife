@@ -22,7 +22,7 @@
 
 	<body>
 		<div class="head ">
-			<div class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+			<div class="indexreturn bbqreturn" id="allbackBtn" onclick="">
 				<img src="images/houtui-icon.png" />
 			</div>
 			编辑个人资料
@@ -35,8 +35,8 @@
 					<div class="weui-cell__bd">
 						头像
 					</div>
-					<div class="posire">
-						<img id="I_UPIMG" class="tx" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg" alt="">
+					<div class="posire" id="header">
+						<img id="I_UPIMG" class="tx" src="" alt="">
 						<img class="bbqggtxbtn"  src="images/genggaitx-icon.png">
 					</div>
 				</div>
@@ -58,43 +58,43 @@
 					<div class="weui-cell__bd">
 						真实姓名
 					</div>
-					<div id="NM_T_TEXT" class="weui-cell__price">黑卡会员</div>
+					<div id="NM_T_TEXT" class="weui-cell__price"></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						性别
 					</div>
-					<div id="SE_LV_TEXT" class="weui-cell__price">女</div>
+					<div id="SE_LV_TEXT" class="weui-cell__price"></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						学校
 					</div>
-					<div id="SC_NM_TEXT" class="weui-cell__price">吉大</div>
+					<div id="SC_NM_TEXT" class="weui-cell__price"></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						学院
 					</div>
-					<div  id="AC_NM_TEXT" class="">经济</div>
+					<div  id="AC_NM_TEXT" class=""></div>
 				</div>
 				<div class="weui-cell weui-cell_access">
 					<div class="weui-cell__bd">
 						专业
 					</div>
-					<div  id="MA_NM_TEXT" class="weui-cell__price">会计</div>
+					<div  id="MA_NM_TEXT" class="weui-cell__price"></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						班级
 					</div>
-					<div id="NJ_D_TEXT" class="">1991</div>
+					<div id="NJ_D_TEXT" class=""></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						学号
 					</div>
-					<div id="SN_T_TEXT" class="weui-cell__price">175555</div>
+					<div id="SN_T_TEXT" class="weui-cell__price"></div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
@@ -139,13 +139,22 @@
 		<script src="header/js/cropper.min.js" charset="utf-8"></script>
 
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
 		<script>
 
 			var  nickname='';
             $(document).ready(function () {
                 var bodyParam = {'USER_ID': user_id};
                 getUserInfo(bodyParam);
+
+                $('#allbackBtn').click(function(){
+                    window.location.href='personal_center.html?step=3';
+                    //window.history.go(-1);
+
+
+                });
+
+
 
                 $('#I_UPIMG').click(function(){
                     $('#inputImage').click();
@@ -170,8 +179,21 @@
                         $(".bbqdietinput").remove();
                         $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + bbqdietinput + '</div>');*/
 
-                        var bodyParam = {'USER_ID': user_id,'NICKNAME':$('#nickname').val()};
-                        updateUserInfo(bodyParam);
+                        $.confirm({
+                            title: '修改昵称',
+                            text: '昵称1年只能改3次，您确认要修改吗？',
+                            onOK: function () {
+                                //点击确认
+                                var bodyParam = {'USER_ID': user_id,'NICKNAME':$('#nickname').val()};
+                                updateUserInfo(bodyParam);
+                            },
+                            onCancel: function () {
+                                $("#bbqedit").text('编辑');
+                                $(".bbqdietinput").remove();
+                                $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + nickname + '</div>');
+                            }
+                        });
+
 
                     }
 
@@ -197,28 +219,47 @@
                 if (URL) {
 
                     $inputImage.change(function () {
-                        var files = this.files;
                         var file;
+                        var files = this.files;
+
+
 
 
                         if (files && files.length) {
-                            $('#imageContent').show();
-                            file = files[0];
-                            if (/^image\/\w+$/.test(file.type)) {
-                                blobURL = URL.createObjectURL(file);
-                                $image.one('built.cropper', function () {
-                                    // Revoke when load complete
-                                    URL.revokeObjectURL(blobURL);
-                                }).cropper('reset').cropper('replace', blobURL);
-                                $inputImage.val('');
-                            } else {
-                                window.alert('Please choose an image file.');
-                            }
+
+
+                            //压缩
+                            var filePath = $(this).val(),
+                                imgBase64 = '',      //存储图片的imgBase64
+                                fileObj = files[0]; //上传文件的对象,要这样写才行，用jquery写法获取不到对象
+
+                            // 调用函数，对图片进行压缩
+                            compress(fileObj,function(imgBase64){
+                                imgBase64 = imgBase64;    //存储转换的base64编码
+                                file = dataURLtoFile(imgBase64, "header.png");
+
+                                $('#imageContent').show();
+                                //file = files[0];
+                                if (/^image\/\w+$/.test(file.type)) {
+                                    blobURL = URL.createObjectURL(file);
+                                    $image.one('built.cropper', function () {
+                                        // Revoke when load complete
+                                        URL.revokeObjectURL(blobURL);
+                                    }).cropper('reset').cropper('replace', blobURL);
+                                    $inputImage.val('');
+                                } else {
+                                    window.alert('Please choose an image file.');
+                                }
+                            });
+
+
                         }
                         else{
 
                             $.closePopup();
 						}
+
+
 
                         // Amazi UI 上传文件显示代码
                         var fileNames = '';
@@ -302,9 +343,11 @@
 
 
                         if(data['I_UPIMG']!=null){
-                            console.log(data['I_UPIMG']);
                             $('#I_UPIMG').prop('src',data['I_UPIMG']);
                         }
+                        else{
+                            $('#I_UPIMG').prop('src','images/9f10f09c24c4611808bcccd9b5302a3.jpg');
+						}
                         nickname=data['NICKNAME'];
                         for (var item in data) {
                              $('#'+item+'_TEXT').text(data[item]);
@@ -366,6 +409,74 @@
                 }
                 return new File([u8arr], filename, { type: mime });
             }
+
+
+
+            // 不对图片进行压缩，直接转成base64
+            function directTurnIntoBase64(fileObj,callback){
+                var r = new FileReader();
+                // 转成base64
+                r.onload = function(){
+                    //变成字符串
+                    imgBase64 = r.result;
+                    console.log(imgBase64);
+                    callback(imgBase64);
+                }
+                r.readAsDataURL(fileObj);    //转成Base64格式
+            }
+
+            // 对图片进行压缩
+            function compress(fileObj, callback) {
+                if ( typeof (FileReader) === 'undefined') {
+                    console.log("当前浏览器内核不支持base64图标压缩");
+                    //调用上传方式不压缩
+                    directTurnIntoBase64(fileObj,callback);
+                } else {
+                    try {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var image = $('<img/>');
+                            image.load(function(){
+                                square = 700,   //定义画布的大小，也就是图片压缩之后的像素
+                                    canvas = document.createElement('canvas'),
+                                    context = canvas.getContext('2d'),
+                                    imageWidth = 0,    //压缩图片的大小
+                                    imageHeight = 0,
+                                    offsetX = 0,
+                                    offsetY = 0,
+                                    data = '';
+
+                                canvas.width = square;
+                                canvas.height = square;
+                                context.clearRect(0, 0, square, square);
+
+                                if (this.width > this.height) {
+                                    imageWidth = Math.round(square * this.width / this.height);
+                                    imageHeight = square;
+                                    offsetX = - Math.round((imageWidth - square) / 2);
+                                } else {
+                                    imageHeight = Math.round(square * this.height / this.width);
+                                    imageWidth = square;
+                                    offsetY = - Math.round((imageHeight - square) / 2);
+                                }
+                                context.drawImage(this, offsetX, offsetY, imageWidth, imageHeight);
+                                var data = canvas.toDataURL('image/jpeg');
+                                //压缩完成执行回调
+                                callback(data);
+                            });
+                            image.attr('src', e.target.result);
+                        };
+                        reader.readAsDataURL(fileObj);
+                    }catch(e){
+                        console.log("压缩失败!");
+                        //调用直接上传方式  不压缩
+                        directTurnIntoBase64(fileObj,callback);
+                    }
+                }
+            }
+
+
+
 		</script>
 
 

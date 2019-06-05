@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>我是马铃薯</title>
+		<title>小纸条详情</title>
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -59,13 +59,13 @@
 					</ul>
 				</section>
 			</div>
-			<div class="bbqxztbj" id="transmitBtn"><img src="images/xiaozt-cd-icon.png"></div>
+			<div class="bbqxztbj" id="transmitBtn"  onclick=""><img src="images/xiaozt-cd-icon.png">传纸条</div>
 
 		</div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
 		<script>
 
             $(document).ready(function () {
@@ -96,9 +96,9 @@
                             '<div class="detailtit"><img src="images/xiaozt-qbz-icon.png" ></div>\n' +
                             '<div class=" bbqzht-li m0">\n' +
                             '<div class="bbqxztdetailword">\n' +
-                            '<p class="detailtop">TO:<span>'+data[j].RECEIVE_NM+'</span></p>\n' +
+                            '<p class="detailtop">To:<span>'+data[j].RECEIVE_NM+'</span></p>\n' +
                             '<p class="detail">'+data[j].PAPER_CONTENT+'</p>\n' +
-                            '<p class="detailright">'+data[j].SEND_NM+'</p>\n' +
+                            '<p class="detailright">From:'+data[j].SEND_NM+'</p>\n' +
                             '<p class="detailright"><span>'+data[j].SEND_DT+'</span></p>\n' +
                             '</div>\n' +
                             '</div>\n' +

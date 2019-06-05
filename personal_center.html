@@ -16,17 +16,17 @@
 
 	<body>
 		<div class="head">
-			<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+			<div  class="indexreturn bbqreturn" onclick="">
 				<img src="images/houtui-icon.png" />
 			</div>
 			个人中心
 		</div>
 		<div class="weui-tab__bd pt50">
 			<div class="posire pt10">
-				<div class="bbqgrimg">
-					<img id="i_upimg" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+				<div class="bbqgrimg" id="header">
+					<!--<img id="i_upimg" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
 					<img class="renzmyicon" src="images/renzheng-left-icon.png">
-					<img class="renzmyicons" src="images/renzheng-right-icon.png">
+					<img class="renzmyicons" src="images/renzheng-right-icon.png">-->
 				</div>
 				<a href="personal_data.html" class="bbqbianj">编辑个人资料></a>
 			</div>
@@ -41,7 +41,7 @@
 					</div>
 					<div class=" bbqlabelt">
 						<div class="bbqdj" id="level_name_icon">1</div>
-						<span id="level_name">童生</span>
+						<span id="level_name"></span>
 					</div>
 				</div>
 			</div>
@@ -60,9 +60,10 @@
 					<img src="images/wo-guanzhu-icon.png">
 					<p>关注</p>
 				</a>
-				<a class="bbqgebtn" href="news.html">
+				<a class="bbqgebtn posire" href="news.html">
 					<img src="images/wo-xiaoxi-icon.png">
 					<p>消息</p>
+					<div class="bbqweid grxwd" id="unreaded" style="display: none;"></div>
 				</a>
 				<a class="bbqgebtn" href="paperstrip.html">
 					<img src="images/wo-xiaozhit-icon.png">
@@ -92,10 +93,11 @@
 			  </div>
 		  </a>
 		</div>
-		<div class="weui-flex weui-fixed-btm">
+		 <button class="weui-btn weui-btn_primary bbqtucbtn" id="logoutBtn" style="visibility:hidden;">退出登录</button>
+		<!--<div class="weui-flex weui-fixed-btm">
 			<div class="weui-flex__item">
 				<a href="javascript:;" onclick="window.history.go(-1)" class="weui-fixed-btn">
-					<img src="images/biaobq-icon.png">
+					<img src="images/biaobq-icon-wdj.png">
 					<p>表白墙</p>
 				</a>
 			</div>
@@ -113,21 +115,39 @@
 
 			<div class="weui-flex__item">
 				<a href="javascript:;"  class="weui-fixed-btn">
-					<img src="images/wode-icon-wdj.png">
+					<img src="images/wode-icon.png">
 					<p>我的</p>
 				</a>
 			</div>
-		</div>
+		</div>-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
 		<script src="js/jquery-2.1.4.js"></script>
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
 		<script>
 
             $(document).ready(function () {
                 var bodyParam = {'USER_ID': user_id};
                 getUserInfo(bodyParam);
+
+                $('#logoutBtn').click(function () {
+                    window.location.href='#?logoutToApp=1';
+                });
+                $('.bbqreturn').click(function(){
+                    console.log(GetQueryString('step'));
+                    if(GetQueryString('step')=='3'){
+                        window.history.go(-3);
+                    }
+                    else{
+                        window.history.go(-1);
+                    }
+                    //window.history.go(-1);
+                    //
+
+                });
+
+
             });
 
             /**
@@ -138,6 +158,7 @@
                 hrt.HttpRequest(function (response) {
                     var obj = JSON.parse(response);
 
+                    console.log(response);
                     var data = obj['Result'];
                     if(data!=''){
                         $('#nickname').text(data['NICKNAME']);
@@ -149,9 +170,37 @@
                         $('#point_count').text(data['POINT_COUNT']);
                         $('#hot_count').text(data['HOT_COUNT']);
                         $('#ac_nm').text(data['AC_NM']);
+
+
+
+                        var header='<img id="i_upimg" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">';
                         if(data['I_UPIMG']!=null){
-                            $('#i_upimg').prop('src',data['I_UPIMG']);
+                            header='<img id="i_upimg" src="'+data['I_UPIMG']+'">';
 						}
+                        if(data['RZ_STATUS']=='已认证'){
+                            var html=header +
+                                '<img class="renzmyicon" src="images/renzheng-left-icon.png">\n' +
+                                '<img class="renzmyicons" src="images/renzheng-right-icon.png">';
+                            $('#header').html(html);
+                        }
+                        else{
+                            var html=header;
+                            $('#header').html(html);
+						}
+
+                        if(data.type=='校园生活'){
+                            $('#logoutBtn').css('visibility','visible');
+                        }
+                        else{
+
+                            $('#logoutBtn').css('visibility','hidden');
+                        }
+                        if(data['MESS_NUM']>0){
+                            $('#unreaded').text(data['MESS_NUM']);
+                            $('#unreaded').show();
+                        }
+
+
 
                        /* for (var item in result) {
                             $('#'+item).text(result[item]);
@@ -160,7 +209,19 @@
 					}
                 });
             }
+            /**
+             * 未读消息数
+             */
+            function countUnReadedNews(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'delMessage', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    //var obj = JSON.parse(response);
+                    //var result = obj['Result'];
+                    $.toast("消息已删除！", "text");
+                    $('.newlist-li[itemId="'+bodyParam["MESS_ID"]+'"]').remove();
 
+                });
+            }
 
 		</script>
 	</body>

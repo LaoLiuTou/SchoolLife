@@ -32,6 +32,11 @@
 				<div class="refresh">正在刷新</div>
 			</div>
 			<ul class=" bbqul mt0 p0" id="attList">
+				<!--无内容时候-->
+				<!--<div class="bbq404">
+					<img src="images/wuguanzhu-bg.png">
+					<p>同学  当前您还没有关注的用户哦，快点去添加您想了解的人吧</p>
+				</div>-->
 				<!--<li class="bbqgz posire mabottom1">
 					<div class="bbqguanzimg">
 						<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
@@ -100,7 +105,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-weui.min.js"></script>
 		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
 		<script>
             var page=1;
             var loading = false;
@@ -190,9 +195,9 @@
                                 '</div>\n' +
                                 '</div>\n' +
                                 '<div class="bbqguanzword">\n' +
-                                '<div class="bbqguanzxzt addPaperBtn"  att_user="' + data[j].USER_ID + '" att_name="' + data[j].NICKNAME + '">发送小纸条</div>\n' +
+                                '<div class="bbqguanzxzt addPaperBtn" onclick="" att_user="' + data[j].USER_ID + '" att_name="' + data[j].NICKNAME + '">发送小纸条</div>\n' +
                                 '</div>\n' +
-                                '<div class="bbqqxguanzimg cancelBtn" att_user="' + data[j].USER_ID + '">\n' +
+                                '<div class="bbqqxguanzimg cancelBtn" onclick="" att_user="' + data[j].USER_ID + '">\n' +
                                 '<img src="images/quxiaogz-icon.png">\n' +
                                 '<p >取消关注</p>\n' +
                                 '</div>\n' +

@@ -1,220 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>小纸条</title>
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<link rel="stylesheet" href="css/weui.css">
-		<link rel="stylesheet" href="css/jquery-weui.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
-		<link rel="stylesheet" href="css/baguetteBox.css">
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>小纸条</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	<link rel="stylesheet" href="css/baguetteBox.css">
+</head>
 
-	<body class="bbqxztbg">
-		<div class="head">
-			<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
-				<img src="images/houtui-icon.png" />
-			</div>
-			小纸条
-		</div>
+<body class="bbqxztbg pt50">
+<div class="head">
+	<div  class="indexreturn bbqreturn" onclick="window.history.go(-1)">
+		<img src="images/houtui-icon.png" />
+	</div>
+	小纸条
+</div>
+<div class="detailslist backnone " style="overflow:auto;height: 100%;">
+	<div class="weui-pull-to-refresh__layer" >
+		<div class='weui-pull-to-refresh__arrow'></div>
+		<div class='weui-pull-to-refresh__preloader'></div>
+		<div class="down">下拉刷新</div>
+		<div class="up">释放刷新</div>
+		<div class="refresh">正在刷新</div>
+	</div>
+	<div class="weui-tab__bd  ">
+		<div class=" mt0  "  >
 
-		<div class="weui-tab__bd pt50 backnone">
-			<div class=" mt0 p0 ">
+			<section class="list">
 
-				<section class="list">
-					<div class="weui-pull-to-refresh__layer" >
-						<div class='weui-pull-to-refresh__arrow'></div>
-						<div class='weui-pull-to-refresh__preloader'></div>
-						<div class="down">下拉刷新</div>
-						<div class="up">释放刷新</div>
-						<div class="refresh">正在刷新</div>
-					</div>
-					<ul id="paperList" class="newlist-ul bbqwid90 pt10">
-						<!--<li class="posire">
-							<div  class=" bbqzht-li">
-								<div class="swipe-delete-element">
-									<div class="bbqguanzimg xztma">
-										<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-									</div>
-									<div class="bbqxztword">
-										<p class="">我叫马铃薯</p>
-										<p class="">悄悄送给你一张小纸条丨<span>12-25</span></p>
-									</div>
-									<div class="swipe-delete-btn bbqxztbtn">
-										<p>撕掉</p>
-									</div>
-								</div>
-							</div> 
-							<div class="bbqweid"></div>
-						</li>
-						<li  class=" bbqzht-li">
-							<div class="swipe-delete-element">
-								<div class="bbqguanzimg xztma">
-									<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-								</div>
-								<div class="bbqxztword">
-									<p class="">我叫马铃薯</p>
-									<p class="">悄悄送给你一张小纸条丨<span>12-25</span></p>
-								</div>
-								<div class="swipe-delete-btn bbqxztbtn">
-									<p>撕掉</p>
-								</div>
-							</div>
-						</li>-->
-					</ul>
-					<div class="weui-loadmore" style="display:none;">
-						<i class="weui-loading"></i>
-						<span class="weui-loadmore__tips">正在加载</span>
-					</div>
-				</section>
+				<ul id="paperList" class="newlist-ul bbqwid90 pt10">
 
-			</div>
+					<!--<li class="posire">
+                        <div  class=" bbqzht-li">
+                            <div class="swipe-delete-element">
+                                <div class="bbqguanzimg xztma">
+                                    <img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+                                </div>
+                                <div class="bbqxztword">
+                                    <p class="">我叫马铃薯</p>
+                                    <p class="">悄悄送给你一张小纸条丨<span>12-25</span></p>
+                                </div>
+                                <div class="swipe-delete-btn bbqxztbtn">
+                                    <p>撕掉</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bbqweid"></div>
+                    </li>
+                    <li  class=" bbqzht-li">
+                        <div class="swipe-delete-element">
+                            <div class="bbqguanzimg xztma">
+                                <img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+                            </div>
+                            <div class="bbqxztword">
+                                <p class="">我叫马铃薯</p>
+                                <p class="">悄悄送给你一张小纸条丨<span>12-25</span></p>
+                            </div>
+                            <div class="swipe-delete-btn bbqxztbtn">
+                                <p>撕掉</p>
+                            </div>
+                        </div>
+                    </li>-->
+				</ul>
 
-			<div class="bbqxztbj" id="paperBtn"><img src="images/xiaozt-xinjian.png"></div>
+			</section>
 
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery-weui.min.js"></script>
-		<!--消息-->
-		<script src="js/paper.js"></script>
-		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
-		<script>
-            var page=1;
-            var loading = false;
-            $(document).ready(function () {
 
-                $('.list').pullToRefresh().on('pull-to-refresh', function (done) {
-                    var self = this;
-                    $(self).find(".weui-loadmore").html('<i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span>');
+		<div class="bbqxztbj" id="paperBtn"  onclick=""><img src="images/xiaozt-xinjian.png">新建小纸条</div>
 
+	</div>
+	<div class="weui-loadmore" style="display:none;">
+		<i class="weui-loading"></i>
+		<span class="weui-loadmore__tips">正在加载</span>
+	</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<!--消息-->
+<script src="js/paper.js"></script>
+<!--具体功能实现-->
+<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+<script type="text/javascript" src="js/main/paperstrip.js?v=1.0"></script>
 
-                    setTimeout(function() {
-                        page=1;
-                        var bodyParam = {'USER_ID': user_id,'PAGE':page};
-                        getPaperList(bodyParam,'refresh');
-                    }, 1000);
-
-                });
-
-                $('body').infinite().on("infinite", function() {
-                    var self = this;
-                    if(loading) return;
-                    $(self).find(".weui-loadmore").show();
-                    loading = true;
-
-                    setTimeout(function() {
-                        page++;
-                        var bodyParam = {'USER_ID': user_id,'PAGE':page};
-                        getPaperList(bodyParam,'load');
-
-                    }, 1000);
-
-                });
-
-                var bodyParam = {'USER_ID': user_id,'PAGE':'1'};
-                getPaperList(bodyParam,'refresh');
-
-                $('body').on('click','.posire',function(){
-                    window.location.href='paperstrip_details.html?id='+$(this).attr("itemId");
-				});
-
-                $('#paperBtn').click(function(){
-                    window.location.href='push_paperstrip.html';
-                });
-            });
-
-            /**
-             * 小纸条列表
-             */
-            function getPaperList(bodyParam,refreshorload) {
-                var hrt = new HttpRequestTool(url + 'getPapers', 'post', 'text', true, false, bodyParam, 'callBack');
-                hrt.HttpRequest(function (response) {
-                    console.log(response);
-                    var obj = JSON.parse(response);
-                    var data = obj['Result'];
-                    if(data.length==0&&refreshorload=='load'){
-                        loading = true;
-                        $(".weui-loadmore").show();
-                        $(".weui-loadmore").html('<span class="weui-loadmore__tips">已无更多数据</span>');
-                    }
-                    else {
-                        var html = '';
-                        for (j = 0, len = data.length; j < len; j++) {
-
-                            html += '<li class="posire" itemId="' + data[j].ID + '">\n' +
-                                '<div  class=" bbqzht-li">\n' +
-                                '<div class="swipe-delete-element" itemId="' + data[j].ID + '">\n' +
-                                '<div class="bbqguanzimg xztma">\n';
-                            if (data[j].I_UPIMG != null) {
-                                html += '<img src="' + data[j].I_UPIMG + '">\n';
-                            }
-                            else {
-                                html += '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n';
-                            }
-                            html += '</div>\n' +
-                                '<div class="bbqxztword">\n' +
-                                '<p class="">' + data[j].NICKNAME + '</p>\n' +
-                                '<p class="">悄悄送给你一张小纸条丨<span>' + data[j].SEND_DT + '</span></p>\n' +
-                                '</div>\n' +
-                                '<div class="swipe-delete-btn bbqxztbtn" >\n' +
-                                '<p >撕掉</p>\n' +
-                                '</div>\n' +
-                                '</div>\n' +
-                                '</div> \n';
-                            if (data[j].STATUS == '未读') {
-                                html += '<div class="bbqweid"></div>\n';
-                            }
-                            html += '</li>';
-
-                        }
-
-                        if(refreshorload=='refresh'){
-                            $('#paperList').html(html);
-                            $('.list').pullToRefreshDone();
-
-                        }
-                        else if(refreshorload=='load'){
-                            $('#paperList').append(html);
-                            $(".weui-loadmore").hide();
-                        }
-                        loading = false;
-                    }
-
-                    //舒适化滑动
-                    var i = $(".swipe-delete-element").length;
-                    for( var j=0;j<i;j++){
-                        var swipedeletecontent = document.querySelectorAll(".swipe-delete-element")[j];
-                        var itemId=$(swipedeletecontent).attr('itemId');
-                        var sa = swipeDelete(swipedeletecontent, {
-                            direction: 'left',
-                            deleteFn: function(e) {
-                                var item=e.target.parentNode.parentNode;
-                                var bodyParam = {'USER_ID': user_id,'PAPER_ID':$(item).attr('itemId')};
-                                deletePaper(bodyParam);
-                            }
-                        })
-                    }
-
-                });
-            }
-
-            function deletePaper(bodyParam) {
-                var hrt = new HttpRequestTool(url + 'delPaper', 'post', 'text', true, false, bodyParam, 'callBack');
-                hrt.HttpRequest(function (response) {
-                    //var obj = JSON.parse(response);
-                    //var result = obj['Result'];
-                    $.toast("小纸条已经被你撕掉！", "text");
-                    $('.posire[itemId="'+bodyParam["PAPER_ID"]+'"]').remove();
-
-                });
-            }
-		</script>
-	</body>
+</body>
 
 </html>

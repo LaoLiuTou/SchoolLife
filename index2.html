@@ -1,641 +1,1119 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>表白墙</title>
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-		<meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<meta content="telephone=no" name="format-detection">
-		<link rel="stylesheet" href="css/weui.css">
-		<link rel="stylesheet" href="css/jquery-weui.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
-		<link rel="stylesheet" href="css/baguetteBox.css">
-		<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>表白墙</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	<link rel="stylesheet" href="css/baguetteBox.css">
+	<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
+	<link rel="stylesheet" href="css/wall.css"/>
 
-	<body>
-		<div class="weui-tab">
-			<div class="weui-navbar bbqwid90" id="main_nav">
-				<div  class="indexreturn">
-					<img src="images/houtui-icon.png" />
-				</div>
-				<a class="weui-navbar__item weui-bar__item--on textri" href="#tab1">
-					<div class="bbqtab">
-						<p>校园表白墙</p>
-						<div class="bbqtabblue"></div>
-					</div>
-				</a>
-				<a class="weui-navbar__item textle" href="#tab2">
-					<div class="bbqtab">
-						<p>话题广场</p>
-						<div class="bbqtabblue"></div>
-					</div>
-				</a>
-				<a class="indexreturnsou" href="search.html">
-					<img src="images/sousuo-icon.png" />
-				</a>
+	<!--图片展开-->
+	<script src="js/baguetteBox.js" async></script>
+	<script src="js/highlight.min.js" async></script>
+</head>
+
+<body>
+
+<div class="weui-tab">
+	<div class="weui-navbar bbqwid90" id="main_nav">
+		<div  class="indexreturn" id="goback" style="visibility:hidden;">
+			<img src="images/houtui-icon.png" style=""/>
+		</div>
+		<a class="weui-navbar__item weui-bar__item--on textri" href="#tab1">
+			<div class="bbqtab">
+				<p>校园表白墙</p>
+				<div class="bbqtabblue"></div>
+			</div>
+		</a>
+		<a class="weui-navbar__item textle" href="#tab2">
+			<div class="bbqtab">
+				<p>话题广场</p>
+				<div class="bbqtabblue"></div>
+			</div>
+		</a>
+		<a class="indexreturnsou" href="javascript:;" id="searchBtn">
+			<img src="images/sousuo-icon.png" />
+		</a>
+	</div>
+
+	<div class="weui-tab__bd" >
+		<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active weui-pull-to-refresh" style="overflow:auto;height: 88%;width:100%;">
+
+			<div class="weui-pull-to-refresh__layer">
+				<div class='weui-pull-to-refresh__arrow'></div>
+				<div class='weui-pull-to-refresh__preloader'></div>
+				<div class="down">下拉刷新</div>
+				<div class="up">释放刷新</div>
+				<div class="refresh">正在刷新</div>
 			</div>
 			<div class="bbqbanner">
 				<figure id="full_feature" class="swipslider">
 					<ul class="sw-slides">
 						<li class="sw-slide">
-							<img src="images/bbqbanner.png">
+							<!--<img src="images/bbqbanner.png">-->
 						</li>
 					</ul>
 				</figure>
 			</div>
-			<div class="weui-tab__bd">
-				<ul id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active bbqul">
-					<a href="user_details.html">
-					<li class="bbqlist">
-						<div class="bbqlistimg">
-							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-						</div>
-						<!--认证-->
-						<img class="renzicon" src="images/renzheng-left-icon.png">
-						<img class="renzicons" src="images/renzheng-right-icon.png">
-						<div class="bbqlistword">
-							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nv-icon.png"></p>
-							<p class="bbqtime">2分钟以前</p>
-							<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
-							<div class="baguetteBoxOne  bbqlistimgs" >
-						        <a style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" class="listimgs" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
-						        </a>
-						        <a style="background-image: url(images/f829f187ae0acce4e1e8752cfc8e9f2.jpg);" class="listimgs" href="images/f829f187ae0acce4e1e8752cfc8e9f2.jpg" >
-						        </a>
-						        <a style="background-image: url(images/bbqbanner.png);"  class="listimgs" href="images/bbqbanner.png">
-						        </a>
-						    </div>
-						    <p class="bbqindexbiaoq">#我是标签</p>
-							<div class="bbqbuttonthree posire">
-								<div class="heart " id="like1" rel="like"></div>
-								<span class="bbqbuttonspan likespan" id="likeCount1">99</span>
-								<span class="locationpl">
-									<img src="images/pinglun-icon.png" />
-									<span class="bbqbuttonspan">999+</span>
-								</span>
-								<img class="fr bbqgengdtc" src="images/gengduo.png" />
-							</div>
-							
-							
-							
-						</div>
-						<!--热门标签-->
-						<div class="bbqremen"><img src="images/remen.png"></div>
-					</li>
-					</a>
-					<li class="bbqlist">
-						<div class="bbqlistimg">
-							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-						</div>
-						<div class="bbqlistword">
-							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
-							<p class="bbqtime">2分钟以前</p>
-							<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
-							<div class="baguetteBoxOne  bbqlistimgs" >
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
-						        </a>
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
-						        </a>
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-						        </a>
-						    </div>
-						    <div class="bbqbuttonthree posire">
-								<div class="heart"  id="like2"  rel="like"></div>
-								<span class="bbqbuttonspan likespan" >99</span>
-								<span class="locationpl">
-									<img src="images/pinglun-icon.png" />
-									<span class="bbqbuttonspan">999+</span>
-								</span>
-								<img class="fr bbqgengdtc" src="images/gengduo.png" />
-							</div>
-						</div>
-					</li>
-				</ul>
-				<!--话题广场-->
-				<ul id="tab2" class="weui-tab__bd-item bbqul">
-					<li class="bbqlist">
-						<div class="bbqlistimg">
-							<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-						</div>
-						<div class="bbqlistword">
-							<p class="bbqname"><span class="vermiddle">我叫马铃薯</span><img class="bbqxb" src="images/nan-icon.png"></p>
-							<span class="bbqtime">2分钟以前</span>
-							<span class="bbqtime">
-								<img class="bbqwz" src="images/indexwz-icon.png">吉林大学
-							</span>
-							<p class="bbqneir">我今天九年级了，我还得上补课班，我最爱吃冰激凌啦！</p>
-							<div class="baguetteBoxOne  bbqlistimgs" >
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
-						        </a>
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg" >
-						        </a>
-						        <a class="listimgs" style="background-image: url(images/9f10f09c24c4611808bcccd9b5302a3.jpg);" href="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
-						        </a>
-						    </div>
-						    
-							<div class="bbqbuttonthree">
-								<span>
-									<img src="images/dianza-icon-wdj.png" />
-									<span class="bbqbuttonspan">999+</span>
-								</span>
-								<span class="locationpl">
-									<img src="images/pinglun-icon.png" />
-									<span class="bbqbuttonspan">999+</span>
-								</span>
-								<img class="fr bbqgengdtc" src="images/gengduo.png" />
-							</div>
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-			<div class="weui-flex weui-fixed-btm">
-				<div class="weui-flex__item">
-					<a href="javascript:;" class="weui-fixed-btn">
-						<img src="images/biaobq-icon.png">
-						<p>表白墙</p>
-					</a>
-				</div>
-				<div class="weui-flex__item posire">
-					<div class="weui-fixed-btn">
-						<div class="h30"></div>
-						<p>发布</p>
-					</div>
-					<div class="bbqfb">
-						<div class="bbqfbtn" id="bbqfbbtn">
-							<img src="images/fabu-icon.png">
-						</div>
-				  	</div>
-				</div>
-			
-				<div class="weui-flex__item">
-					<a href="personal_center.html" class="weui-fixed-btn">
-						<img src="images/wode-icon-wdj.png">
-						<p>我的</p>
-					</a>
-				</div>
-			</div>
-			<!--发布弹出-->
-			<div class="bbqfbtanc">
-				<div class="fbtanbg">
-					<div class="fbtanbtn">
-						<a href="publish.html">
-						<div class="fbtanbtnw" >
-							<div class="fbtanbtnown">
-								<img src="images/fabu-wz-icon.png">
-							</div>
-							文字
-						</div></a>
-						<div class="fbtanbtnw" id="publish_camera">
-							<div class="fbtanbtnown">
-								<img src="images/fabu-ps-icon.png">
+			<ul   class=" bbqul">
 
-							</div>
-							拍摄
-						</div>
-						<div class="fbtanbtnw" id="publish_album">
-							<div class="fbtanbtnown">
-								<img src="images/fabu-xc-icon.png">
+			</ul>
+			<div class="weui-loadmore" style="display:none;">
+				<i class="weui-loading"></i>
+				<span class="weui-loadmore__tips">正在加载</span>
+			</div>
+		</div>
+		<div id="tab2" class="weui-tab__bd-item  weui-pull-to-refresh" style="overflow:auto;height: 88%;width:100%;">
+			<div class="weui-pull-to-refresh__layer">
+				<div class='weui-pull-to-refresh__arrow'></div>
+				<div class='weui-pull-to-refresh__preloader'></div>
+				<div class="down">下拉刷新</div>
+				<div class="up">释放刷新</div>
+				<div class="refresh">正在刷新</div>
+			</div>
+			<!--话题广场-->
+			<ul class="bbqul">
 
-							</div>
-							相册
-						</div>
+
+			</ul>
+			<div class="weui-loadmore" style="display:none;">
+				<i class="weui-loading"></i>
+				<span class="weui-loadmore__tips">正在加载</span>
+			</div>
+		</div>
+	</div>
+	<div class="weui-flex weui-fixed-btm">
+		<div class="weui-flex__item">
+			<a href="javascript:;" class="weui-fixed-btn">
+				<img src="images/biaobq-icon.png">
+				<p>表白墙</p>
+			</a>
+		</div>
+		<div class="weui-flex__item posire">
+			<div class="weui-fixed-btn">
+				<div class="h30"></div>
+				<p>发布</p>
+			</div>
+			<div class="bbqfb">
+				<div class="bbqfbtn" id="bbqfbbtn">
+					<img src="images/fabu-icon.png">
+				</div>
+			</div>
+		</div>
+
+		<div class="weui-flex__item">
+			<a href="personal_center.html" class="weui-fixed-btn">
+				<img src="images/wode-icon-wdj.png">
+				<p>我的</p>
+			</a>
+		</div>
+	</div>
+	<!--发布弹出-->
+	<div class="bbqfbtanc">
+		<div class="fbtanbg">
+			<div class="fbtanbtn">
+				<div class="fbtanbtnw" id="publish_text">
+					<div class="fbtanbtnown">
+						<img src="images/fabu-wz-icon.png">
 					</div>
-					<div class="bbqfb">
-						<div class="bbqfbtn" id="bbqtanchide">
-							<img  class="bbqfbguanb" src="images/fabu-icon.png">
-						</div>
-				  	</div>
+					文字
+				</div>
+				<div class="fbtanbtnw" id="publish_camera">
+					<div class="fbtanbtnown">
+						<img src="images/fabu-ps-icon.png">
+
+					</div>
+					拍摄
+				</div>
+				<div class="fbtanbtnw" id="publish_album">
+					<div class="fbtanbtnown">
+						<img src="images/fabu-xc-icon.png">
+
+					</div>
+					相册
 				</div>
 			</div>
-			<!--收藏弹出-->
-			<div class="bbqshoucangtanc">
-				<img src="images/shoucang-icon.png">
-			</div>
-			
-			<!--更多弹出-->
-			<div class="bbqgengdtanc">
-				<div class="gengdbg">
-					<div class="tit bbqscbtn">收藏</div>
-					<div class="tit">举报</div>
-					<div class="bbqqxbtn titbtn">取消</div>
-				</div>
-			</div>
-			<!--举报弹出-->
-			<div class="bbqjubtanc" style="display: none;">
-				<div class="gengdbg">
-					<div class="tit">广告或垃圾</div>
-					<div class="tit">违反相关法律法规或管理规定</div>
-					<div class="tit">引战或过于偏激的主观判断</div>
-					<div class="tit">低俗或色情</div>
-					<div class="tit">泄露他人隐私</div>
-					<div class="tit">其他</div>
-					<textarea class="tittext" placeholder="请输入举报内容"></textarea>
-					<div class="titbtn">取消</div>
-					<div class="titbtn bbqgreen">完成</div>
+			<div class="bbqfb">
+				<div class="bbqfbtn" id="bbqtanchide">
+					<img  class="bbqfbguanb" src="images/fabu-icon.png">
 				</div>
 			</div>
 		</div>
 	</div>
+	<!--收藏弹出-->
+	<div class="bbqshoucangtanc">
+		<img src="images/shoucang-icon.png">
+	</div>
+
+	<!--更多弹出-->
+	<div class="bbqgengdtanc">
+		<div class="gengdbg">
+			<div class="tit bbqscbtn">收藏</div>
+			<div class="tit bbqjbbtn">举报</div>
+			<div class="bbqqxbtn titbtn">取消</div>
+		</div>
+	</div>
+	<!--举报弹出-->
+	<div class="bbqjubtanc" style="display: none;">
+		<div class="gengdbg" id="jubaoDiv">
+			<!--<div class="tit">广告或垃圾</div>
+			<div class="tit">违反相关法律法规或管理规定</div>
+			<div class="tit">引战或过于偏激的主观判断</div>
+			<div class="tit">低俗或色情</div>
+			<div class="tit">泄露他人隐私</div>
+			<div class="tit">其他</div>
+			<textarea class="tittext" placeholder="请输入举报内容"></textarea>
+			<div class="titbtn">取消</div>
+			<div class="titbtn bbqgreen">完成</div>-->
+		</div>
+	</div>
+</div>
+</div>
 
 
 
 
-		<!--新建-->
-		<div id="publishPop" class="weui-popup__container">
-			<div class="weui-popup__overlay"></div>
-			<div class="weui-popup__modal bbqfff" style="">
-				<div class="head">
-					<div   class="bbqguanb"><img src="images/guanbi-icon.png"></div>
-					创建话题
-					<div  class="operation" id="publish">发布</div>
+<!--搜索-->
+<div id="searchPop" class="weui-popup__container" style="z-index: 10000;">
+	<div class="weui-popup__overlay"></div>
+	<div class="weui-popup__modal bbqfff" style="">
+		<div class="head">
+			<div class="weui-navbar bbqwid90">
+				<div class="bbqsous">
+					<img src="images/sousuoh-icon.png" />
+					<form   action="" onsubmit="return false;"  style="margin:0px;display:inline;" >
+						<input placeholder="搜索" id="searchText" type="search" style="width:90%;"/>
+					</form>
 				</div>
+				<a href="javascript:;" class="operation" id="cancelBtn">取消</a>
+			</div>
+		</div>
+		<div  class="bbqfabword bbqwid90">
+			<p>热门标签：</p>
+			<div id="searchLabel">
+				<!--<div class="bbqbiaoq bbqgreen">#恋爱</div>
+				<div class="bbqbiaoq">#恋爱恋爱</div>
+				<div class="bbqbiaoq">#恋爱</div>-->
+			</div>
+		</div>
 
-				<div class="bbqfabword bbqwid90">
-					<textarea placeholder="晒给懂你的人..."></textarea>
-				</div>
-				<div class="weui-gallery " id="gallery">
-					<span class="weui-gallery__img" id="galleryImg" style="background-image:url(./images/pic_160.png)"></span>
-					<div class="weui-gallery__opr">
-						<a href="javascript:" class="weui-gallery__del" imageIndex="" id="delgalleryBtn">
-							<i class="weui-icon-delete weui-icon_gallery-delete"></i>
-						</a>
-					</div>
-				</div>
-				<div class="weui-cells weui-cells_form bbqwid90" style="">
-					<div class="weui-cell">
-						<div class="weui-cell__bd">
-							<div class="weui-uploader">
-								<div class="weui-uploader__bd">
-									<ul class="weui-uploader__files"  id="uploaderFiles">
-									</ul>
-									<div class="weui-uploader__input-box">
-										<input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
-									</div>
-								</div>
+	</div>
+</div>
+<!--新建-->
+<div id="publishPop" class="weui-popup__container" style="z-index: 10000;">
+	<div class="weui-popup__overlay"></div>
+	<div class="weui-popup__modal bbqfff" style="">
+		<div class="head">
+			<div   class="bbqguanb" onclick=""><img src="images/guanbi-icon.png"></div>
+			创建话题
+
+			<div  class="operation" id="publish" onclick="">发布</div>
+		</div>
+
+		<div class="bbqfabword bbqwid90">
+			<textarea id="content" placeholder="晒给懂你的人..."></textarea>
+		</div>
+		<div class="weui-gallery " id="gallery">
+			<span class="weui-gallery__img" id="galleryImg" style="background-image:url(./images/pic_160.png)"></span>
+			<div class="weui-gallery__opr">
+				<a href="javascript:" class="weui-gallery__del" imageIndex="" id="delgalleryBtn">
+					<i class="weui-icon-delete weui-icon_gallery-delete"></i>
+				</a>
+			</div>
+		</div>
+		<div class="weui-cells weui-cells_form bbqwid90" style="">
+			<div class="weui-cell">
+				<div class="weui-cell__bd">
+					<div class="weui-uploader">
+						<div class="weui-uploader__bd">
+							<ul class="weui-uploader__files"  id="uploaderFiles">
+							</ul>
+							<div class="weui-uploader__input-box">
+								<input id="uploaderInput" class="weui-uploader__input" accept="image/*"  type='file'>
+								<!--<input id="uploaderInput" class="weui-uploader__input" capture="" type="file" accept="image/*">-->
 							</div>
 						</div>
-
-					</div>
-					<div  id="addLabel" style="display: inline-block;">
-						<div class="bbqbiaoq">恋爱</div>
-						<div class="bbqbiaoq">恋爱恋爱</div>
-						<div class="bbqbiaoq">恋爱</div>
-					</div>
-					<div class="weui-cells weui-cells_checkbox wid100" style="position: initial;padding-bottom: 0.5rem">
-						<label class="weui-cell weui-check__label" for="s17">
-							<div class="weui-cell__hd">
-								<input type="checkbox" class="weui-check" name="checkbox1" id="s17" checked="checked">
-								<i class="weui-icon-checked"></i>
-							</div>
-							<div class="weui-cell__bd">
-								<p>仅本校可见</p>
-							</div>
-
-						</label>
-					</div>
-					<div class="weui-cells weui-cells_checkbox wid100"  style="position: initial;">
-						<label class="weui-cell weui-check__label" for="s171">
-							<div class="weui-cell__hd">
-								<input type="checkbox" class="weui-check" name="checkbox1" id="s171" checked="checked">
-								<i class="weui-icon-checked"></i>
-							</div>
-							<div class="weui-cell__bd">
-								<p>开启匿名</p>
-							</div>
-
-						</label>
 					</div>
 				</div>
 
 			</div>
+			<div  id="addLabel" style="display: inline-block;">
+				<!--<div class="bbqbiaoq" select="false">恋爱</div>
+                <div class="bbqbiaoq" select="false">恋爱恋爱</div>
+                <div class="bbqbiaoq" select="false">恋爱</div>-->
+			</div>
+			<div class="weui-cells weui-cells_checkbox wid100" style="position: initial;padding-bottom: 0.5rem">
+				<label class="weui-cell weui-check__label" for="is_see">
+					<div class="weui-cell__hd">
+						<input type="checkbox" class="weui-check" name="checkbox1" id="is_see"  >
+						<i class="weui-icon-checked"></i>
+					</div>
+					<div class="weui-cell__bd">
+						<p>仅本校可见</p>
+					</div>
+
+				</label>
+			</div>
+			<div class="weui-cells weui-cells_checkbox wid100"  style="position: initial;">
+				<label class="weui-cell weui-check__label" for="is_hide">
+					<div class="weui-cell__hd">
+						<input type="checkbox" class="weui-check" name="checkbox1" id="is_hide"  >
+						<i class="weui-icon-checked"></i>
+					</div>
+					<div class="weui-cell__bd">
+						<p>开启匿名</p>
+					</div>
+
+				</label>
+			</div>
 		</div>
-		
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery-weui.min.js"></script>
+	</div>
+</div>
 
-		<script type="text/javascript" src="js/swipeslider.min.js"></script>
-		<!--图片展开-->
-		<script src="js/baguetteBox.js" async></script>
-		<script src="js/highlight.min.js" async></script>
-		<script src="js/dianzan.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
 
-		<script type="text/javascript">
-            //			轮播图
-            /* $(window).load(function() {
-                $('#full_feature').swipeslider();
-                $('#content_slider').swipeslider({
-                    transitionDuration: 600,
-                    autoPlayTimeout: 10000,
-                    sliderHeight: '300px'
-                });
-                $('#responsiveness').swipeslider();
-                $('#customizability').swipeslider({
-                    transitionDuration: 1500,
-                    autoPlayTimeout: 4000,
-                    timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
-                    sliderHeight: '30%'
-                });
-            });*/
-            //			图片宽高
-            $(window).load(function(){
-                listimgs = $('.listimgs').width();
-                $('.listimgs').height(listimgs);
-            });
+<script type="text/javascript" src="js/swipeslider.min.js"></script>
 
-            //			发布弹出
-            $('#bbqfbbtn').click(function(){
-                $('.bbqfbtanc').show();
-                $('.fbtanbg').height('11rem');
-                $('.bbqfbguanb').css({'transform':'rotate(45deg)','transition':'0.2s'})
-                $('#bbqtanchide').click(function(){
-                    $('.bbqfbtanc').hide();
-                })
-            });
-            $(".bbqgengdtc").click(function(){
-                $(".bbqgengdtanc").show();
-                $(".bbqqxbtn").click(function(){
-                    $('.bbqgengdtanc').hide();
-                })
+<script src="js/dianzan.js"></script>
 
+<!--具体功能实现-->
+<script src="js/main/barrageWall.js"></script>
+<script src="js/main/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+<script>
+
+    var  selectLabel=[];
+
+    //本校1 或者 全部0
+    var tabIndex=1;
+    var loadingtab1 = false;
+    var loadingtab2 = false;
+    var tab1page=1;
+    var tab2page=1;
+
+    var searchText='';
+    var labelId='';
+    var talkId;
+
+    //接口真坑缓存label
+    var labels={};
+    //新建弹窗缓存
+    var addpopvalue='';
+    $(document).ready(function () {
+
+
+
+        user_id=getUrlParam('user_id');
+        //user_name=getUrlParam('user_name');
+        /*存user_id*/
+        localStorage.setItem('user_id',user_id);
+        //localStorage.setItem('user_name',user_name);
+
+        //localStorage.setItem('user_id','3362');
+        //localStorage.setItem('user_name','林妹妹2');
+        $('#goback').click(function () {
+            window.location.href='#?backToApp=1';
+        });
+
+        //新建弹窗缓存
+        addpopvalue=$('#publishPop').html();
+
+
+
+
+        $('.weui-navbar__item').click(function () {
+
+            if($(this).attr('href')=='#tab1'){
+                tabIndex=1;
+            }
+            else if($(this).attr('href')=='#tab2'){
+                tabIndex=0;
+            }
+            console.log(tabIndex);
+        });
+
+        $('.weui-tab__bd-item').pullToRefresh().on('pull-to-refresh', function (done) {
+            var self = this;
+            $(self).find(".weui-loadmore").html('<i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span>');
+
+            var domId=$(this).attr('id');
+            //setTimeout(function() {
+            if(domId=='tab1'){
+                tab1page=1;
+                var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
+                listTalk(bodyParam,self,'refresh');
+            }
+            else if(domId=='tab2'){
+                tab2page=1;
+                var bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
+                listTalk(bodyParam,self,'refresh');
+            }
+
+            //}, 1000);
+
+        });
+
+        $(".weui-tab__bd-item").infinite().on("infinite", function() {
+            var self = this;
+            if(domId=='tab1'&&loadingtab1){
+                return;
+            }
+            else if(domId=='tab2'&&loadingtab2){
+                return;
+            }
+
+            $(self).find(".weui-loadmore").show();
+            if(domId=='tab1'){
+                loadingtab1 = true;
+            }
+            else if(domId=='tab2'){
+                loadingtab2 = true;
+            }
+
+            var domId=$(this).attr('id');
+            //setTimeout(function() {
+            if(domId=='tab1'){
+                tab1page++;
+                var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
+                listTalk(bodyParam,self,'load');
+            }
+            else if(domId=='tab2'){
+                tab2page++;
+                var bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
+                listTalk(bodyParam,self,'load');
+            }
+
+            // }, 1000);
+
+        });
+
+        var param = {'USER_ID': user_id};
+        listBanners(param);
+        listLabel(param);
+        listReport();
+        getUserInfo(param);
+
+        var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
+        listTalk(bodyParam,$('#tab1'),'refresh');
+        bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
+        listTalk(bodyParam,$('#tab2'),'refresh');
+
+        //发布弹出
+        $('#bbqfbbtn').click(function(){
+            $('.bbqfbtanc').show();
+            $('.fbtanbg').height('11rem');
+            $('.bbqfbguanb').css({'transform':'rotate(45deg)','transition':'0.2s'})
+            $('#bbqtanchide').click(function(){
+                $('.bbqfbtanc').hide();
             })
-            $(".locationpl").click(function(){
-                window.location.href='post_details.html'});
-            //			收藏弹出
-            $(".bbqscbtn").click(function() {
-                $('.bbqshoucangtanc').show();
+        });
+
+
+
+
+
+
+
+        //收藏弹出
+
+        $('body').on('click','.bbqgengdtc',function(e){
+            $(".bbqgengdtanc").show();
+            $(".bbqqxbtn").click(function(){
                 $('.bbqgengdtanc').hide();
-                setTimeout(function() { //定时器
-                        $(".bbqshoucangtanc").css("display", "none");
-                    },
-                    600);
             });
+            talkId=$(this).attr('itemId');
+            e.stopPropagation();
+        });
 
-            window.onload = function() {
-                baguetteBox.run('.baguetteBoxOne');
-                $('#baguetteBox-overlay').prepend("<div class='bbqtpword bbqwid90'>"+
-                    "<span class='tpspan'>123123123123123123123123123123123123123123123123123123<span>"+
-                    "<div class='bbqbuttonthree bbqphotobtn'>"+
-                    "<img src='images/tp-dianzan.png'>"+
-                    "<span class='bbqbuttonspan'>99</span>"+
-                    "<span class='locationpl'>"+
-                    "<img src='images/tp-pinglun.png'>"+
-                    "<span class='bbqbuttonspan'>9999</span>"+
-                    "</span>"+
-                    "</div></div>"+
-                    "<div class='tpzhankbtn'><span>展开</span><img src='images/jiantoubottom-icon.png'></div>");
-                $(".tpzhankbtn").click(function(){
-                    var spanbtn = $('.tpzhankbtn span').text();
-                    if(spanbtn == '展开'){
-                        $('.bbqtpword').show();
-                        $('.tpzhankbtn img').css({'transform':'rotate(-180deg)','transition':'0.2s'})
-                        $('.tpzhankbtn span').text('收起');
-                    }else if(spanbtn == "收起"){
-                        $('.bbqtpword').hide();
-                        $('.tpzhankbtn img').css({'transform':'rotate(0deg)','transition':'0.2s'})
-                        $('.tpzhankbtn span').text('展开');
+        $(".bbqscbtn").click(function() {
+            $('.bbqshoucangtanc').show();
+            $('.bbqgengdtanc').hide();
+            setTimeout(function() { //定时器
+                    $(".bbqshoucangtanc").css("display", "none");
+
+                },
+                1000);
+            var bodyParam = {'USER_ID': user_id,'TALK_ID':talkId,'SAVECEN':'1'};
+            saveTalk(bodyParam);
+
+        });
+
+
+
+
+        //举报弹出
+        $(".bbqjbbtn").click(function() {
+
+            $('.bbqjubtanc').show();
+            $('.bbqgengdtanc').hide();
+
+        });
+        $('body').on('click','#cancelJbBtn',function () {
+            $('.bbqjubtanc').hide();
+        });
+        $('body').on('click','.jubaotit',function () {
+            $('.jubaotit').removeClass('bbqtcxz');
+            $(this).addClass('bbqtcxz');
+            if($(this).text()=='其他'){
+                $('#jbText').show();
+            }
+            else{
+                $('#jbText').hide();
+            }
+        });
+        $('body').on('click','#addJbBtn',function () {
+            if($('#jubaoDiv .bbqtcxz').length==0){
+                $.toast("请选择举报原因！", "text");
+                return false;
+            }
+
+            var bodyParam = {'USER_ID': user_id,'TALK_ID':talkId,'REPORT_REASON_ID':$('.bbqtcxz').attr('itemId')};
+            if($('.bbqtcxz').text()=='其他'){
+                if($('#jbText').val()==''){
+                    $.toast("请输入举报原因！", "text");
+                    return false;
+                }
+                bodyParam['REPORT_REASON_OTHER']=$('#jbText').val();
+            }
+            addReport(bodyParam);
+            $('.bbqjubtanc').hide();
+        });
+
+
+        //搜索弹窗
+        /*$('#searchBtn').click(function(){
+            $("#searchPop").popup();
+
+        });
+        $('#cancelBtn').click(function () {
+            $.closePopup();
+        });*/
+        //搜索跳转
+        $('#searchBtn').click(function(){
+            window.location.href='search.html';
+
+        });
+
+
+
+
+
+        //图片上传
+        var imageArray=[];
+        $(function() {
+            var tmpl = '<li class="weui-uploader__file" imageIndex="#imageIndex#" style="background-image:url(#url#)"></li>',
+                $gallery = $("#gallery"),
+                $galleryImg = $("#galleryImg"),
+                $uploaderInput = $("#uploaderInput"),
+                $uploaderFiles = $("#uploaderFiles");
+
+            $uploaderInput.on("change", function(e) {
+                $("#uploaderInput").removeAttr("capture");
+                var src, url = window.URL || window.webkitURL || window.mozURL,
+                    files = e.target.files;
+                for(var i = 0, len = files.length; i < len; ++i) {
+                    var file = files[i];
+
+                    if(url) {
+                        src = url.createObjectURL(file);
+                    } else {
+                        src = e.target.result;
                     }
-                })
 
-            };
-
-            var imageArray=[];
-            $(function() {
-                var tmpl = '<li class="weui-uploader__file" imageIndex="#imageIndex#" style="background-image:url(#url#)"></li>',
-                    $gallery = $("#gallery"),
-                    $galleryImg = $("#galleryImg"),
-                    $uploaderInput = $("#uploaderInput"),
-                    $uploaderFiles = $("#uploaderFiles");
-
-                $uploaderInput.on("change", function(e) {
-                    var src, url = window.URL || window.webkitURL || window.mozURL,
-                        files = e.target.files;
-                    for(var i = 0, len = files.length; i < len; ++i) {
-                        var file = files[i];
-
-                        if(url) {
-                            src = url.createObjectURL(file);
-                        } else {
-                            src = e.target.result;
-                        }
+                    if(imageArray.length>=9){
+                        $.toast("最多只能上传9张图片！", "text");
+                    }
+                    else{
                         imageArray.push(file);
                         var  index=imageArray.indexOf(file);
                         $uploaderFiles.append($(tmpl.replace('#url#', src).replace('#imageIndex#', index)));
                     }
-                });
-                $uploaderFiles.on("click", "li", function() {
-                    $galleryImg.attr("style", this.getAttribute("style"));
-                    $gallery.fadeIn(100);
-                    $('#delgalleryBtn').attr('imageIndex',$(this).attr("imageIndex"));
-
-                });
-                $gallery.on("click", function() {
-                    $gallery.fadeOut(100);
-                });
-                $('#delgalleryBtn').click(function(){
-                    console.log(imageArray);
-                    var clickIndex=$(this).attr("imageIndex");
-                    imageArray.remove(imageArray[clickIndex]);
-                    $('#uploaderFiles li').each(function(){
-                        if(clickIndex==$(this).attr("imageIndex")){
-                            $(this).remove();
-						}
-					});
-                    //console.log(imageArray);
-                    //$('#uploaderFiles li[imageIndex="'+$(this).attr("imageIndex")+'"]').text();
-				});
+                }
             });
-		</script>
+            $uploaderFiles.on("click", "li", function() {
+                $galleryImg.attr("style", this.getAttribute("style"));
+                $gallery.fadeIn(100);
+                $('#delgalleryBtn').attr('imageIndex',$(this).attr("imageIndex"));
 
-		<!--具体功能实现-->
-		<script type="text/javascript" src="js/main/config.js"></script>
-		<script>
-            $(document).ready(function () {
-
-                var bodyParam = {'USER_ID': '3361'};
-                listBanners(bodyParam);
-                var bodyParam = {'USER_ID': '3361','IS_SEE':'0','PAGE':'1'};
-                listTalk(bodyParam);
-
-				$('.bbqguanb').click(function(){
-                    $('#main_nav').show();
-                    $.closePopup();
-				});
-
-                $('#publish_camera').on('click',function(){
-
-                    $("#uploaderInput").prop('capture','camera');
-                    $("#uploaderInput").click();
-                    $("#publishPop").popup();
-                    $('#main_nav').hide();
-                    $('#bbqtanchide').click();
-                });
-                $('#publish_album').on('click',function(){
-                    $("#uploaderInput").prop('capture','');
-                    $("#uploaderInput").click();
-                    $("#publishPop").popup();
-                    $('#main_nav').hide();
-                    $('#bbqtanchide').click();
-                });
-
-                $('#publish').click(function(){
-                    if(imageArray.length>9){
-                        $.toast("最多只能上传9张图片！", "text");
+            });
+            $gallery.on("click", function() {
+                $gallery.fadeOut(100);
+            });
+            $('#delgalleryBtn').click(function(){
+                console.log(imageArray);
+                var clickIndex=$(this).attr("imageIndex");
+                imageArray.remove(imageArray[clickIndex]);
+                $('#uploaderFiles li').each(function(){
+                    if(clickIndex==$(this).attr("imageIndex")){
+                        $(this).remove();
                     }
-                    else if(imageArray.length>0&&imageArray.length<=9){
-                        var formData = new FormData();
+                });
+                //console.log(imageArray);
+                //$('#uploaderFiles li[imageIndex="'+$(this).attr("imageIndex")+'"]').text();
+            });
+        });
 
-                        for(var o in imageArray){
-                            console.log( imageArray[o]);
-                            formData.append("image", imageArray[o]);
+
+        //标签选择
+        $('#addLabel').on('click','.bbqbiaoq',function(){
+            selectLabel=[];
+            if($(this).attr('select')=='true'){
+                $(this).attr('select','false')
+                $(this).css('color','#3d4145');
+
+            }
+            else{
+                $(this).attr('select','true')
+                $(this).css('color','#27D3D2');
+
+            }
+            $('#addLabel div[select="true"]').each(function(){
+                selectLabel.push($(this).attr('itemId'));
+            });
+            console.log(selectLabel);
+
+        });
+
+        //搜索
+        $('#searchLabel').on('click','.bbqbiaoq',function(){
+            /*if($(this).attr('select')=='true'){
+                $(this).attr('select','false')
+                $(this).css('color','#3d4145');
+            }
+            else{
+                $(this).attr('select','true')
+                $(this).css('color','#27D3D2');
+
+            }*/
+            if($(this).text()=='#全部'){
+                labelId='';
+            }
+            else{
+                labelId=$(this).attr('itemId');
+            }
+
+            $.closePopup();
+            var bodyParam = {'USER_ID': user_id,'IS_SEE':tabIndex,'PAGE':1};
+            if(tabIndex==1){
+                listTalk(bodyParam,$('#tab1'),'refresh');
+            }
+            else if(tabIndex==0){
+                listTalk(bodyParam,$('#tab2'),'refresh');
+            }
+
+        });
+        $('#searchText').bind('search', function () {
+            searchText=$(this).val();
+            var bodyParam = {'USER_ID': user_id,'IS_SEE':tabIndex,'PAGE':1};
+            if(tabIndex==1){
+                listTalk(bodyParam,$('#tab1'),'refresh');
+            }
+            else if(tabIndex==0){
+                listTalk(bodyParam,$('#tab2'),'refresh');
+            }
+            $.closePopup();
+
+        });
+
+        //隐藏新建弹窗
+        $('body').on('click','.bbqguanb',function () {
+            $.closePopup();
+        });
+
+
+        //新建弹窗
+        $('#publish_text').on('click',function(){
+            $("#uploaderInput").removeAttr("capture");
+            //$("#uploaderInput").prop('capture','');
+            $("#publishPop").popup();
+            $('#bbqtanchide').click();
+        });
+        $('#publish_camera').on('click',function(){
+
+            $("#uploaderInput").prop('capture','camera');
+            $("#uploaderInput").click();
+            $("#publishPop").popup();
+            $('#bbqtanchide').click();
+        });
+        $('#publish_album').on('click',function(){
+            $("#uploaderInput").removeAttr("capture");
+            //$("#uploaderInput").prop('capture','');
+            $("#uploaderInput").click();
+            $("#publishPop").popup();
+            $('#bbqtanchide').click();
+        });
+
+        //发布按钮
+        $('body').on('click','#publish',function () {
+
+
+            if($('#content').val()==''&&imageArray.length==0){
+                $.toast("请输入内容或上传图片！", "text");
+                return;
+            }
+            $('#publish').prop("disabled", true);
+            $('#publish').css("color", "#999");
+            //参数
+            var bodyParam ={'USER_ID': user_id};
+            if($('#is_see').prop('checked')){
+                bodyParam['IS_SEE']='是';
+            }
+            else{
+                bodyParam['IS_SEE']='否';
+            }
+            if($('#is_hide').prop('checked')){
+                bodyParam['IS_HIDE']='是';
+            }
+            else{
+                bodyParam['IS_HIDE']='否';
+            }
+            bodyParam['TALK_CONTENT']=$('#content').val();
+            if(selectLabel.length>0){
+                bodyParam['LABEL_IDS']=selectLabel.join(",");
+            }
+
+            if(imageArray.length>9){
+                $.toast("最多只能上传9张图片！", "text");
+            }
+            else if(imageArray.length>0&&imageArray.length<=9){
+                var formData = new FormData();
+
+                if(imageArray.length==1){
+                    formData.append("image", imageArray[0]);
+                }
+                else{
+                    for(var o in imageArray){
+                        formData.append("image[]", imageArray[o]);
+                    }
+                }
+                console.log(formData);
+
+                $.ajax({
+                    type: "post",
+                    url: url +"uploadImg",
+                    //url: 'http://192.168.1.144/FileUS/filesUpload',
+                    data: formData,
+                    contentType: false, // 注意这里应设为false
+                    processData: false,    //false
+                    cache: false,    //缓存
+                    success: function(response){
+                        var obj = JSON.parse(response);
+                        var code = obj['Code'];
+                        if(code=='1'){
+                            var result = obj['Result'];
+                            bodyParam['TALK_IMG']=result;
+                            //新建
+                            addTalk(bodyParam);
                         }
-                        $.ajax({
-                            type: "post",
-                            url: url +"uploadImg",
-                            //url: 'http://192.168.1.144/FileUS/filesUpload',
-                            data: formData,
-                            contentType: false, // 注意这里应设为false
-                            processData: false,    //false
-                            cache: false,    //缓存
-                            success: function(response){
-                                var obj = JSON.parse(response);
-                                var code = obj['Code'];
-                                if(code=='1'){
-                                    var result = obj['Result'];
-                                    var images=result;
-                                    console.log(images);
-                                }
-                                else{
-                                    $.toast("上传文件失败！", "text");
-                                }
-                            }
-                        })
+                        else{
+                            $('#publish').prop("disabled", false);
+                            $('#publish').css("color", "#27d3d2");
+                            $.toast("上传文件失败！", "text");
+                        }
+                    },
+                    error:function(response){
+
+                        $('#publish').prop("disabled", false);
+                        $('#publish').css("color", "#27d3d2");
+                        $.toast("上传文件失败！", "text");
                     }
+                })
+            }
+            else if(imageArray.length==0){
+                //新建
+                addTalk(bodyParam);
+                console.log(bodyParam);
+            }
+
+        });
 
 
-				});
+        //item 点击
+        $('body').on('click','.bbqlist',function(){
+            window.location.href='post_details.html?id='+$(this).attr("itemId");
+        });
+        $('body').on('click','.bbqlistimg',function(e){
+            if($(this).attr("itemId")!='0'){
+                window.location.href='user_details.html?id='+$(this).attr("itemId");
+            }
+            e.stopPropagation();
+
+        });
+        $('body').on('click','.bbqindexbiaoq',function(e){
+
+            var labelId=labels[$(this).text()];
+            var labelName=$(this).text().replace("#","");
+
+            if(tabIndex==1){
+                window.location.href='search-more.html?sltype=firstSearch&searchText='+labelName+'&labelId='+labelId;
+            }
+            else if(tabIndex==0){
+                window.location.href='search-more.html?sltype=secondSearch&searchText='+labelName+'&labelId='+labelId;
+            }
+
+            e.stopPropagation();
+
+        });
+
+        $('body').on('click','.bannerItem',function(){
+            window.location.href='banner_details.html?id='+$(this).attr("itemId");
+        });
+
+    });
 
 
 
+    /**
+     * banner
+     */
+    function listBanners(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'cxBanner', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+
+            var data = obj['Result'];
+            //防止后台返回null
+            if(data==null){
+                return;
+            }
+            var html='';
+
+            for(j = 0,len=data.length; j < len; j++) {
+                html+=' <li class="sw-slide bannerItem" itemId="'+data[j].ID+'">\n' +
+                    '   <img src="'+data[j].BANNER_IMG+'">\n' +
+                    '   </li>';
+            }
+            $('.sw-slides').html(html);
+            $('#full_feature').swipeslider();
+            $('#content_slider').swipeslider({
+                transitionDuration: 600,
+                autoPlayTimeout: 10000,
+                sliderHeight: '300px'
+            });
+            $('#responsiveness').swipeslider();
+            $('#customizability').swipeslider({
+                transitionDuration: 1500,
+                autoPlayTimeout: 4000,
+                timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
+                sliderHeight: '30%'
+            });
+        });
+
+    }
+
+    /**
+     * 发布话题
+     */
+    function addTalk(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'addTalk', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+
+            var result = obj['Result'];
+
+            $.toast("发布成功！", "text",function () {
+                $('#publishPop').html(addpopvalue);
+                $('#publishPop').hide();
+                $('#publish').prop("disabled", false);
+                $('#publish').css("color", "#27d3d2");
+                window.location.href='post_details.html?id='+result;
             });
 
 
-            /**
-             * banner
-             */
-            function listBanners(bodyParam) {
-                var hrt = new HttpRequestTool(url + 'cxBanner', 'post', 'text', true, false, bodyParam, 'callBack');
-                hrt.HttpRequest(function (response) {
-                    var obj = JSON.parse(response);
+        });
+    }
 
-                    var data = obj['Result'];
-                    var html='';
+    /**
+     * 话题列表
+     */
+    function listTalk(bodyParam,dom,refreshorload) {
+        //var hrt = new HttpRequestRefreshTool(url + 'cxTalkList', 'post', 'text', true, false, bodyParam, 'callBack');
 
-                    for(j = 0,len=data.length; j < len; j++) {
-                        html+=' <li class="sw-slide" itemId="'+data[j].ID+'">\n' +
-                            '   <img src="'+data[j].BANNER_IMG+'">\n' +
-                            '   </li>';
+        if(searchText!=''){
+            bodyParam['KEYBYTE']=searchText;
+        }
+        if(labelId!=''){
+            bodyParam['LAB_ID']=labelId;
+        }
+        var hrt = new HttpRequestRefreshTool(url + 'cxTalkKeyBYTE', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+
+
+            var html='';
+            if(data.length==0&&refreshorload=='load'){
+                if($(dom).attr('id')=='tab1'){
+                    loadingtab1 = true;
+                }
+                else if($(dom).attr('id')=='tab2'){
+                    loadingtab2 = true;
+                }
+
+                $(dom).find(".weui-loadmore").show();
+                $(dom).find(".weui-loadmore").html('<span class="weui-loadmore__tips">已无更多数据</span>');
+            }
+            else{
+                for(var j = 0,len=data.length; j < len; j++) {
+
+                    var userid='0';
+                    if(data[j].IS_HIDE=='否'){
+                        userid= data[j].TALK_USER_ID;
                     }
 
-                    $('.sw-slides').html(html);
+                    if(data[j].I_UPIMG==null){
+                        if(data[j].IS_HIDE=='是'){
+                            html+='<li class="bbqlist" onclick="" itemId="'+data[j].ID+'">\n' +
+                                '<div class="bbqlistimg" onclick="" itemId="'+userid+'">\n' +
+                                '<img src="'+data[j].I_UPIMG+'" >\n' +
+                                '</div>\n' ;
+                        }
+                        else{
+
+                            html+='<li class="bbqlist" onclick="" itemId="'+data[j].ID+'">\n' +
+                                '<div class="bbqlistimg" onclick="" itemId="'+userid+'">\n' +
+                                '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
+                                '</div>\n' ;
+                        }
+
+                    }
+                    else{
+                        html+='<li class="bbqlist" onclick="" itemId="'+data[j].ID+'">\n' +
+                            '<div class="bbqlistimg" onclick="" itemId="'+userid+'">\n' +
+                            '<img class="" src="'+data[j].I_UPIMG+'" >\n' +
+                            '</div>\n' ;
+                    }
+                    if(data[j].RZ_STATUS!=null&&data[j].RZ_STATUS=='已认证'&&data[j].IS_HIDE=='否'){
+                        html+='<img class="renzicon" src="images/renzheng-left-icon.png">\n' +
+                            '<img class="renzicons" src="images/renzheng-right-icon.png">\n';
+                    }
 
 
-                    $('#full_feature').swipeslider();
-                    $('#content_slider').swipeslider({
-                        transitionDuration: 600,
-                        autoPlayTimeout: 10000,
-                        sliderHeight: '300px'
-                    });
-                    $('#responsiveness').swipeslider();
-                    $('#customizability').swipeslider({
-                        transitionDuration: 1500,
-                        autoPlayTimeout: 4000,
-                        timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
-                        sliderHeight: '30%'
-                    });
-                });
+                    if(data[j].SE_LV!=null&&data[j].SE_LV=='男'){
+                        html+='<div class="bbqlistword" >\n'+
+                            '<p class="bbqname">'+data[j].NICKNAME+'<img class="bbqxb" src="images/nan-icon.png"></p>\n';
+                    }
+                    else{
+                        html+='<div class="bbqlistword" >\n'+
+                            '<p class="bbqname">'+data[j].NICKNAME+'<img class="bbqxb" src="images/nv-icon.png"></p>\n';
+                    }
 
+                    if(data[j].OPEN_DT!=null){
+                        html+='<p class="bbqtime">'+getDateDiff(data[j].OPEN_DT)+'</p>\n';
+                    }
+
+                    if($(dom).attr('id')=='tab2'){
+                        html+='<span class="bbqtime">\n' +
+                            '<img class="bbqwz" src="images/indexwz-icon.png">'+data[j].SC_NM+'\n' +
+                            '</span>';
+                    }
+
+
+
+                    html+='<p class="bbqneir">'+data[j].TALK_CONTENT+'</p>\n' ;
+
+                    var contentImage=data[j].TALK_IMG;
+                    if(contentImage!=null){
+                        html+='<div class="baguetteBoxOne  bbqlistimgs" >\n' ;
+                        var contentImages=contentImage.split("|");
+                        if(contentImages.length>0){
+                            for(i = 0,imagelen=contentImages.length; i< imagelen;i++) {
+                                /*html+='<a class="listimgs" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
+                                    '</a>\n' ;*/
+
+                                /* html+='<a class="listimgs lazy-load"  itemId="'+data[j].ID+'" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
+                                     '" replay="'+data[j].REPLAYCOUNT+'" like="'+data[j].GOOD+'" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
+                                     '</a>\n' ;*/
+                                html+='<a class="listimgs"  itemId="'+data[j].ID+'" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
+                                    '" replay="'+data[j].REPLAYCOUNT+'" like="'+data[j].GOOD+'"  href="'+contentImages[i]+'" >\n' +
+                                    '<img class="lazy" data-original="'+contentImages[i]+'"></a>\n' ;
+
+                            }
+
+                        }
+                        html+='</div>\n' ;
+                    }
+
+                    var labels=data[j].LABEL_NAME;
+                    if(labels!=null){
+                        var labelArr=labels.split(",");
+                        if(labelArr.length>0){
+                            for(var i = 0,labellen=labelArr.length; i< labellen;i++) {
+
+                                html+='<p class="bbqindexbiaoq" onclick="" >#'+labelArr[i]+'</p>\n' ;
+
+                            }
+
+                        }
+                    }
+
+                    html+='<div class="bbqbuttonthree posire">\n';
+                    if(data[j].GOOD!=null&&data[j].GOOD=='已赞'){
+                        html+='<div class="heart hearttalk heartAnimation" itemId="'+data[j].ID+'" rel="unlike" style=""></div>';
+                    }
+                    else{
+                        html+='<div class="heart hearttalk" itemId="'+data[j].ID+'" rel="like"></div>\n';
+                    }
+
+                    html+='<span class="bbqbuttonspan likespan" >'+data[j].GOOD_COUNT+'</span>\n' +
+                        '<span class="locationpl">\n' +
+                        '<img src="images/pinglun-icon.png" class="commentImg" onclick=""/>\n' +
+                        '<span class="bbqbuttonspan">'+data[j].REPLAYCOUNT+'</span>\n' +
+                        '</span>\n' +
+                        '<img class="fr bbqgengdtc" onclick="" itemId="'+data[j].ID+'" src="images/gengduo.png" />\n' +
+                        '</div>\n' +
+                        '</div>\n' ;
+                    if(data[j].HOTOR!=null&&data[j].HOTOR=='1'){
+                        html+='<div class="bbqremen"><img src="images/remen.png"></div>\n';
+                    }
+                    html+='</li>';
+                }
+
+                if(refreshorload=='refresh'){
+                    $(dom).find(".bbqul").html(html);
+                    $(dom).pullToRefreshDone();
+
+                }
+                else if(refreshorload=='load'){
+                    $(dom).find(".bbqul").append(html);
+                    $(dom).find(".weui-loadmore").hide();
+                }
+                loading = false;
             }
 
-            /**
-             * 发布话题
-             */
-            function addTalk(bodyParam) {
-                var hrt = new HttpRequestTool(url + 'addTalk', 'post', 'text', true, false, bodyParam, 'callBack');
-                hrt.HttpRequest(function (response) {
-                    var obj = JSON.parse(response);
-                    var result = obj['Result'];
-                    console.log(result);
-                });
+            $("img.lazy").lazyload({placeholder : "images/loading.gif", effect: "fadeIn", threshold: 1500});
+            var listimgs = $('.listimgs').width()==0?100: $('.listimgs').width();
+            $('.listimgs').height(listimgs);
+
+
+            //$("img.lazy").lazyload({effect: "fadeIn"});
+            baguetteBox.run('.baguetteBoxOne');
+
+
+
+        });
+    }
+
+
+    /**
+     * 标签列表
+     */
+    function listLabel(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'cxTalkLab', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            console.log('Label:'+response);
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+            var html='';
+            for(var j = 0,len=data.length; j < len; j++) {
+                labels["#"+data[j].LABEL_NAME]=data[j].ID;
+                html+=' <div class="bbqbiaoq" onclick="" itemId="'+data[j].ID+'" select="false">'+data[j].LABEL_NAME+'</div>';
+                // htmlsearch+='<div class="bbqbiaoq"  itemId="'+data[j].ID+'" select="false">#'+data[j].LABEL_NAME+'</div>';
             }
+            $('#addLabel').html(html);
+            //$('#searchLabel').html(htmlsearch);
 
-            /**
-             * 话题列表
-             */
-            function listTalk(bodyParam) {
-                var hrt = new HttpRequestTool(url + 'cxTalkList', 'post', 'text', true, false, bodyParam, 'callBack');
-                hrt.HttpRequest(function (response) {
-                    var obj = JSON.parse(response);
-                    var result = obj['Result'];
-                    console.log(result);
-                });
+
+        });
+    }
+    /**
+     * 话题点赞
+     */
+    function admireTalk(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'GoodCancel', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+
+
+
+        });
+    }
+    /**
+     * 话题收藏
+     */
+    function saveTalk(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'TalkSaveCancel', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+
+
+
+        });
+    }
+    /**
+     * 举报
+     */
+    function addReport(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'TalkReport', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+
+            $.toast("已提交举报信息！", "text");
+        });
+    }
+    function listReport(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'cxReportReason', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
+            var data = obj['Result'];
+            var html='';
+            for(j = 0,len=data.length; j < len; j++) {
+                html+=' <div class="tit jubaotit" onclick="" itemId="'+data[j].ID+'">'+data[j].NM_T+'</div>\n';
             }
+            html+=' <textarea class="tittext" placeholder="请输入举报内容" id="jbText" style="display: none;"></textarea>\n' +
+                ' <div class="titbtn" id="cancelJbBtn" onclick="">取消</div>\n' +
+                ' <div class="titbtn bbqgreen" id="addJbBtn" onclick="">完成</div>\n' ;
+
+            $('#jubaoDiv').html(html);
 
 
 
 
+        });
+    }
 
-                $('#files').fileinput({
-                    theme: 'fa',
-                    language: 'zh',
-                    uploadAsync: true,//异步上传
-                    uploadUrl: uploadUrl+'filesUpload',
-                    allowedFileExtensions: ['jpg', 'png', 'gif','mp4'],
-                    showUpload: true,
-                    showCaption: false,
-                    showRemove : false, //显示移除按钮
-                    enctype: 'multipart/form-data',
-                    maxFileSize:0,
-                    maxFileCount:1,
-                    dropZoneTitle: '拖拽文件到这里 &hellip;',
-                    msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+    /**
+     * 用户信息
+     */
+    function getUserInfo(bodyParam) {
+        var hrt = new HttpRequestTool(url + 'getUser', 'post', 'text', true, false, bodyParam, 'callBack');
+        hrt.HttpRequest(function (response) {
+            var obj = JSON.parse(response);
 
-                    //overwriteInitial: false, //不覆盖已存在的图片
-                    fileActionSettings:{showDrag:false},
+            var data = obj['Result'];
+            if(data!=null){
+                //缓存
+                user_name=data.NICKNAME;
+                localStorage.setItem('user_name',user_name);
 
 
-                    ////////////////////////////////图片默认值////////////////////////////////////////
-					initialPreviewAsData: true,
-                    initialPreview: [
-                        "http://lorempixel.com/1920/1080/transport/1",
-                        "http://lorempixel.com/1920/1080/transport/2",
-                        "http://lorempixel.com/1920/1080/transport/3"
-                    ],
-                    initialPreviewConfig: [
-                        {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
-                        {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
-                        {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
-                    ]
-                    ////////////////////////////////图片默认值////////////////////////////////////////
+                if(data.type=='校园生活'){
+                    $('#goback').css('visibility','hidden');
+                }
+                else{
 
-                }).on("filebatchselected", function(event, files) {
-                    //$(this).fileinput("upload");
-                }).on("fileuploaded", function(event,data, previewId, index) { //异步上传成功结果处理
+                    $('#goback').css('visibility','visible');
+                }
+            }
+        });
+    }
 
-                }).on('filesuccessremove', function (event, previewId,index) {
+</script>
 
-                }).on('filepredelete', function(event, key, jqXHR, data) {
-
-                }) ;
-
-
-		</script>
-		
-	</body>
+</body>
 
 </html>

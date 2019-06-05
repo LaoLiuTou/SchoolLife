@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>活动</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body class="bbqfff">
+		<div class="head">
+			<div  class="bbqguanb" onclick="window.history.go(-1)"><img src="images/guanbi-icon.png"></div>
+			<span id="title"></span>
+		</div>
+		<div class="bannerdetails" id="imageDiv">
+		</div>
+		<div class="textcen bannerdetails" id="content"></div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/main/barrageWall.js"></script>
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+		<script>
+
+
+            $(document).ready(function () {
+                var bodyParam= {'BANNER_ID': GetQueryString('id')};
+                selectBanner(bodyParam);
+
+            });
+
+
+            /**
+             * 话题点赞
+             */
+            function selectBanner(bodyParam) {
+                console.log(JSON.stringify(bodyParam));
+                var hrt = new HttpRequestTool(url + 'cxBannerList', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    var obj = JSON.parse(response);
+                    var data = obj['Result'];
+                    console.log(response);
+                    if(data.length>0){
+                        $('#title').text(data[0].TITLE);
+                        $('#imageDiv').html('<img src="'+data[0].BANNER_IMG+'">');
+                        $('#content').html(data[0].NOTICE_CONTENT);
+
+
+                    }
+
+
+
+
+                });
+            }
+		</script>
+	</body>
+
+</html>

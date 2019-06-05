@@ -8,6 +8,11 @@
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta content="telephone=no" name="format-detection">
+
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+
 	<link rel="stylesheet" href="css/weui.css">
 	<link rel="stylesheet" href="css/jquery-weui.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -15,13 +20,17 @@
 	<link rel="stylesheet" href="css/baguetteBox.css">
 	<link rel="stylesheet" type="text/css" href="css/dianzstyle.css"/>
 	<link rel="stylesheet" href="css/wall.css"/>
+
+	<!--图片展开-->
+	<script src="js/baguetteBox.js" async></script>
+	<script src="js/highlight.min.js" async></script>
 </head>
 
 <body>
 
 <div class="weui-tab">
 	<div class="weui-navbar bbqwid90" id="main_nav">
-		<div  class="indexreturn">
+		<div  class="indexreturn" id="goback" style="visibility:hidden;">
 			<img src="images/houtui-icon.png" style=""/>
 		</div>
 		<a class="weui-navbar__item weui-bar__item--on textri" href="#tab1">
@@ -55,7 +64,7 @@
 				<figure id="full_feature" class="swipslider">
 					<ul class="sw-slides">
 						<li class="sw-slide">
-							<img src="images/bbqbanner.png">
+							<!--<img src="images/bbqbanner.png">-->
 						</li>
 					</ul>
 				</figure>
@@ -100,7 +109,7 @@
 				<p>发布</p>
 			</div>
 			<div class="bbqfb">
-				<div class="bbqfbtn" id="bbqfbbtn">
+				<div class="bbqfbtn" onclick="" id="bbqfbbtn">
 					<img src="images/fabu-icon.png">
 				</div>
 			</div>
@@ -139,7 +148,7 @@
 				</div>
 			</div>
 			<div class="bbqfb">
-				<div class="bbqfbtn" id="bbqtanchide">
+				<div class="bbqfbtn" onclick="" id="bbqtanchide">
 					<img  class="bbqfbguanb" src="images/fabu-icon.png">
 				</div>
 			</div>
@@ -178,7 +187,7 @@
 
 
 
-<!--新建-->
+<!--搜索-->
 <div id="searchPop" class="weui-popup__container" style="z-index: 10000;">
 	<div class="weui-popup__overlay"></div>
 	<div class="weui-popup__modal bbqfff" style="">
@@ -187,7 +196,7 @@
 				<div class="bbqsous">
 					<img src="images/sousuoh-icon.png" />
 					<form   action="" onsubmit="return false;"  style="margin:0px;display:inline;" >
-						<input placeholder="搜索" id="searchText" type="search"/>
+						<input placeholder="搜索" id="searchText" type="search" style="width:90%;"/>
 					</form>
 				</div>
 				<a href="javascript:;" class="operation" id="cancelBtn">取消</a>
@@ -209,9 +218,10 @@
 	<div class="weui-popup__overlay"></div>
 	<div class="weui-popup__modal bbqfff" style="">
 		<div class="head">
-			<div   class="bbqguanb"><img src="images/guanbi-icon.png"></div>
+			<div   class="bbqguanb" onclick=""><img src="images/guanbi-icon.png"></div>
 			创建话题
-			<div  class="operation" id="publish">发布</div>
+
+			<div  class="operation" id="publish" onclick="">发布</div>
 		</div>
 
 		<div class="bbqfabword bbqwid90">
@@ -233,7 +243,8 @@
 							<ul class="weui-uploader__files"  id="uploaderFiles">
 							</ul>
 							<div class="weui-uploader__input-box">
-								<input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+								<input id="uploaderInput" class="weui-uploader__input" accept="image/*"  type='file'>
+								<!--<input id="uploaderInput" class="weui-uploader__input" capture="" type="file" accept="image/*">-->
 							</div>
 						</div>
 					</div>
@@ -248,7 +259,7 @@
 			<div class="weui-cells weui-cells_checkbox wid100" style="position: initial;padding-bottom: 0.5rem">
 				<label class="weui-cell weui-check__label" for="is_see">
 					<div class="weui-cell__hd">
-						<input type="checkbox" class="weui-check" name="checkbox1" id="is_see" checked="checked">
+						<input type="checkbox" class="weui-check" name="checkbox1" id="is_see"  >
 						<i class="weui-icon-checked"></i>
 					</div>
 					<div class="weui-cell__bd">
@@ -260,7 +271,7 @@
 			<div class="weui-cells weui-cells_checkbox wid100"  style="position: initial;">
 				<label class="weui-cell weui-check__label" for="is_hide">
 					<div class="weui-cell__hd">
-						<input type="checkbox" class="weui-check" name="checkbox1" id="is_hide" checked="checked">
+						<input type="checkbox" class="weui-check" name="checkbox1" id="is_hide"  >
 						<i class="weui-icon-checked"></i>
 					</div>
 					<div class="weui-cell__bd">
@@ -268,6 +279,7 @@
 					</div>
 
 				</label>
+				<p style="color: #ccc;font-size: 12px;padding: 10px;">*暂时还不能添加表情</p>
 			</div>
 		</div>
 
@@ -281,715 +293,13 @@
 
 <script src="js/dianzan.js"></script>
 
-<!--图片展开-->
-<script src="js/baguetteBox.js" async></script>
-<script src="js/highlight.min.js" async></script>
 <!--具体功能实现-->
 <script src="js/main/barrageWall.js"></script>
-<script type="text/javascript" src="js/main/config.js"></script>
-<script>
+<script src="js/main/jquery.lazyload.js"></script>
 
-    var  selectLabel=[];
+<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+<script type="text/javascript" src="js/main/index.js?v=1.0"></script>
 
-    //本校1 或者 全部0
-    var tabIndex=1;
-    var loadingtab1 = false;
-    var loadingtab2 = false;
-    var tab1page=1;
-    var tab2page=1;
-
-    var searchText='';
-    var labelId='';
-    var talkId;
-
-    $(document).ready(function () {
-
-        user_id=getUrlParam('user_id');
-        //user_name=getUrlParam('user_name');
-        /*存user_id*/
-        localStorage.setItem('user_id',user_id);
-        //localStorage.setItem('user_name',user_name);
-
-        //localStorage.setItem('user_id','3362');
-        //localStorage.setItem('user_name','林妹妹2');
-
-
-        $('.weui-navbar__item').click(function () {
-
-            if($(this).attr('href')=='#tab1'){
-                tabIndex=1;
-            }
-            else if($(this).attr('href')=='#tab2'){
-                tabIndex=0;
-            }
-            console.log(tabIndex);
-        });
-
-        $('.weui-tab__bd-item').pullToRefresh().on('pull-to-refresh', function (done) {
-            var self = this;
-            $(self).find(".weui-loadmore").html('<i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span>');
-
-            var domId=$(this).attr('id');
-            //setTimeout(function() {
-                if(domId=='tab1'){
-                    tab1page=1;
-                    var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
-                    listTalk(bodyParam,self,'refresh');
-                }
-                else if(domId=='tab2'){
-                    tab2page=1;
-                    var bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
-                    listTalk(bodyParam,self,'refresh');
-                }
-
-            //}, 1000);
-
-        });
-
-        $(".weui-tab__bd-item").infinite().on("infinite", function() {
-            var self = this;
-            if(domId=='tab1'&&loadingtab1){
-                return;
-            }
-            else if(domId=='tab2'&&loadingtab2){
-                return;
-            }
-
-            $(self).find(".weui-loadmore").show();
-            if(domId=='tab1'){
-                loadingtab1 = true;
-            }
-            else if(domId=='tab2'){
-                loadingtab2 = true;
-            }
-
-            var domId=$(this).attr('id');
-            //setTimeout(function() {
-                if(domId=='tab1'){
-                    tab1page++;
-                    var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
-                    listTalk(bodyParam,self,'load');
-                }
-                else if(domId=='tab2'){
-                    tab2page++;
-                    var bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
-                    listTalk(bodyParam,self,'load');
-                }
-
-           // }, 1000);
-
-        });
-
-
-        var bodyParam = {'USER_ID': user_id,'IS_SEE':1,'PAGE':tab1page};
-        listTalk(bodyParam,$('#tab1'),'refresh');
-        bodyParam = {'USER_ID': user_id,'IS_SEE':0,'PAGE':tab2page};
-        listTalk(bodyParam,$('#tab2'),'refresh');
-        var param = {'USER_ID': user_id};
-        listBanners(param);
-        listLabel(param);
-        listReport();
-
-        //发布弹出
-        $('#bbqfbbtn').click(function(){
-            $('.bbqfbtanc').show();
-            $('.fbtanbg').height('11rem');
-            $('.bbqfbguanb').css({'transform':'rotate(45deg)','transition':'0.2s'})
-            $('#bbqtanchide').click(function(){
-                $('.bbqfbtanc').hide();
-            })
-        });
-
-
-
-
-
-
-
-        //收藏弹出
-
-        $('body').on('click','.bbqgengdtc',function(e){
-            $(".bbqgengdtanc").show();
-            $(".bbqqxbtn").click(function(){
-                $('.bbqgengdtanc').hide();
-            });
-            talkId=$(this).attr('itemId');
-            e.stopPropagation();
-        });
-
-        $(".bbqscbtn").click(function() {
-            $('.bbqshoucangtanc').show();
-            $('.bbqgengdtanc').hide();
-            setTimeout(function() { //定时器
-                    $(".bbqshoucangtanc").css("display", "none");
-
-                },
-                1000);
-            var bodyParam = {'USER_ID': user_id,'TALK_ID':talkId,'SAVECEN':'1'};
-            saveTalk(bodyParam);
-
-        });
-
-
-
-
-        //举报弹出
-        $(".bbqjbbtn").click(function() {
-
-            $('.bbqjubtanc').show();
-            $('.bbqgengdtanc').hide();
-
-        });
-        $('body').on('click','#cancelJbBtn',function () {
-            $('.bbqjubtanc').hide();
-        });
-        $('body').on('click','.jubaotit',function () {
-            $('.jubaotit').removeClass('bbqtcxz');
-            $(this).addClass('bbqtcxz');
-            if($(this).text()=='其他'){
-                $('#jbText').show();
-			}
-			else{
-                $('#jbText').hide();
-			}
-		});
-        $('body').on('click','#addJbBtn',function () {
-            if($('#jubaoDiv .bbqtcxz').length==0){
-                $.toast("请选择举报原因！", "text");
-                return false;
-			}
-
-            var bodyParam = {'USER_ID': user_id,'TALK_ID':talkId,'REPORT_REASON_ID':$('.bbqtcxz').attr('itemId')};
-            if($('.bbqtcxz').text()=='其他'){
-                if($('#jbText').val()==''){
-                    $.toast("请输入举报原因！", "text");
-                    return false;
-				}
-                bodyParam['REPORT_REASON_OTHER']=$('#jbText').val();
-			}
-            addReport(bodyParam);
-            $('.bbqjubtanc').hide();
-        });
-
-
-        //搜索弹窗
-        $('#searchBtn').click(function(){
-            $("#searchPop").popup();
-
-        });
-        $('#cancelBtn').click(function () {
-            $.closePopup();
-        });
-
-
-
-
-        //图片上传
-        var imageArray=[];
-        $(function() {
-            var tmpl = '<li class="weui-uploader__file" imageIndex="#imageIndex#" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"),
-                $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles");
-
-            $uploaderInput.on("change", function(e) {
-                var src, url = window.URL || window.webkitURL || window.mozURL,
-                    files = e.target.files;
-                for(var i = 0, len = files.length; i < len; ++i) {
-                    var file = files[i];
-
-                    if(url) {
-                        src = url.createObjectURL(file);
-                    } else {
-                        src = e.target.result;
-                    }
-                    imageArray.push(file);
-                    var  index=imageArray.indexOf(file);
-                    $uploaderFiles.append($(tmpl.replace('#url#', src).replace('#imageIndex#', index)));
-                }
-            });
-            $uploaderFiles.on("click", "li", function() {
-                $galleryImg.attr("style", this.getAttribute("style"));
-                $gallery.fadeIn(100);
-                $('#delgalleryBtn').attr('imageIndex',$(this).attr("imageIndex"));
-
-            });
-            $gallery.on("click", function() {
-                $gallery.fadeOut(100);
-            });
-            $('#delgalleryBtn').click(function(){
-                console.log(imageArray);
-                var clickIndex=$(this).attr("imageIndex");
-                imageArray.remove(imageArray[clickIndex]);
-                $('#uploaderFiles li').each(function(){
-                    if(clickIndex==$(this).attr("imageIndex")){
-                        $(this).remove();
-                    }
-                });
-                //console.log(imageArray);
-                //$('#uploaderFiles li[imageIndex="'+$(this).attr("imageIndex")+'"]').text();
-            });
-        });
-
-
-        //标签选择
-        $('#addLabel').on('click','.bbqbiaoq',function(){
-            selectLabel=[];
-            if($(this).attr('select')=='true'){
-                $(this).attr('select','false')
-                $(this).css('color','#3d4145');
-
-            }
-            else{
-                $(this).attr('select','true')
-                $(this).css('color','#27D3D2');
-
-            }
-            $('#addLabel div[select="true"]').each(function(){
-                selectLabel.push($(this).attr('itemId'));
-            });
-            console.log(selectLabel);
-
-        });
-
-        //搜索
-        $('#searchLabel').on('click','.bbqbiaoq',function(){
-            /*if($(this).attr('select')=='true'){
-                $(this).attr('select','false')
-                $(this).css('color','#3d4145');
-            }
-            else{
-                $(this).attr('select','true')
-                $(this).css('color','#27D3D2');
-
-            }*/
-            if($(this).text()=='#全部'){
-                labelId='';
-			}
-			else{
-                labelId=$(this).attr('itemId');
-			}
-
-            $.closePopup();
-            var bodyParam = {'USER_ID': user_id,'IS_SEE':tabIndex,'PAGE':1};
-            if(tabIndex==1){
-                listTalk(bodyParam,$('#tab1'),'refresh');
-			}
-			else if(tabIndex==0){
-                listTalk(bodyParam,$('#tab2'),'refresh');
-			}
-
-        });
-        $('#searchText').bind('search', function () {
-            searchText=$(this).val();
-            var bodyParam = {'USER_ID': user_id,'IS_SEE':tabIndex,'PAGE':1};
-            if(tabIndex==1){
-                listTalk(bodyParam,$('#tab1'),'refresh');
-            }
-            else if(tabIndex==0){
-                listTalk(bodyParam,$('#tab2'),'refresh');
-            }
-            $.closePopup();
-
-        });
-
-        //隐藏新建弹窗
-        $('.bbqguanb').click(function(){
-            $.closePopup();
-        });
-
-        //新建弹窗
-        $('#publish_text').on('click',function(){
-
-            $("#uploaderInput").prop('capture','');
-            $("#publishPop").popup();
-            $('#bbqtanchide').click();
-        });
-        $('#publish_camera').on('click',function(){
-
-            $("#uploaderInput").prop('capture','camera');
-            $("#uploaderInput").click();
-            $("#publishPop").popup();
-            $('#bbqtanchide').click();
-        });
-        $('#publish_album').on('click',function(){
-            $("#uploaderInput").prop('capture','');
-            $("#uploaderInput").click();
-            $("#publishPop").popup();
-            $('#bbqtanchide').click();
-        });
-
-        //发布按钮
-        $('#publish').click(function(){
-            if($('#content').val()==''&&imageArray.length==0){
-                $.toast("请输入内容或上传图片！", "text");
-                return;
-            }
-
-            //参数
-            var bodyParam ={'USER_ID': user_id};
-            if($('#is_see').prop('checked')){
-                bodyParam['IS_SEE']='是';
-            }
-            else{
-                bodyParam['IS_SEE']='否';
-            }
-            if($('#is_hide').prop('checked')){
-                bodyParam['IS_HIDE']='是';
-            }
-            else{
-                bodyParam['IS_HIDE']='否';
-            }
-            bodyParam['TALK_CONTENT']=$('#content').val();
-            if(selectLabel.length>0){
-                bodyParam['LABEL_IDS']=selectLabel.join(",");
-            }
-
-            if(imageArray.length>9){
-                $.toast("最多只能上传9张图片！", "text");
-            }
-            else if(imageArray.length>0&&imageArray.length<=9){
-                var formData = new FormData();
-
-                if(imageArray.length==1){
-                    formData.append("image", imageArray[0]);
-                }
-                else{
-                    for(var o in imageArray){
-                        formData.append("image[]", imageArray[o]);
-                    }
-                }
-                console.log(formData);
-
-                $.ajax({
-                    type: "post",
-                    url: url +"uploadImg",
-                    //url: 'http://192.168.1.144/FileUS/filesUpload',
-                    data: formData,
-                    contentType: false, // 注意这里应设为false
-                    processData: false,    //false
-                    cache: false,    //缓存
-                    success: function(response){
-                        var obj = JSON.parse(response);
-                        var code = obj['Code'];
-                        if(code=='1'){
-                            var result = obj['Result'];
-                            bodyParam['TALK_IMG']=result;
-                            //新建
-                            addTalk(bodyParam);
-                        }
-                        else{
-                            $.toast("上传文件失败！", "text");
-                        }
-                    }
-                })
-            }
-            else if(imageArray.length==0){
-                //新建
-                addTalk(bodyParam);
-                //console.log(bodyParam);
-            }
-
-        });
-
-
-        //item 点击
-        $('body').on('click','.bbqlist',function(){
-            window.location.href='post_details.html?id='+$(this).attr("itemId");
-        });
-        $('body').on('click','.bbqlistimg',function(e){
-            if($(this).attr("itemId")!='0'){
-                window.location.href='user_details.html?id='+$(this).attr("itemId");
-			}
-            e.stopPropagation();
-
-        });
-        $('body').on('click','.bbqindexbiaoq',function(e){
-            window.location.href='post_details.html?label='+$(this).text();
-            e.stopPropagation();
-
-        });
-
-    });
-
-
-
-    /**
-     * banner
-     */
-    function listBanners(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'cxBanner', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-
-            //防止后台返回null
-            if(data==null){
-                return;
-            }
-            var html='';
-
-            for(j = 0,len=data.length; j < len; j++) {
-                html+=' <li class="sw-slide" itemId="'+data[j].ID+'">\n' +
-                    '   <img src="'+data[j].BANNER_IMG+'">\n' +
-                    '   </li>';
-            }
-            $('.sw-slides').html(html);
-            $('#full_feature').swipeslider();
-            $('#content_slider').swipeslider({
-                transitionDuration: 600,
-                autoPlayTimeout: 10000,
-                sliderHeight: '300px'
-            });
-            $('#responsiveness').swipeslider();
-            $('#customizability').swipeslider({
-                transitionDuration: 1500,
-                autoPlayTimeout: 4000,
-                timingFunction: 'cubic-bezier(0.38, 0.96, 0.7, 0.07)',
-                sliderHeight: '30%'
-            });
-        });
-
-    }
-
-    /**
-     * 发布话题
-     */
-    function addTalk(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'addTalk', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var result = obj['Result'];
-            $.toast("发布成功！", "text");
-        });
-    }
-
-    /**
-     * 话题列表
-     */
-    function listTalk(bodyParam,dom,refreshorload) {
-        //var hrt = new HttpRequestRefreshTool(url + 'cxTalkList', 'post', 'text', true, false, bodyParam, 'callBack');
-
-		if(searchText!=''){
-            bodyParam['KEYBYTE']=searchText;
-		}
-		if(labelId!=''){
-            bodyParam['LAB_ID']=labelId;
-		}
-        var hrt = new HttpRequestRefreshTool(url + 'cxTalkKeyBYTE', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-
-            console.log(response);
-            var html='';
-            if(data.length==0&&refreshorload=='load'){
-                if($(dom).attr('id')=='tab1'){
-                    loadingtab1 = true;
-				}
-				else if($(dom).attr('id')=='tab2'){
-                    loadingtab2 = true;
-				}
-
-                $(dom).find(".weui-loadmore").show();
-                $(dom).find(".weui-loadmore").html('<span class="weui-loadmore__tips">已无更多数据</span>');
-            }
-            else{
-                for(var j = 0,len=data.length; j < len; j++) {
-
-                    var userid='0';
-                    if(data[j].IS_HIDE=='否'){
-                        userid= data[j].TALK_USER_ID;
-					}
-
-                    if(data[j].IS_HIDE=='是'||data[j].I_UPIMG==null){
-                        html+='<li class="bbqlist" itemId="'+data[j].ID+'">\n' +
-                            '<div class="bbqlistimg" itemId="'+userid+'">\n' +
-                            '<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">\n' +
-                            '</div>\n' ;
-                    }
-                    else{
-                        html+='<li class="bbqlist" itemId="'+data[j].ID+'">\n' +
-                            '<div class="bbqlistimg"  itemId="'+userid+'">\n' +
-                            '<img src="'+data[j].I_UPIMG+'" >\n' +
-                            '</div>\n' ;
-                    }
-                    if(data[j].RZ_STATUS!=null&&data[j].RZ_STATUS=='已认证'&&data[j].IS_HIDE=='否'){
-                        html+='<img class="renzicon" src="images/renzheng-left-icon.png">\n' +
-                            '<img class="renzicons" src="images/renzheng-right-icon.png">\n';
-                    }
-
-
-                    if(data[j].SE_LV!=null&&data[j].SE_LV=='男'){
-                        html+='<div class="bbqlistword" >\n'+
-                            '<p class="bbqname">'+data[j].NICKNAME+'<img class="bbqxb" src="images/nan-icon.png"></p>\n';
-                    }
-                    else{
-                        html+='<div class="bbqlistword" >\n'+
-                            '<p class="bbqname">'+data[j].NICKNAME+'<img class="bbqxb" src="images/nv-icon.png"></p>\n';
-                    }
-
-                    if(data[j].OPEN_DT!=null){
-                        html+='<p class="bbqtime">'+getDateDiff(data[j].OPEN_DT)+'</p>\n';
-                    }
-                    html+='<p class="bbqneir">'+data[j].TALK_CONTENT+'</p>\n' ;
-                    html+='<div class="baguetteBoxOne  bbqlistimgs" >\n' ;
-                    var contentImage=data[j].TALK_IMG;
-                    if(contentImage!=null){
-                        var contentImages=contentImage.split("|");
-                        if(contentImages.length>0){
-                            for(i = 0,imagelen=contentImages.length; i< imagelen;i++) {
-                                /*html+='<a class="listimgs" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
-                                    '</a>\n' ;*/
-
-                                html+='<a class="listimgs" itemId="'+data[j].ID+'" content="'+data[j].TALK_CONTENT+'" good="'+data[j].GOOD_COUNT+
-                                    '" replay="'+data[j].REPLAYCOUNT+'" like="'+data[j].GOOD+'" style="background-image: url('+contentImages[i]+');" href="'+contentImages[i]+'" >\n' +
-                                    '</a>\n' ;
-
-                            }
-
-                        }
-                    }
-                    html+='</div>\n' ;
-                    var labels=data[j].LABEL_NAME;
-                    if(labels!=null){
-                        var labelArr=labels.split(",");
-                        if(labelArr.length>0){
-                            for(var i = 0,labellen=labelArr.length; i< labellen;i++) {
-
-                                html+='<p class="bbqindexbiaoq" >#'+labelArr[i]+'</p>\n' ;
-
-                            }
-
-                        }
-                    }
-
-                    html+='<div class="bbqbuttonthree posire">\n';
-                    if(data[j].GOOD!=null&&data[j].GOOD=='已赞'){
-                        html+='<div class="heart hearttalk heartAnimation" itemId="'+data[j].ID+'" rel="unlike" style=""></div>';
-                    }
-                    else{
-                        html+='<div class="heart hearttalk" itemId="'+data[j].ID+'" rel="like"></div>\n';
-                    }
-
-                    html+='<span class="bbqbuttonspan likespan" >'+data[j].GOOD_COUNT+'</span>\n' +
-                        '<span class="locationpl">\n' +
-                        '<img src="images/pinglun-icon.png" />\n' +
-                        '<span class="bbqbuttonspan">'+data[j].REPLAYCOUNT+'</span>\n' +
-                        '</span>\n' +
-                        '<img class="fr bbqgengdtc" itemId="'+data[j].ID+'" src="images/gengduo.png" />\n' +
-                        '</div>\n' +
-                        '</div>\n' ;
-                    if(data[j].HOT!=null&&data[j].HOT=='1'){
-                        html+='<div class="bbqremen"><img src="images/remen.png"></div>\n';
-                    }
-                    html+='</li>';
-
-
-                }
-
-                if(refreshorload=='refresh'){
-                    $(dom).find(".bbqul").html(html);
-                    $(dom).pullToRefreshDone();
-
-                }
-                else if(refreshorload=='load'){
-                    $(dom).find(".bbqul").append(html);
-                    $(dom).find(".weui-loadmore").hide();
-                }
-                loading = false;
-            }
-
-            var listimgs = $('.listimgs').width()==0?100: $('.listimgs').width();
-            $('.listimgs').height(listimgs);
-            baguetteBox.run('.baguetteBoxOne');
-
-
-
-        });
-    }
-    /**
-     * 标签列表
-     */
-    function listLabel(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'cxTalkLab', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-            var html='',htmlsearch='<div class="bbqbiaoq"  itemId="0" select="false">#全部</div>';
-            for(var j = 0,len=data.length; j < len; j++) {
-                html+=' <div class="bbqbiaoq"  itemId="'+data[j].ID+'" select="false">'+data[j].LABEL_NAME+'</div>';
-                htmlsearch+='<div class="bbqbiaoq"  itemId="'+data[j].ID+'" select="false">#'+data[j].LABEL_NAME+'</div>';
-            }
-            $('#addLabel').html(html);
-            $('#searchLabel').html(htmlsearch);
-
-
-        });
-    }
-    /**
-     * 话题点赞
-     */
-    function admireTalk(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'GoodCancel', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-            console.log(response);
-
-
-        });
-    }
-    /**
-     * 话题收藏
-     */
-    function saveTalk(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'TalkSaveCancel', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-            console.log(response);
-
-
-        });
-    }
-    /**
-     * 举报
-     */
-    function addReport(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'TalkReport', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-            console.log(response);
-            $.toast("已提交举报信息！", "text");
-        });
-    }
-    function listReport(bodyParam) {
-        var hrt = new HttpRequestTool(url + 'cxReportReason', 'post', 'text', true, false, bodyParam, 'callBack');
-        hrt.HttpRequest(function (response) {
-            var obj = JSON.parse(response);
-            var data = obj['Result'];
-            var html='';
-            for(j = 0,len=data.length; j < len; j++) {
-                html+=' <div class="tit jubaotit" itemId="'+data[j].ID+'">'+data[j].NM_T+'</div>\n';
-            }
-            html+=' <textarea class="tittext" placeholder="请输入举报内容" id="jbText" style="display: none;"></textarea>\n' +
-                ' <div class="titbtn" id="cancelJbBtn">取消</div>\n' +
-                ' <div class="titbtn bbqgreen" id="addJbBtn">完成</div>\n' ;
-
-            $('#jubaoDiv').html(html);
-
-
-
-
-        });
-    }
-
-
-
-</script>
 
 </body>
 
