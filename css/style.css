@@ -408,6 +408,7 @@ input{
 		padding-bottom: 10px;
 		display: inline-block;
 		width: 100%;
+		word-break:break-all;
 	}
 	.bbqneir{
 		color: #2e2d32;
@@ -419,6 +420,7 @@ input{
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 4;
+		word-break:break-all;
 	}
 	.bbqwz{
 		    height: 13px;
