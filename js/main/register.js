@@ -64,14 +64,19 @@ $(document).ready(function () {
             console.log(values);
         }
     });
-    $.modal({
-        title: "提示",
-        text: "目前在校园app只对在校师生开放注册，独立注册的在校学生需要提供学生证照片（印有学校名称 院系的页面）并填写基本信息。请务必保证提交信息的准确性，管理员将在3天内对提交的信息进行审核，对审核通过的用户以短信方式通知。",
-        buttons: [
-            { text: "确定", onClick: function(){ /*$.toast("成功！"); */} },
-            { text: "取消", className: "default"},
-        ]
-    });
+
+    setTimeout( function(){
+        $.modal({
+            title: "提示",
+            text: "目前在校园app只对在校师生开放注册，独立注册的在校学生需要提供学生证照片（印有学校名称 院系的页面）并填写基本信息。请务必保证提交信息的准确性，管理员将在3天内对提交的信息进行审核，对审核通过的用户以短信方式通知。",
+            buttons: [
+                { text: "确定", onClick: function(){ /*$.toast("成功！"); */} },
+                { text: "取消", className: "default"},
+            ]
+        });
+    }, 5 * 100 );
+
+
 
 
     $('#idphoto').click(function(){
