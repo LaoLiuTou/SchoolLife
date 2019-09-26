@@ -1,12 +1,13 @@
 var randomCode='';
 var bodyParam={};
-var image;
+var image='';
 var schoolTree=[];
 var firstValue;
 var xueyuanKeyArr=[];
 var xueyuanValueArr=[];
 var zhuanyeKeyArr=[];
 var zhuanyeValueArr=[];
+var randomCode='';
 $(document).ready(function () {
 
     $('#goback').click(function () {
@@ -114,15 +115,27 @@ $(document).ready(function () {
         else{
             var bodyParam = {'PH_P':$('#ph_p').val()};
             sendIdCode(bodyParam);
+            var time = 59;
+            $("#codeBtn").attr('disabled',true);
+            $("#codeBtn").css('color','#888888');
+            $("#codeBtn").text("("+time+"秒" +")重发");
+            var timer = setInterval(function(){
+                time--;
+                $("#codeBtn").text("("+time+"秒" +")重发");
+                if(time==0){
+                    clearInterval(timer);
+                    $("#codeBtn").text("获取验证码");
+                    $("#codeBtn").css('color','#27D3D2');
+                    $("#codeBtn").attr('disabled',false);
+                }
+            },1000);
+
         }
 
     });
     $('#submitBtn').click(function(){
 
-        if(image==''){
-            $.toast("请上传学生证图片！", "text");
-            return;
-        }
+
         if($('#nm_t').val()==''){
             $.toast("请输入学号真实姓名！", "text");
             return;
@@ -136,6 +149,10 @@ $(document).ready(function () {
             return;
         }
         if($('#code').val()==''){
+            $.toast("验证码不正确！", "text");
+            return;
+        }
+        if($('#code').val()!=randomCode){
             $.toast("验证码不正确！", "text");
             return;
         }
@@ -205,6 +222,10 @@ $(document).ready(function () {
 
                 }
             })
+        }
+        else {
+            $.toast("请上传学生证图片！", "text");
+            return;
         }
 
 
@@ -339,6 +360,7 @@ function sendIdCode(bodyParam) {
         var obj = JSON.parse(response);
         var result = obj['Result'];
         console.log(result);
+        randomCode=result;
     });
 }
 /**
