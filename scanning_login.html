@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>扫码注册</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body class="saom-body">
+		<div class="head">
+			<div  class="indexreturn bbqreturn" id="goback" onclick="">
+				<img src="images/houtui-icon.png" />
+			</div>
+			扫码注册
+		</div>
+		<div class="saom-tx">
+			<div class="saom-img">
+				<img id="teacher_header" src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+			</div>
+			<div class="saom-name">
+				<p id="teacher_name"></p>
+				<p id="teacher_school"></p>
+				<p id="teacher_phone"></p>
+			</div>
+			
+		</div>
+		<div class="personal bbqperson ">
+
+			<div class="weui-cells mt10 " id="addForm">
+				<div class="weui-cell bbqxinx">
+					<div class="weui-cell__bd ">
+						学生信息
+					</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-label">
+						姓名
+					</div>
+					<div class="weui-cell__bd">
+						<input class="weui-input text-right" t="data" id="nm_t" type="text" placeholder="请填写姓名">
+				 	</div>	
+				</div>
+				<div class="weui-cell weui-cell_select">
+					<div class="weui-label">
+						性别
+					</div>
+			        <div class="weui-cell__bd">
+			          <select class="saom-select" t="data" id="se_lv">
+			            <option >男</option>
+			            <option >女</option>
+			          </select>
+			        </div>
+		      	</div>
+				<div class="weui-cell">
+					<div class="weui-label">
+						学号
+					</div>
+					<div class="weui-cell__bd">
+						<input class="weui-input text-right" t="data"  id="sn_t" type="text" placeholder="请填写学号">
+					</div>
+				</div>
+				<div class="weui-cell weui-cell_select">
+					<div class="weui-label">
+						专业
+					</div>
+			        <div class="weui-cell__bd ">
+			          <select class="saom-select" t="data" id="ma_id">
+			            <!--<option >专业</option>
+			            <option >专业</option>-->
+			          </select>
+			        </div>
+		      	</div>
+				<div class="weui-cell weui-cell_select">
+					<div class="weui-label">
+						班级
+					</div>
+			        <div class="weui-cell__bd">
+			          <select class="saom-select" t="data" id="cl_id" >
+			            <!--<option >班级</option>
+			            <option >班级</option>-->
+			          </select>
+			        </div>
+		      	</div>
+				<div class="weui-cell weui-cell_vcode">
+				    <div class="weui-cell__hd">
+				      <label class="weui-label">手机号</label>
+				    </div>
+				    <div class="weui-cell__bd">
+				      <input class="weui-input text-right" type="tel" t="data" id="ph_p" placeholder="请输入手机号">
+				    </div>
+				    <div class="weui-cell__ft">
+				      <button class="weui-vcode-btn" id="codeBtn">获取验证码</button>
+				    </div>
+			    </div>
+				<div class="weui-cell weui-cell_vcode">
+					<div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+					<div class="weui-cell__bd">
+						<input class="weui-input text-right" t="data" type="number" id="code" placeholder="请输入验证码">
+					</div>
+				</div>
+			</div>
+			<button class="weui-btn weui-btn_primary bbqtucbtn"  id="submitBtn">注册</button>
+
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+		<script type="text/javascript" src="js/main/scan_register.js?v=1.0"></script>
+	</body>
+
+</html>

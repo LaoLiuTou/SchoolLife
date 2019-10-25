@@ -20,6 +20,11 @@
 				<img src="images/houtui-icon.png" />
 			</div>
 			个人中心
+			<div  class="indexreturn bbqcaomiao" onclick="" id="scan_reg">
+				<!--<a href="#?scan=1" >-->
+				<img src="images/saoys-icon.png" />
+				<!--</a>-->
+			</div>
 		</div>
 		<div class="weui-tab__bd pt50">
 			<div class="posire pt10">
@@ -147,6 +152,10 @@
 
                 });
 
+                $('#scan_reg').click(function () {
+                    getUserRegStatus(bodyParam);
+                });
+
 
             });
 
@@ -209,6 +218,29 @@
 					}
                 });
             }
+
+
+            /**
+             * 用户信息
+             */
+            function getUserRegStatus(bodyParam) {
+                var hrt = new HttpRequestTool(url + 'getUser', 'post', 'text', true, false, bodyParam, 'callBack');
+                hrt.HttpRequest(function (response) {
+                    var obj = JSON.parse(response);
+
+                    var data = obj['Result'];
+                    alert(data.qrStatus);
+					if(data.qrStatus=='N'){
+                        window.location.href='scanning_results.html?xs_id='+data.USER_ID+'&sc_id='+data.SC_ID+'&sn_t='+data.SN_T;
+					}
+					else{
+                        window.location.href='#?scan=1';
+					}
+
+                });
+            }
+
+
             /**
              * 未读消息数
              */

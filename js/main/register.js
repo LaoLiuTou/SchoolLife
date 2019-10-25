@@ -137,11 +137,11 @@ $(document).ready(function () {
 
 
         if($('#nm_t').val()==''){
-            $.toast("请输入学号真实姓名！", "text");
+            $.toast("请输入真实姓名！", "text");
             return;
         }
         if($('#nickname').val()==''){
-            $.toast("请输入学号昵称！", "text");
+            $.toast("请输入昵称！", "text");
             return;
         }
         if(!isPoneAvailable($('#ph_p').val())){
@@ -374,10 +374,9 @@ function register(bodyParam) {
         if(result.length>0){
             $.modal({
                 title: "注册成功！",
-                text: "管理员将在3天内对提交的信息进行审核，对审核通过的用户以短信方式通知。",
+                text: "您的初始密码为手机号码，管理员将在3天内对提交的信息进行审核，对审核通过的用户以短信方式通知。",
                 buttons: [
-                    { text: "确定", className: "default" },
-                    { text: "取消", className: "default"},
+                    { text: "确定",  onClick: function(){ window.location.href='#?backToLogin=1';}}
                 ]
             });
         }

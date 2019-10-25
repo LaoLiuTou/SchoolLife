@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>扫码注册</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="css/weui.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/swipeslider.css">
+	</head>
+
+	<body class="saom-body">
+		<div class="head">
+			<div  class="indexreturn bbqreturn" id="goback" onclick="">
+				<img src="images/houtui-icon.png" />
+			</div>
+			扫码注册
+		</div>
+		<div class="saom-tx">
+			<div class="saom-img" id="teacher_header">
+				<img src="images/9f10f09c24c4611808bcccd9b5302a3.jpg">
+			</div>
+			<div class="saom-name">
+				<p>
+					<span id="teacher_name"></span>
+					<span id="state_yes" class="zhuant"  style="display: none;">已同意</span>
+					<span id="state_no" class="zhuantdqr" style="display: none;">待确认</span>
+				</p>
+				<p ><span id="school_name"></span>-<span id="ac_name"></span></p>
+				<p id="teacher_phone"></p>
+			</div>
+
+
+		</div>
+		<div class="personal bbqperson ">
+
+			<div class="weui-cells mt10 ">
+				<div class="weui-cell bbqxinx">
+					<div class="weui-cell__bd ">
+						学生信息
+					</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						姓名
+					</div>
+					<div id="xs_name" class="weui-cell__price"></div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						性别
+					</div>
+					<div id="xs_sex" class="weui-cell__price"></div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						学号
+					</div>
+					<div id="sn_t" class="weui-cell__price"></div>
+				</div>
+				<div class="weui-cell weui-cell_access">
+					<div class="weui-cell__bd">
+						专业
+					</div>
+					<div  id="xs_ma_name" class="weui-cell__price"></div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						班级
+					</div>
+					<div id="xs_class_name" class=""></div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__bd">
+						手机号
+					</div>
+					<div  id="xs_phone" class="weui-cell__price"></div>
+				</div>
+
+
+			</div>
+
+		</div>
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<!--具体功能实现-->
+		<script type="text/javascript" src="js/main/config.js?v=1.0"></script>
+		<script type="text/javascript" src="js/main/scan_result.js?v=1.0"></script>
+	</body>
+
+</html>

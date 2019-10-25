@@ -70,6 +70,9 @@ HttpRequestTool.prototype.HttpRequest = function(callBack){
         dataType:this.dataType,
         data :this.bodyParam,
         async:this.asyncType,
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             //'content-Type': 'application/json'
             //'source' : 'APP'
@@ -121,6 +124,9 @@ HttpRequestRefreshTool.prototype.HttpRequest = function(callBack){
         dataType:this.dataType,
         data :this.bodyParam,
         async:this.asyncType,
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             //'content-Type': 'application/json'
             //'source' : 'APP'

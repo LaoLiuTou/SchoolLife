@@ -1651,3 +1651,115 @@ input{
 	width: 80%!important;
 	margin-top: 1rem;
 }
+/*扫一扫*/
+.bbqcaomiao{
+	position: absolute;
+	top: -10px;
+	right: 11px;
+	padding-right: 0px;
+}
+/*扫描结果*/
+.saom-body{
+	height: initial;
+}
+.saom-tx{
+	background: #fff0c8;
+	border-radius: 10px;
+	width: 100%;
+	margin-top: 55px;
+	margin-bottom: 10px;
+	height: calc( 3.5rem + 30px);
+}
+.saom-img{
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin:15px 10px;
+	display: inline-block;
+	float: left;
+
+}
+.saom-img img{
+	width: 100%;
+}
+.saom-name{
+	float: left;
+	width: calc(100% - 3.5rem - 20px);
+	height: 3.5rem;
+	padding-top: 15px;
+}
+.saom-name p{
+	line-height: calc( 3.5rem / 3);
+	color: #737373;
+	height: calc( 3.5rem / 3);
+
+}
+.saom-name p:nth-child(1){
+	font-weight: bold;
+	color: #464646;
+}
+.saom-name p:nth-child(2){
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.caom-list{
+	width: 100%;
+	display: inline-block;
+	background: #fff;
+}
+.zhuant{
+	float: right;
+	font-weight: normal;
+	color: #27D3D2;
+	margin-right: 10px;
+	border: 1px dashed #27D3D2;
+	border-radius: 2px;
+	text-align: center;
+	padding:0 5px;
+	margin: -2px 0;
+}
+.zhuantdqr{
+	float: right;
+	font-weight: normal;
+	color: #464646;
+	margin-right: 10px;
+	border: 1px dashed #464646;
+	border-radius: 2px;
+	text-align: center;
+	padding:0 5px;
+	margin: -2px 0;
+}
+/*扫码注册*/
+.text-right{
+	text-align: right;
+}
+.saom-select{
+	-webkit-appearance: none;
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	width: 100%;
+	font-size: inherit;
+	z-index: 1;
+	direction: rtl;
+	padding-right:15px;
+	color: #464646;
+}
+.saom-body .weui-input{
+	width: 100%;
+	color: #464646;
+}
+.saom-body input::-webkit-input-placeholder{
+	color:#999;
+}
+.saom-body    input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+	color:#999;
+}
+.saom-body    input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+	color:#999;
+}
+.saom-body   input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+	color:#999;
+}
