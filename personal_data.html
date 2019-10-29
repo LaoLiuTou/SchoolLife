@@ -84,12 +84,12 @@
 					</div>
 					<div  id="MA_NM_TEXT" class="weui-cell__price"></div>
 				</div>
-				<div class="weui-cell">
+				<!--<div class="weui-cell">
 					<div class="weui-cell__bd">
 						班级
 					</div>
 					<div id="NJ_D_TEXT" class=""></div>
-				</div>
+				</div>-->
 				<div class="weui-cell">
 					<div class="weui-cell__bd">
 						学号
@@ -350,7 +350,7 @@
 						}
                         nickname=data['NICKNAME'];
                         for (var item in data) {
-                             $('#'+item+'_TEXT').text(data[item]);
+                             $('#'+item+'_TEXT').text(data[item]==null?'':data[item]);
 						}
 
                         //缓存
