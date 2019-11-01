@@ -113,14 +113,14 @@ function getTeacherInfo(bodyParam) {
         $('#teacher_phone').text(result.PH_P);
 
         var ma_array=result.mas;
-        var ma_html='';
+        var ma_html='<option value=""></option>';
         for (i = 0, len = ma_array.length; i < len; i++) {
             ma_html+='<option value="'+ma_array[i].id+'">'+ma_array[i].NM_T+'</option>';
         }
         $('#ma_id').html(ma_html);
 
         var class_array=result.cls;
-        var class_html='';
+        var class_html='<option value=""></option>';
         for (i = 0, len = class_array.length; i < len; i++) {
             class_html+='<option value="'+class_array[i].id+'">'+class_array[i].NM_T+'</option>';
         }
@@ -163,8 +163,7 @@ function scanToRegister(bodyParam) {
                     title: "注册成功！",
                     text: response['Point'],
                     buttons: [
-                        { text: "确定", className: "default" },
-                        { text: "取消", className: "default"},
+                        { text: "确定",  onClick: function(){ window.location.href='#?backToLogin=1';}}
                     ]
                 });
             }
@@ -173,8 +172,7 @@ function scanToRegister(bodyParam) {
                     title: "注册失败！",
                     text: response['Point'],
                     buttons: [
-                        { text: "确定", className: "default" },
-                        { text: "取消", className: "default"},
+                        { text: "确定", className: "default" }
                     ]
                 });
             }
@@ -184,8 +182,7 @@ function scanToRegister(bodyParam) {
                 title: "注册失败！",
                 text: "系统异常，请联系管理员!",
                 buttons: [
-                    { text: "确定", className: "default" },
-                    { text: "取消", className: "default"},
+                    { text: "确定", className: "default" }
                 ]
             });
         }

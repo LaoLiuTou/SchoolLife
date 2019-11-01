@@ -283,8 +283,13 @@ function listAc(bodyParam) {
         var result = obj['Result'];
         $("#zhuanye").val("");
         $('#ma_id').val("");
+
         xueyuanKeyArr=Object.keys(result);
         xueyuanValueArr=Object.values(result);
+
+        xueyuanKeyArr.unshift("");
+        xueyuanValueArr.unshift("");
+
         $xueyuan= $("#xueyuan");
         $parent=$("#xueyuan").parent();
         $xueyuan.remove();
@@ -301,12 +306,16 @@ function listAc(bodyParam) {
             },
             onChange: function(d){
                 //console.log(this, d);
+                $("#zhuanye").val("");
             },
             onClose: function(d){
                 var xueyuanKey=xueyuanKeyArr[xueyuanValueArr.indexOf($("#xueyuan").val())];
-                $('#ac_id').val(xueyuanKey);
-                var bodyParam = {'AC_ID': xueyuanKey};
-                listMA(bodyParam);
+                if(xueyuanKey!=""){
+                    $('#ac_id').val(xueyuanKey);
+                    var bodyParam = {'AC_ID': xueyuanKey};
+                    listMA(bodyParam);
+                }
+
             }
 
         });
@@ -325,10 +334,14 @@ function listMA(bodyParam) {
         var result = obj['Result'];
         zhuanyeKeyArr=Object.keys(result);
         zhuanyeValueArr=Object.values(result);
-        $xueyuan= $("#zhuanye");
+
+        zhuanyeKeyArr.unshift("");
+        zhuanyeValueArr.unshift("");
+
+        $zhuanye= $("#zhuanye");
         $parent=$("#zhuanye").parent();
-        $xueyuan.remove();
-        $parent.append($xueyuan);
+        $zhuanye.remove();
+        $parent.append($zhuanye);
         $("#zhuanye").picker({
             title: "请选择专业",
             cols: [{

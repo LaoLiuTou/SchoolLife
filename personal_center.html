@@ -229,7 +229,6 @@
                     var obj = JSON.parse(response);
 
                     var data = obj['Result'];
-                    alert(data.qrStatus);
 					if(data.qrStatus=='N'){
                         window.location.href='scanning_results.html?xs_id='+data.USER_ID+'&sc_id='+data.SC_ID+'&sn_t='+data.SN_T;
 					}

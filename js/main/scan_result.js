@@ -3,7 +3,8 @@ var bodyParam={};
 $(document).ready(function () {
 
     $('#goback').click(function () {
-        window.location.href='#?backToApp=1';
+        //window.location.href='#?backToApp=1';
+        window.history.go(-1);
     });
 
     getTeacherAndStudentInfo({'xs_id':getUrlParam('xs_id'),'sc_id':getUrlParam('sc_id'),'sn_t':getUrlParam('sn_t')});
@@ -18,10 +19,10 @@ function getTeacherAndStudentInfo(bodyParam) {
     hrt.HttpRequest(function (response) {
         var obj = JSON.parse(response);
         var result = obj['Result'];
-        console.log(result.NM_T);
+        console.log(response);
 
         for (var item in result) {
-            $('#'+item).val(result[item]);
+            $('#'+item).text(result[item]);
         }
         if(result.teacher_img!=null){
             $('#teacher_header').prop('src',result.teacher_img);

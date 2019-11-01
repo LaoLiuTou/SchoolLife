@@ -178,21 +178,29 @@
                         bbqdietinput = $(".bbqdietinput").val();
                         $(".bbqdietinput").remove();
                         $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + bbqdietinput + '</div>');*/
+                        if(nickname!=$('#nickname').val()){
+                            $.confirm({
+                                title: '修改昵称',
+                                text: '昵称1年只能改3次，您确认要修改吗？',
+                                onOK: function () {
+                                    //点击确认
+                                    var bodyParam = {'USER_ID': user_id,'NICKNAME':$('#nickname').val()};
+                                    updateUserInfo(bodyParam);
+                                },
+                                onCancel: function () {
+                                    $("#bbqedit").text('编辑');
+                                    $(".bbqdietinput").remove();
+                                    $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + nickname + '</div>');
+                                }
+                            });
+						}
+						else{
+                            $("#bbqedit").text('编辑');
+                            $(".bbqdietinput").remove();
+                            $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + nickname + '</div>');
+						}
 
-                        $.confirm({
-                            title: '修改昵称',
-                            text: '昵称1年只能改3次，您确认要修改吗？',
-                            onOK: function () {
-                                //点击确认
-                                var bodyParam = {'USER_ID': user_id,'NICKNAME':$('#nickname').val()};
-                                updateUserInfo(bodyParam);
-                            },
-                            onCancel: function () {
-                                $("#bbqedit").text('编辑');
-                                $(".bbqdietinput").remove();
-                                $('.bbqinput').append('<div class="weui-cell__price bbqtit">' + nickname + '</div>');
-                            }
-                        });
+
 
 
                     }
