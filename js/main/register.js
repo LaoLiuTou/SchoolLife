@@ -233,6 +233,12 @@ $(document).ready(function () {
 
 
 
+    $('input').click(function(){
+        $('input').blur();
+        $(this).focus();
+
+    });
+
 
 
 
